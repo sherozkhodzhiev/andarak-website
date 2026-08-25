@@ -1,0 +1,111 @@
+{
+  "theme": "dark",
+  "typography": {
+    "headings": {
+      "fontFamily": "'Cormorant Garamond', serif",
+      "weights": ["400", "500", "600", "700"],
+      "usage": "H1-H4, blockquotes, major chapter titles, hero text.",
+      "import": "@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');"
+    },
+    "body": {
+      "fontFamily": "'Inter', sans-serif",
+      "weights": ["300", "400"],
+      "usage": "Long-form editorial paragraphs. Selected for high legibility at smaller sizes.",
+      "import": "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');"
+    },
+    "mono": {
+      "fontFamily": "'JetBrains Mono', monospace",
+      "weights": ["400"],
+      "usage": "Numbered manifesto chapters, dates, navigation dots, EN/RU toggle, labels.",
+      "import": "@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');"
+    }
+  },
+  "colors": {
+    "background": {
+      "primary": "#14110F",
+      "secondary": "#1E1A18",
+      "overlay": "rgba(20, 17, 15, 0.8)",
+      "scrim": "linear-gradient(to top, #14110F 0%, transparent 100%)"
+    },
+    "text": {
+      "primary": "#EDE3D0",
+      "secondary": "#C5BAA5",
+      "muted": "#8A8170"
+    },
+    "accent": {
+      "ember": "#E4572E",
+      "gold": "#D4AF37",
+      "flame_core": "#FF8A5B"
+    }
+  },
+  "visual_enhancers": {
+    "textures": ["subtle film grain overlay across the entire page (pointer-events-none)", "vignette edge darkening for cinematic feel"],
+    "hero": "Subtle parallax/3D hero moment. Kinetic line-by-line reveal for manifesto title.",
+    "artwork": "Spotlight/clipped-frame treatment. Do not use full-screen bleed for all art; instead use sharp geometric frames (aspect-ratio 3/4 or 16/9) with a 1px gold/ember border to look like an exhibition. Add slow ken-burns scale effect inside the frame."
+  },
+  "components": {
+    "flame_indicator": "Persistent flame SVG fixed in corner or center-top. Its visual state (color, scale, flicker speed) must change per era/chapter (e.g. vibrant for Samanids, dying embers for Mongol invasion).",
+    "dot_navigation": "Vertical fixed right dot navigation mapping to the 10 chapters. Use JetBrains Mono for chapter numbers.",
+    "marquee": "Slow editorial marquee at the bottom or between major acts (e.g. 'A HISTORY IN FIRE'). Low contrast, serif font.",
+    "language_toggle": "EN/RU text button fixed in top right, styled with JetBrains Mono.",
+    "audio_control": "Floating mute/unmute button using Lucide icons, pulsing softly when audio is active."
+  },
+  "layouts": {
+    "scrollytelling": "Sticky Canvas pattern. Content container flows normally while the artwork/media container uses `position: sticky; top: 15vh; align-self: start;`. Avoid `overflow: hidden` on ancestors.",
+    "spacing": "Massive generous spacing. Use `py-32`, `py-48`, or `min-h-screen` for sections to give narrative breathing room."
+  },
+  "motion": {
+    "scroll_reveals": "Framer Motion `whileInView`. Elements should fade up (`y: 30`, `opacity: 0` to `y: 0`, `opacity: 1`) with a slow, heavy easing.",
+    "hero": "Kinetic text reveal (staggered line by line using framer motion variants).",
+    "smooth_scroll": "Lenis library must be used for momentum scrolling to give weight to the narrative."
+  },
+  "accessibility": {
+    "audio": "Audio MUST NOT autoplay without explicit user interaction (e.g., an 'Enter Experience' button or a visible play-through toggle). Mute button is required.",
+    "contrast": "Text over images must have a scrim or background overlay to maintain APCA readability.",
+    "animations": "Respect `prefers-reduced-motion` in framer motion."
+  },
+  "media": {
+    "audio_engine": "Per-chapter ambient audio crossfade engine. Map audio tracks to active chapters via IntersectionObserver. Crossfade volumes smoothly using React state/refs on scroll.",
+    "image_urls": {
+      "chapter_1": {
+        "url": "https://images.pexels.com/photos/7438443/pexels-photo-7438443.jpeg",
+        "description": "Zoroastrian Sogdiana / Fire Temples. Wooden structure engulfed in flames."
+      },
+      "chapter_4": {
+        "url": "https://images.unsplash.com/photo-1460194436988-671f763436b7",
+        "description": "Alexander's phalanx / Mongol siege. Steel and chainmail armor."
+      },
+      "chapter_7": {
+        "url": "https://images.unsplash.com/photo-1708608132830-d16e38124182",
+        "description": "Traditional village life / Russian border-drawing. Mountain village architecture."
+      },
+      "chapter_10": {
+        "url": "https://images.unsplash.com/photo-1763577659271-70c9a212c00d",
+        "description": "Andarak today. Ancient stone pathway at twilight."
+      }
+    }
+  },
+  "instructions_to_main_agent": [
+    "Import Google Fonts directly into the CSS file.",
+    "Use standard HTML5 `<audio>` tags with a robust React custom hook for crossfading logic based on the active chapter index.",
+    "Implement the scrollytelling sections using CSS `position: sticky` on the artwork side, and normally scrolling text on the content side.",
+    "Use Framer Motion for line-by-line kinetic hero text and page-level scroll reveals.",
+    "Install and configure `@studio-freight/lenis` or `lenis` for smooth, heavy momentum scrolling.",
+    "Add `lucide-react` for icons like mute/unmute and language toggle.",
+    "The persistent flame SVG should use Framer Motion variants to transition its state smoothly based on the active chapter (e.g., changes in opacity, scale, and color).",
+    "Never use generic placeholder text; structure the narrative with the 10 chapters."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic outputs. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling. Embrace asymmetry.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur) sparingly for navigation/audio controls only. Avoid solid transparency under text.",
+    "You MUST NOT apply universal transition. Eg: `transition: all`.",
+    "You MUST NOT center align the app container, ie do not add `.App { text-align: center; }` in the css file.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "NEVER use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯 etc for icons.",
+    "All interactive and key informational elements MUST include a `data-testid` attribute to facilitate robust automated testing."
+  ]
+}
