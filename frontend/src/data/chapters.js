@@ -187,7 +187,51 @@ export const UI = {
     en: "Artwork in preparation — the archive is being restored",
     ru: "Иллюстрация готовится — архив восстанавливается",
   },
+  galleryEyebrow: { en: "From the author's archive", ru: "Из архива автора" },
+  galleryTitle: { en: "The Village, <em>Now</em>", ru: "Село, <em>Сейчас</em>" },
+  galleryIntro: {
+    en: "Not a painting, not a reconstruction — Andarak as it is. Snow on the mosque dome, poplars over the main street, the valley green in summer.",
+    ru: "Не картина и не реконструкция — Андарак такой, какой он есть. Снег на куполе мечети, тополя над главной улицей, зелёная долина летом.",
+  },
 };
+
+export const GALLERY = [
+  {
+    src: "/gallery/valley-green.png", span: "g-wide",
+    caption: {
+      en: "Andarak from above — poplars, orchards and clay roofs filling the valley floor",
+      ru: "Андарак с высоты — тополя, сады и глиняные крыши на дне долины",
+    },
+  },
+  {
+    src: "/gallery/mosque-winter.png", span: "g-tall",
+    caption: {
+      en: "The golden dome of the village mosque under first snow",
+      ru: "Золотой купол сельской мечети под первым снегом",
+    },
+  },
+  {
+    src: "/gallery/memorial-arch.png", span: "",
+    caption: {
+      en: "The memorial arch above the village — Turkestan range on the horizon",
+      ru: "Мемориальная арка над селом — Туркестанский хребет на горизонте",
+    },
+  },
+  {
+    src: "/gallery/village-street.webp", span: "g-wide",
+    caption: {
+      en: "A market lane in early spring — walnut trees, Zhigulis, everyday life",
+      ru: "Базарная улочка ранней весной — орешины, «Жигули», повседневная жизнь",
+    },
+  },
+  {
+    src: "/gallery/winter-street.png", span: "",
+    caption: {
+      en: "The main street in winter, poplars standing like sentries",
+      ru: "Главная улица зимой, тополя стоят как часовые",
+    },
+  },
+];
 
 export const YT_TRACKS = {
   sogdiana: "DjJ9mOuACoc",

@@ -35,8 +35,12 @@ Rebuild and upgrade a single-file HTML scrollytelling piece ("Andarak — A Hist
 - Soundtrack engine with three tiers per chapter: YouTube score (user-provided, YT_TRACKS in chapters.js) → direct audio file (chapter.audio) → procedural ambience. Blocked YouTube videos are detected (error 101/150) and fall back automatically
 - YouTube status: all 10 user-supplied videos are owner-blocked for embedding (player error 150 — verified with a control video which played fine, so the engine itself works). They remain wired in YT_TRACKS; if the user replaces them with embeddable videos, they will just work. Current live audio: ch1 rabab (Ustad Gada Mohammad), ch2 taiko battle drums, ch3–10 procedural soundscapes
 
+## Implemented (2026-08-25, revision 3 — village gallery)
+- "The Village, Now" closing gallery before the footer: 5 real photos of Andarak uploaded by the author (aerial summer valley, mosque under snow, memorial arch, market lane, winter main street), asymmetric 6-col editorial grid (wide/tall spans, dense flow), gold frames matching the art frames, hover zoom, staggered framer-motion reveals, EN/RU captions. Files in /app/frontend/public/gallery/, data in GALLERY export of chapters.js, component /app/frontend/src/components/Gallery.jsx
+- Exact-songs status: user re-sent the same YouTube links instead of MP3s. Server-side extraction attempted (yt-dlp, multiple player clients) — YouTube blocks this datacenter IP (403 / bot check). Conclusion unchanged: user must upload actual MP3/OGG files; /app/frontend/public/audio/ dir is ready to host them, chapters.js `audio` field wires them per chapter.
+
 ## Backlog / remaining
-- P1: User to send embedding-enabled YouTube alternatives or MP3 files for chapters 1–10 to replace the blocked tracks
+- P1: User to upload MP3 files for chapters 1–10 (YouTube embed AND download both blocked)
 - P1: Optional extra video loops for ch2, 3, 6, 7, 8 if the user provides preferred links
-- P1: Universal key image budget exhausted (max 0.4) — regenerate AI art only after top-up (Profile → Manage plan → Universal Key)
 - P2: Mobile dot-nav alternative; share/deep-link per chapter
+- P2: Voice narration per chapter (EN/RU)

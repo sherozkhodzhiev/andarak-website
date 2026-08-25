@@ -8,6 +8,7 @@ import { useYouTubeScore } from "@/hooks/useYouTubeScore";
 import Hero from "@/components/Hero";
 import Chapter from "@/components/Chapter";
 import Marquee from "@/components/Marquee";
+import Gallery from "@/components/Gallery";
 import Chrome from "@/components/Chrome";
 
 export default function App() {
@@ -113,6 +114,8 @@ export default function App() {
           sectionRef={(el) => (sectionRefs.current[i + 1] = el)}
         />
       ))}
+
+      <Gallery lang={lang} />
 
       <footer
         className="relative flex flex-col items-center justify-center text-center"
