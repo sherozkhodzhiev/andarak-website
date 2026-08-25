@@ -32,11 +32,11 @@ Rebuild and upgrade a single-file HTML scrollytelling piece ("Andarak — A Hist
 - Ch10 art: real photo of Andarak from the author's Instagram post (stored locally at /art/10-today.jpg — CDN link would expire, bytes saved)
 - Chrome: three living symbols top-left — flame (state per era), Farvahar (lit during Sogdian chapters 1–4), crescent (lit from the Islamic era, ch5+)
 - Per-chapter soundtrack slots added (`audio` field in chapters.js + useTrack crossfade engine): drop in direct MP3 URLs and each chapter auto-crossfades to its track once Audio is enabled; procedural WebAudio ambience remains the fallback
-- Soundtrack live: ch1 plays an authentic Afghan rabab recording (Ustad Gada Mohammad, Wikimedia Commons) for the Zoroastrian/Farvahar mood; ch2 plays battle drums (taiko) for Alexander's invasion; both auto-crossfade on scroll once Audio is enabled; all other chapters keep their procedural soundscapes until the user supplies more links
-- Awaiting from user (optional): more track links for chapters 3–10, and any preferred video links for chapters 2, 3, 6, 7, 8
+- Soundtrack engine with three tiers per chapter: YouTube score (user-provided, YT_TRACKS in chapters.js) → direct audio file (chapter.audio) → procedural ambience. Blocked YouTube videos are detected (error 101/150) and fall back automatically
+- YouTube status: all 10 user-supplied videos are owner-blocked for embedding (player error 150 — verified with a control video which played fine, so the engine itself works). They remain wired in YT_TRACKS; if the user replaces them with embeddable videos, they will just work. Current live audio: ch1 rabab (Ustad Gada Mohammad), ch2 taiko battle drums, ch3–10 procedural soundscapes
 
 ## Backlog / remaining
-- P1: Fill remaining chapter audio slots (3–10) if the user sends links
+- P1: User to send embedding-enabled YouTube alternatives or MP3 files for chapters 1–10 to replace the blocked tracks
 - P1: Optional extra video loops for ch2, 3, 6, 7, 8 if the user provides preferred links
 - P1: Universal key image budget exhausted (max 0.4) — regenerate AI art only after top-up (Profile → Manage plan → Universal Key)
 - P2: Mobile dot-nav alternative; share/deep-link per chapter

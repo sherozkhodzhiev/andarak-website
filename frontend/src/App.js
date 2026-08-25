@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Lenis from "lenis";
 import "@/App.css";
-import { CHAPTERS } from "@/data/chapters";
+import { CHAPTERS, YT_TRACKS } from "@/data/chapters";
 import { useAmbience } from "@/hooks/useAmbience";
 import { useTrack } from "@/hooks/useTrack";
+import { useYouTubeScore } from "@/hooks/useYouTubeScore";
 import Hero from "@/components/Hero";
 import Chapter from "@/components/Chapter";
 import Marquee from "@/components/Marquee";
@@ -14,6 +15,7 @@ export default function App() {
   const [audioOn, setAudioOn] = useState(false);
   const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const [ytFailed, setYtFailed] = useState({});
   const sectionRefs = useRef([]);
   const activeRef = useRef(0);
   const lastAutoRef = useRef(0);
@@ -72,9 +74,12 @@ export default function App() {
   }, [playing]);
 
   const chapter = active >= 1 ? CHAPTERS[active - 1] : null;
-  const trackUrl = chapter?.audio || null;
-  useAmbience(audioOn && !trackUrl, chapter ? chapter.sound : "calm");
+  const rawYtId = chapter ? YT_TRACKS[chapter.id] : null;
+  const ytId = rawYtId && !ytFailed[rawYtId] ? rawYtId : null;
+  const trackUrl = !ytId && chapter?.audio ? chapter.audio : null;
+  useAmbience(audioOn && !ytId && !trackUrl, chapter ? chapter.sound : "calm");
   useTrack(audioOn, trackUrl);
+  useYouTubeScore(audioOn, ytId, useCallback((id) => setYtFailed((f) => (f[id] ? f : { ...f, [id]: true })), []));
 
   const scrollTo = useCallback((idx) => {
     sectionRefs.current[idx]?.scrollIntoView({ behavior: "smooth" });

@@ -188,3 +188,16 @@ export const UI = {
     ru: "Иллюстрация готовится — архив восстанавливается",
   },
 };
+
+export const YT_TRACKS = {
+  sogdiana: "DjJ9mOuACoc",
+  invasion: "tBV5QhJV8Gk",
+  alexandria: "SIVbDe7CpnE",
+  death: "FfemUP21T0U",
+  conquest: "QulvRHVs8ks",
+  samanid: "Ov5ljc44Ajs",
+  mongol: "58JoSx396a4",
+  steppe: "VAHHaafpHcw",
+  empires: "4tjyxHqDNtc",
+  today: "vtjhaNtHzMo",
+};
