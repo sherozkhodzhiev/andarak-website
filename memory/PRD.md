@@ -24,7 +24,19 @@ Rebuild and upgrade a single-file HTML scrollytelling piece ("Andarak — A Hist
 - Persistent flame indicator whose color/flicker state changes per era; chapter dot nav; "play through" auto-scroll mode (stops on manual scroll)
 - Slow editorial marquee between hero and chapters; film grain + vignette; footer
 
+## Implemented (2026-08-25, revision 2 — visual edit requests)
+- Hero rebuilt around ANDARAK as the main kinetic title (masked reveal), ember italic subtitle, FERGANA ghost parallax layer
+- Marquee restyled: larger italic serif era names, ember diamond separators, gold rules, faster cadence
+- Chapter frames now support video loops: ch1 fire loop, ch4 wheat-field loop, ch5 fire loop (royalty-free Wikimedia Commons webm, verified 200); other chapters keep ken-burns AI paintings; per-chapter `video` field ready for user-supplied links
+- Ch9 art: authentic 1911 Prokudin-Gorsky colour photo of Samarkand (public domain, stored locally at /art/09-empires.jpg)
+- Ch10 art: real photo of Andarak from the author's Instagram post (stored locally at /art/10-today.jpg — CDN link would expire, bytes saved)
+- Chrome: three living symbols top-left — flame (state per era), Farvahar (lit during Sogdian chapters 1–4), crescent (lit from the Islamic era, ch5+)
+- Per-chapter soundtrack slots added (`audio` field in chapters.js + useTrack crossfade engine): drop in direct MP3 URLs and each chapter auto-crossfades to its track once Audio is enabled; procedural WebAudio ambience remains the fallback
+- Soundtrack live: ch1 plays an authentic Afghan rabab recording (Ustad Gada Mohammad, Wikimedia Commons) for the Zoroastrian/Farvahar mood; ch2 plays battle drums (taiko) for Alexander's invasion; both auto-crossfade on scroll once Audio is enabled; all other chapters keep their procedural soundscapes until the user supplies more links
+- Awaiting from user (optional): more track links for chapters 3–10, and any preferred video links for chapters 2, 3, 6, 7, 8
+
 ## Backlog / remaining
-- P0: Regenerate chapter 09 (Soviet cartographers) and 10 (modern Andarak) paintings — universal key image budget was exhausted mid-run ("Budget exceeded, max 0.4"); frames currently show an elegant "artwork in preparation" fallback. Top up via Profile → Manage plan → Universal Key, then re-run `python3 /app/scripts/generate_art.py`
-- P1: Optional real recorded soundscapes if licensed audio is provided
+- P1: Fill remaining chapter audio slots (3–10) if the user sends links
+- P1: Optional extra video loops for ch2, 3, 6, 7, 8 if the user provides preferred links
+- P1: Universal key image budget exhausted (max 0.4) — regenerate AI art only after top-up (Profile → Manage plan → Universal Key)
 - P2: Mobile dot-nav alternative; share/deep-link per chapter

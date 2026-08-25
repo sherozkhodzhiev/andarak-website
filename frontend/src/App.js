@@ -3,6 +3,7 @@ import Lenis from "lenis";
 import "@/App.css";
 import { CHAPTERS } from "@/data/chapters";
 import { useAmbience } from "@/hooks/useAmbience";
+import { useTrack } from "@/hooks/useTrack";
 import Hero from "@/components/Hero";
 import Chapter from "@/components/Chapter";
 import Marquee from "@/components/Marquee";
@@ -70,8 +71,10 @@ export default function App() {
     };
   }, [playing]);
 
-  const soundPreset = active >= 1 ? CHAPTERS[active - 1].sound : "calm";
-  useAmbience(audioOn, soundPreset);
+  const chapter = active >= 1 ? CHAPTERS[active - 1] : null;
+  const trackUrl = chapter?.audio || null;
+  useAmbience(audioOn && !trackUrl, chapter ? chapter.sound : "calm");
+  useTrack(audioOn, trackUrl);
 
   const scrollTo = useCallback((idx) => {
     sectionRefs.current[idx]?.scrollIntoView({ behavior: "smooth" });

@@ -1,7 +1,10 @@
+const FIRE_VIDEO = "https://upload.wikimedia.org/wikipedia/commons/b/bb/Fantastic-fireplace-fire-chimney-hearth-_background_-_texture_-_motion_graphics_-_free_video_library.webm";
+const WHEAT_VIDEO = "https://upload.wikimedia.org/wikipedia/commons/a/af/ASMR_field_of_wheat_-_nature.webm";
+
 export const CHAPTERS = [
   {
     id: "sogdiana", num: "01", flame: "alive", sound: "fire", embers: true,
-    art: "/art/01-sogdiana.png",
+    art: "/art/01-sogdiana.png", video: FIRE_VIDEO, audio: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Ustad_Gada_Mohammad_-_Rababa.ogg",
     eyebrow: { en: "Sogdiana, before empire", ru: "Согдиана, до империй" },
     title: { en: "A Land of <em>Fire</em>", ru: "Земля <em>Огня</em>" },
     body: {
@@ -16,7 +19,7 @@ export const CHAPTERS = [
   },
   {
     id: "invasion", num: "02", flame: "alive", sound: "storm", embers: false,
-    art: "/art/02-invasion.png",
+    art: "/art/02-invasion.png", audio: "https://upload.wikimedia.org/wikipedia/commons/9/97/02_Taiko2_%28short%29.oga",
     eyebrow: { en: "329 BC", ru: "329 г. до н.э." },
     title: { en: "Alexander <em>Invades</em>", ru: "Вторжение <em>Александра</em>" },
     body: {
@@ -46,7 +49,7 @@ export const CHAPTERS = [
   },
   {
     id: "death", num: "04", flame: "alive", sound: "calm", embers: false,
-    art: "/art/04-death.png",
+    art: "/art/04-death.png", video: WHEAT_VIDEO, audio: null,
     eyebrow: { en: "323 BC", ru: "323 г. до н.э." },
     title: { en: "The King Dies, the Land <em>Breathes</em>", ru: "Царь Умирает, Земля <em>Вздыхает</em>" },
     body: {
@@ -61,7 +64,7 @@ export const CHAPTERS = [
   },
   {
     id: "conquest", num: "05", flame: "dying", sound: "fire", embers: true,
-    art: "/art/05-conquest.png",
+    art: "/art/05-conquest.png", video: FIRE_VIDEO, audio: null,
     eyebrow: { en: "8th century", ru: "VIII век" },
     title: { en: "The Fires Are <em>Put Out</em>", ru: "Огни <em>Угасают</em>" },
     body: {
@@ -121,7 +124,7 @@ export const CHAPTERS = [
   },
   {
     id: "empires", num: "09", flame: "ember", sound: "calm", embers: false,
-    art: "/art/09-empires.png",
+    art: "/art/09-empires.jpg", audio: null,
     eyebrow: { en: "19th–20th century", ru: "XIX–XX века" },
     title: { en: "Empires Draw <em>the Lines</em>", ru: "Империи Чертят <em>Границы</em>" },
     body: {
@@ -129,14 +132,14 @@ export const CHAPTERS = [
       ru: "Войска Российской империи приходят с картами и ружьями; флаг царя уступает место серпу и молоту. В 1924 году советские картографы чертят границы прямо по долинам и деревням. Андарак, таджикско-персидское село, оказывается в составе Киргизской ССР.",
     },
     caption: {
-      en: "Cartographers of 1924 draw borders across the Fergana valley",
-      ru: "Картографы 1924 года чертят границы Ферганской долины",
+      en: "Samarkand in the final years of the Emirate — colour photograph by S. Prokudin-Gorsky, c. 1911",
+      ru: "Самарканд в последние годы эмирата — цветная фотография С. Прокудина-Горского, ок. 1911",
     },
     cue: { en: "Cold imperial march fading into bureaucratic quiet", ru: "Холодный марш, растворяющийся в тишине кабинетов" },
   },
   {
     id: "today", num: "10", flame: "alive", sound: "birds", embers: true,
-    art: "/art/10-today.png",
+    art: "/art/10-today.jpg", audio: null,
     eyebrow: { en: "Today", ru: "Наши дни" },
     title: { en: "Andarak <em>Still Stands</em>", ru: "Андарак <em>Всё Ещё Стоит</em>" },
     body: {
@@ -144,8 +147,8 @@ export const CHAPTERS = [
       ru: "После согдийцев, греков, арабов, саманидов, монголов, тюркских ханов, империй и союзов — село всё ещё здесь. Горы, дома, повседневная жизнь, дети и аксакалы. Это моё родное место.",
     },
     caption: {
-      en: "Andarak today, beneath the Turkestan range",
-      ru: "Современный Андарак на фоне Туркестанского хребта",
+      en: "Andarak — the village today, from the author's archive",
+      ru: "Андарак — село сегодня, фото из архива автора",
     },
     cue: { en: "Warm and hopeful — the flute from chapter one returns", ru: "Тепло и светло — возвращается флейта первой главы" },
   },
@@ -160,10 +163,12 @@ export const FLAME_STATES = {
 
 export const UI = {
   kicker: { en: "A history of Andarak", ru: "История Андарака" },
-  heroLines: {
-    en: ["Fire, Empire,", "and What Remains"],
-    ru: ["Огонь, Империи,", "и то, что осталось"],
+  heroName: { en: "ANDARAK", ru: "АНДАРАК" },
+  heroSub: {
+    en: "Fire, Empire, and What Remains",
+    ru: "Огонь, Империи и то, что осталось",
   },
+  heroGhost: { en: "FERGANA", ru: "ФЕРГАНА" },
   heroIntro: {
     en: "Ten chapters. Two and a half thousand years. One village in the Fergana valley that outlasted every empire that passed through it.",
     ru: "Десять глав. Две с половиной тысячи лет. Одно село в Ферганской долине, пережившее все прошедшие через него империи.",
@@ -174,9 +179,9 @@ export const UI = {
   play: { en: "Play through", ru: "Воспроизвести" },
   playing: { en: "Playing…", ru: "Идёт показ…" },
   score: { en: "score", ru: "партитура" },
-  marquee: {
-    en: "Sogdiana — Alexander — The Conquest — Samanid Dawn — Genghis Khan — Khanates — Empires — Andarak — ",
-    ru: "Согдиана — Александр — Завоевание — Саманиды — Чингисхан — Ханства — Империи — Андарак — ",
+  marqueeItems: {
+    en: ["Sogdiana", "Alexander the Great", "The Arab Conquest", "Samanid Dawn", "Genghis Khan", "The Khanates", "Empires & Borders", "Andarak"],
+    ru: ["Согдиана", "Александр Македонский", "Арабское завоевание", "Эпоха Саманидов", "Чингисхан", "Ханства", "Империи и границы", "Андарак"],
   },
   artPending: {
     en: "Artwork in preparation — the archive is being restored",

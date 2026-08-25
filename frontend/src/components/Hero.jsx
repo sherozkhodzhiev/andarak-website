@@ -30,11 +30,11 @@ export default function Hero({ lang, sectionRef }) {
         }}
       />
       <motion.div className="hero-ghost" style={{ x: ghostX, y: ghostY, translateX: "-50%", translateY: "-52%" }} aria-hidden="true">
-        ANDARAK
+        {UI.heroGhost[lang]}
       </motion.div>
 
       <motion.p
-        className="font-mono-d text-xs tracking-[.24em] uppercase mb-8 relative z-10"
+        className="font-mono-d text-xs tracking-[.24em] uppercase mb-6 relative z-10"
         style={{ color: "var(--parchment-dim)" }}
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -44,30 +44,49 @@ export default function Hero({ lang, sectionRef }) {
         {UI.kicker[lang]}
       </motion.p>
 
-      <h1
-        className="font-display font-semibold relative z-10"
-        style={{ fontSize: "clamp(2.8rem, 8vw, 6.8rem)", lineHeight: 1.04, color: "var(--parchment)" }}
-        data-testid="hero-title"
-      >
-        {UI.heroLines[lang].map((line, i) => (
-          <span className="mask-line" key={`${lang}-${i}`}>
-            <motion.span
-              initial={{ y: "115%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1.15, delay: 0.25 + i * 0.22, ease: EASE }}
-            >
-              {i === UI.heroLines[lang].length - 1 ? <em style={{ color: "var(--ember)" }}>{line}</em> : line}
-            </motion.span>
-          </span>
-        ))}
+      <h1 className="font-display relative z-10" data-testid="hero-title">
+        <span className="mask-line">
+          <motion.span
+            style={{
+              fontWeight: 600,
+              fontSize: "clamp(3.4rem, 12vw, 10.5rem)",
+              lineHeight: 1,
+              letterSpacing: ".05em",
+              color: "var(--parchment)",
+            }}
+            initial={{ y: "115%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1.2, delay: 0.25, ease: EASE }}
+          >
+            {UI.heroName[lang]}
+          </motion.span>
+        </span>
+        <span className="mask-line">
+          <motion.span
+            className="inline-block mt-4"
+            style={{
+              fontStyle: "italic",
+              fontWeight: 500,
+              fontSize: "clamp(1.5rem, 3.4vw, 3rem)",
+              lineHeight: 1.15,
+              color: "var(--ember)",
+            }}
+            initial={{ y: "115%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1.2, delay: 0.55, ease: EASE }}
+            data-testid="hero-subtitle"
+          >
+            {UI.heroSub[lang]}
+          </motion.span>
+        </span>
       </h1>
 
       <motion.p
-        className="relative z-10 mt-8 max-w-[52ch] text-sm md:text-base font-light"
+        className="relative z-10 mt-9 max-w-[52ch] text-sm md:text-base font-light"
         style={{ color: "var(--parchment-dim)" }}
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.9, ease: EASE }}
+        transition={{ duration: 1, delay: 1.05, ease: EASE }}
         data-testid="hero-intro"
       >
         {UI.heroIntro[lang]}
@@ -78,7 +97,7 @@ export default function Hero({ lang, sectionRef }) {
         style={{ color: "var(--parchment-dim)" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.6 }}
+        transition={{ duration: 1, delay: 1.8 }}
         data-testid="hero-scroll-hint"
       >
         {UI.scrollHint[lang]} ↓

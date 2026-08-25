@@ -53,6 +53,7 @@ const reveal = (delay) => ({
 
 export default function Chapter({ chapter, index, lang, sectionRef }) {
   const [imgOk, setImgOk] = useState(true);
+  const [videoOk, setVideoOk] = useState(true);
 
   return (
     <section
@@ -103,7 +104,20 @@ export default function Chapter({ chapter, index, lang, sectionRef }) {
             transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
           >
             <div className="art-frame" data-testid={`artwork-${chapter.num}`}>
-              {imgOk ? (
+              {chapter.video && videoOk ? (
+                <>
+                  <video
+                    src={chapter.video}
+                    poster={chapter.art}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    onError={() => setVideoOk(false)}
+                  />
+                  <div className="art-scrim" />
+                </>
+              ) : imgOk ? (
                 <>
                   <img
                     src={chapter.art}
