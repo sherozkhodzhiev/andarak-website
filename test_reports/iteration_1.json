@@ -1,0 +1,23 @@
+{
+  "summary": "Verified static code document hosting fix and regression smoke on ANDARAK site.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "verification_details": {
+    "ANDARAK_FULL_CODE.txt": "HTTP 200, Content-Type: text/plain; charset=UTF-8, starts with '# ANDARAK — A History in Fire · Complete Source Code', contains 'frontend/src/App.js' and 'frontend/src/data/chapters.js' sections (grep matched 2 occurrences). NOT the SPA HTML fallback.",
+    "ANDARAK_FULL_CODE.md": "HTTP 200, Content-Type: text/markdown; charset=UTF-8, same source code content served.",
+    "main_app": "Loads at https://history-stands.preview.emergentagent.com — hero ANDARAK title visible, subtitle 'Fire, Empire, and What Remains' rendered, 12 H1/H2 headings (chapters) present, data-testid='village-gallery' found in DOM (count=1), gallery images render (e.g., '04 / A market lane in early spring'), footer 'The fire is still burning.' visible."
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped per request)", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Static files ANDARAK_FULL_CODE.txt/.md are correctly served from /app/frontend/public with proper content-types (not SPA fallback). Main scrollytelling app and village-gallery section render properly."
+}
