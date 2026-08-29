@@ -1,0 +1,33 @@
+{
+  "summary": "Frontend-only Playwright regression for Andarak portal (Step 1 multi-page conversion). 43/44 automated checks passed on desktop (1920x1080) and mobile (390x844). Home hero + slogan (RU default), header nav dropdowns, language toggle with localStorage persistence, /culture (9 bento cards + modal open/close), /gallery (5 photos + lightbox prev/next + keyboard), /about (4 blocks + pilot note), /soon page, emergency modal (101/102/103/112), footer lang toggle, and CRITICAL /history regression (exit-to-portal link works, HistoryPage still renders) all work. One critical mobile UI bug found: mobile fullscreen menu is clipped to 68px because header uses backdrop-filter which creates a new containing block for its position:fixed descendant.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Header mobile menu overlay",
+        "issue": "Mobile fullscreen menu (data-testid='mobile-menu') is rendered inside <header> which has backdrop-filter: blur(16px). Per CSS spec, an ancestor with backdrop-filter (or filter/transform) creates a new containing block for position:fixed descendants — so the menu's `fixed inset-0` is clipped to the 68px-tall header instead of covering the viewport. Result: only the top ~68px of the menu is visible; the rest of the home page shows through and dropdown items are inaccessible on mobile. Verified via computed style: position:fixed, top/bottom/left/right = 0, but height = 68px. Fix: render the mobile menu via a React Portal (createPortal to document.body), or move it out of the <header>, or remove backdrop-filter from the header (last option changes visual design).",
+        "selector": "[data-testid='mobile-menu']",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/test_reports/iteration_2.json"],
+  "action_items": [
+    "Fix mobile menu clipping: portal <div data-testid='mobile-menu'> to document.body via ReactDOM.createPortal so it isn't affected by the header's backdrop-filter containing-block behavior. Same pattern should be applied to the EmergencyButton modal and CulturePage/GalleryPage modals if any of them are ever placed inside a filtered ancestor (currently EmergencyButton is a sibling of Header so it's OK, and the culture/gallery modals render inside <main> which has no filter — verified working)."
+  ],
+  "critical_code_review_comments": [
+    "Header mobile menu should be portaled — see action_items #1. This is a general CSS gotcha and worth documenting.",
+    "GalleryPage keyboard handler uses window.addEventListener('keydown') which only works when the browser window has focus (not the just-clicked photo button). Not a real bug — Escape works once the user interacts with the modal — but if you want more robust behavior, add tabIndex/autofocus to the lightbox container.",
+    "Footer builds nav links by picking `g.items.find(i => i.to)?.to ?? '/soon'` — if a whole group is 'soon' the fallback works, but it means the footer link silently sends users to /soon rather than the group landing page. Acceptable for pilot."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (not tested per request)", "frontend": "97% (43/44 automated checks; 1 real UI bug on mobile menu)"},
+  "test_credentials": "N/A — public site",
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "All desktop flows verified end-to-end. History regression is intact (kinetic hero, chapters, gallery, chrome controls still render at /history; exit-to-portal link at bottom-left works and returns to /). Language toggle correctly persists across reload via localStorage 'andarak-lang' and syncs header + footer + hero. Culture modal, gallery lightbox (prev/next/Esc/close), emergency modal, and coming-soon route all work. Remaining bug: mobile menu clipping — after main agent portals it to body, re-run mobile viewport (390x844) test and verify mobile-menu bounding_box height == 844, that expanding 'nav-culture' shows all 4 items, and that tapping an item navigates correctly.",
+  "rca of the issue": "Mobile menu overlay is a descendant of <header> which sets `backdrop-filter: blur(16px)`. Per CSS Containment / Filter Effects spec, an element with a non-none backdrop-filter (or filter, transform, perspective, contain: paint/layout) becomes the containing block for its position:fixed descendants. Consequently the mobile menu's `top:0; bottom:0` resolves against the 68px header, not the viewport. Reproduction: viewport 390x844, click [data-testid='mobile-menu-open'], observe getComputedStyle -> height:68px despite position:fixed and top/bottom:0. Mitigation: use ReactDOM.createPortal to mount the mobile menu at document.body, OR lift the menu out of <header> into the App layout root, OR drop backdrop-filter on <header> when the menu is open."
+}

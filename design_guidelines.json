@@ -1,111 +1,70 @@
 {
-  "theme": "dark",
+  "theme": "Light theme (mountain tones + kilim ornaments) with premium editorial studio-site feel.",
   "typography": {
-    "headings": {
-      "fontFamily": "'Cormorant Garamond', serif",
-      "weights": ["400", "500", "600", "700"],
-      "usage": "H1-H4, blockquotes, major chapter titles, hero text.",
-      "import": "@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');"
-    },
-    "body": {
-      "fontFamily": "'Inter', sans-serif",
-      "weights": ["300", "400"],
-      "usage": "Long-form editorial paragraphs. Selected for high legibility at smaller sizes.",
-      "import": "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');"
-    },
-    "mono": {
-      "fontFamily": "'JetBrains Mono', monospace",
-      "weights": ["400"],
-      "usage": "Numbered manifesto chapters, dates, navigation dots, EN/RU toggle, labels.",
-      "import": "@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');"
-    }
+    "heading_font": "Cormorant Garamond",
+    "body_font": "Manrope",
+    "accent_font": "JetBrains Mono",
+    "instructions": "Use Cormorant Garamond for all H1-H3 to maintain continuity with the /history section, but set in dark mountain tones. Use Manrope for body text (clean, highly readable on rural connections, slightly wider tracking). Use JetBrains Mono for small overlines, RU/EN language switchers, and subtle labels (like tags or image captions). Headings must be tight (tracking-tight) while Mono text must be wide (tracking-[0.1em])."
   },
   "colors": {
-    "background": {
-      "primary": "#14110F",
-      "secondary": "#1E1A18",
-      "overlay": "rgba(20, 17, 15, 0.8)",
-      "scrim": "linear-gradient(to top, #14110F 0%, transparent 100%)"
-    },
-    "text": {
-      "primary": "#EDE3D0",
-      "secondary": "#C5BAA5",
-      "muted": "#8A8170"
-    },
-    "accent": {
-      "ember": "#E4572E",
-      "gold": "#D4AF37",
-      "flame_core": "#FF8A5B"
-    }
+    "background_primary": "#F8F7F3",
+    "background_secondary": "#EAE7DF",
+    "text_primary": "#1A2433",
+    "text_secondary": "#4A6278",
+    "accent_terracotta": "#C25934",
+    "accent_gold": "#D4AF37",
+    "instructions": "CRITICAL: The existing dark history section (/history) must remain untouched. The portal uses this new warm, airy, earthy palette. Use terracotta and gold sparingly for active states, borders, buttons, and kilim-inspired SVG ornaments. Never use pure black or gray, always tint with the mountain navy (#1A2433) or warm beige."
   },
   "visual_enhancers": {
-    "textures": ["subtle film grain overlay across the entire page (pointer-events-none)", "vignette edge darkening for cinematic feel"],
-    "hero": "Subtle parallax/3D hero moment. Kinetic line-by-line reveal for manifesto title.",
-    "artwork": "Spotlight/clipped-frame treatment. Do not use full-screen bleed for all art; instead use sharp geometric frames (aspect-ratio 3/4 or 16/9) with a 1px gold/ember border to look like an exhibition. Add slow ken-burns scale effect inside the frame."
+    "borders": "1px solid #D1CFC7 (subtle earthy border for bento grid cards).",
+    "shadows": "Avoid heavy drop shadows. Use very subtle, warm ambient shadow (shadow-[0_8px_30px_rgba(26,36,51,0.04)]) on hover only. The layout should feel like a flat, premium editorial magazine.",
+    "textures": "SVG Kilim patterns used at low opacity (e.g., 3-5%) as background watermark adornments, particularly in headers, the footer, or empty space."
   },
-  "components": {
-    "flame_indicator": "Persistent flame SVG fixed in corner or center-top. Its visual state (color, scale, flicker speed) must change per era/chapter (e.g. vibrant for Samanids, dying embers for Mongol invasion).",
-    "dot_navigation": "Vertical fixed right dot navigation mapping to the 10 chapters. Use JetBrains Mono for chapter numbers.",
-    "marquee": "Slow editorial marquee at the bottom or between major acts (e.g. 'A HISTORY IN FIRE'). Low contrast, serif font.",
-    "language_toggle": "EN/RU text button fixed in top right, styled with JetBrains Mono.",
-    "audio_control": "Floating mute/unmute button using Lucide icons, pulsing softly when audio is active."
+  "grids": {
+    "bento_culture": "Use a 'Tetris-style' Bento grid for the 9 culture cards on the Culture page (e.g., col-span-full md:col-span-8, col-span-4). Never use standard symmetrical 3x3 grids. Build asymmetry.",
+    "gallery_masonry": "Use CSS columns (columns-1 md:columns-2 lg:columns-3 gap-6) for the masonry photo gallery to eliminate jagged bottoms. Ensure all images are lazy-loaded."
   },
   "layouts": {
-    "scrollytelling": "Sticky Canvas pattern. Content container flows normally while the artwork/media container uses `position: sticky; top: 15vh; align-self: start;`. Avoid `overflow: hidden` on ancestors.",
-    "spacing": "Massive generous spacing. Use `py-32`, `py-48`, or `min-h-screen` for sections to give narrative breathing room."
+    "hero": "Fullscreen height (min-h-[90vh]) with the real Andarak mountains photo. Apply a light framer-motion scroll parallax (y-axis). IMPORTANT: Overlay must be a bottom-up gradient (bg-gradient-to-t from-[#1A2433]/60 via-[#1A2433]/20 to-transparent) or very light scrim so the image isn't ruined by a dark blanket. Slogan 'Земля, где встречаются эпохи' should be massive (text-5xl to text-7xl fluid), Cormorant Garamond.",
+    "navigation": "Sticky glassmorphism header (backdrop-blur-xl bg-[#F8F7F3]/85 border-b border-[#D1CFC7]/50). Grouped dropdowns (Culture, Life, Guests, Students) using Shadcn DropdownMenu. Left: Logo. Right: RU/EN switcher + Hamburger sheet on mobile. No fully transparent headers.",
+    "footer": "Deep contrast footer (bg-[#1A2433] text-[#F8F7F3]). Large typography for the contact/suggestion CTA, and a language switcher. Include emergency floating contact button fixed at the bottom right."
   },
   "motion": {
-    "scroll_reveals": "Framer Motion `whileInView`. Elements should fade up (`y: 30`, `opacity: 0` to `y: 0`, `opacity: 1`) with a slow, heavy easing.",
-    "hero": "Kinetic text reveal (staggered line by line using framer motion variants).",
-    "smooth_scroll": "Lenis library must be used for momentum scrolling to give weight to the narrative."
+    "scroll": "Utilize Lenis smooth scroll for momentum and weight, maintaining parity with the /history experience.",
+    "reveal": "Use framer-motion for smooth fade-up-and-in reveals (initial={{ opacity: 0, y: 20 }}) on scroll for text blocks and cards.",
+    "image_parallax": "Slight `scale` or `y` translation on images within overflow-hidden containers to create high-end depth when hovered or scrolled."
   },
   "accessibility": {
-    "audio": "Audio MUST NOT autoplay without explicit user interaction (e.g., an 'Enter Experience' button or a visible play-through toggle). Mute button is required.",
-    "contrast": "Text over images must have a scrim or background overlay to maintain APCA readability.",
-    "animations": "Respect `prefers-reduced-motion` in framer motion."
+    "contrast": "Ensure #1A2433 text on #F8F7F3 backgrounds easily passes WCAG AAA.",
+    "performance": "CRUCIAL: Due to slow rural internet in Andarak, ALL images must include `loading=\"lazy\"`. Avoid heavy 3D WebGL canvases on the portal side. The page must be lightweight."
   },
-  "media": {
-    "audio_engine": "Per-chapter ambient audio crossfade engine. Map audio tracks to active chapters via IntersectionObserver. Crossfade volumes smoothly using React state/refs on scroll.",
-    "image_urls": {
-      "chapter_1": {
-        "url": "https://images.pexels.com/photos/7438443/pexels-photo-7438443.jpeg",
-        "description": "Zoroastrian Sogdiana / Fire Temples. Wooden structure engulfed in flames."
-      },
-      "chapter_4": {
-        "url": "https://images.unsplash.com/photo-1460194436988-671f763436b7",
-        "description": "Alexander's phalanx / Mongol siege. Steel and chainmail armor."
-      },
-      "chapter_7": {
-        "url": "https://images.unsplash.com/photo-1708608132830-d16e38124182",
-        "description": "Traditional village life / Russian border-drawing. Mountain village architecture."
-      },
-      "chapter_10": {
-        "url": "https://images.unsplash.com/photo-1763577659271-70c9a212c00d",
-        "description": "Andarak today. Ancient stone pathway at twilight."
-      }
+  "component_instructions": {
+    "dropdown_menu": "Use Shadcn DropdownMenu for grouped nav. Override styles with our background (#F8F7F3), text colors, and 1px border. Never use transparent dropdown backgrounds.",
+    "buttons": "Pill-shaped (rounded-full) or sharp rectangular based on feel, but must be solid terracotta (#C25934) or outlined with terracotta text. Add scale-down micro-interaction on click.",
+    "lightbox": "For the gallery, use framer-motion AnimatePresence to render a fullscreen modal. Add `backdrop-blur-2xl bg-[#1A2433]/90` for the modal background.",
+    "data_testid": "Add data-testid attributes to all interactive elements (e.g., data-testid='hero-explore-button')."
+  },
+  "image_urls": {
+    "hero_mountain": {
+      "url": "https://images.unsplash.com/photo-1662454456003-f6cae5b7b516?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjV8MHwxfHNlYXJjaHw0fHxtYWplc3RpYyUyMG1vdW50YWluJTIwdmFsbGV5JTIwY2VudHJhbCUyMGFzaWF8ZW58MHx8fHwxNzg3OTg5MDY4fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Aerial summer valley between mountains. Use for the Home Hero."
+    },
+    "winter_street": {
+      "url": "https://images.unsplash.com/photo-1546593064-053d21199be1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHwxfHx3aW50ZXIlMjBzbm93JTIwbW91bnRhaW4lMjB2aWxsYWdlfGVufDB8fHx8MTc4Nzk4OTA2OHww&ixlib=rb-4.1.0&q=85",
+      "description": "Winter mountain street. Use for 'Life in Andarak' section."
+    },
+    "mosque_dome": {
+      "url": "https://images.unsplash.com/photo-1597212618440-806262de4f6b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwyfHxtb3VudGFpbiUyMG1vc3F1ZSUyMHNub3d8ZW58MHx8fHwxNzg3OTg5MDgxfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Snowy mosque dome. Use for the 'Culture & Traditions' cards."
+    },
+    "memorial_arch": {
+      "url": "https://images.unsplash.com/photo-1662202999685-1a6ca73ef526?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwxfHxpc2xhbWljJTIwYXJjaGl0ZWN0dXJlJTIwYXJjaCUyMG1lbW9yaWFsfGVufDB8fHx8MTc4Nzk4OTA2OHww&ixlib=rb-4.1.0&q=85",
+      "description": "Memorial arch on hill. Use for 'About the Project' or historical context."
+    },
+    "market_lane": {
+      "url": "https://images.unsplash.com/photo-1777669163636-6afc4af97f1d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHwzfHx2aWxsYWdlJTIwbWFya2V0JTIwcGVvcGxlfGVufDB8fHx8MTc4Nzk4OTA4MXww&ixlib=rb-4.1.0&q=85",
+      "description": "Market lane/people. Use for the 'For Guests / Directories' preview."
     }
   },
-  "instructions_to_main_agent": [
-    "Import Google Fonts directly into the CSS file.",
-    "Use standard HTML5 `<audio>` tags with a robust React custom hook for crossfading logic based on the active chapter index.",
-    "Implement the scrollytelling sections using CSS `position: sticky` on the artwork side, and normally scrolling text on the content side.",
-    "Use Framer Motion for line-by-line kinetic hero text and page-level scroll reveals.",
-    "Install and configure `@studio-freight/lenis` or `lenis` for smooth, heavy momentum scrolling.",
-    "Add `lucide-react` for icons like mute/unmute and language toggle.",
-    "The persistent flame SVG should use Framer Motion variants to transition its state smoothly based on the active chapter (e.g., changes in opacity, scale, and color).",
-    "Never use generic placeholder text; structure the narrative with the 10 chapters."
-  ],
-  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
-    "You tend to converge toward generic outputs. Avoid this: make creative, distinctive frontends that surprise and delight.",
-    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
-    "Don't make generic centered layouts, simplistic gradients, and uniform styling. Embrace asymmetry.",
-    "Create depth through layered design elements with z-index hierarchy.",
-    "Use glass-morphism effects with backdrop filters (12-24px blur) sparingly for navigation/audio controls only. Avoid solid transparency under text.",
-    "You MUST NOT apply universal transition. Eg: `transition: all`.",
-    "You MUST NOT center align the app container, ie do not add `.App { text-align: center; }` in the css file.",
-    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations.",
-    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
-    "NEVER use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯 etc for icons.",
-    "All interactive and key informational elements MUST include a `data-testid` attribute to facilitate robust automated testing."
-  ]
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": "Do not center align standard text containers (preserve left alignment for human reading flow). Prioritize semantic HTML and WCAG standards. Add layered depths, ensure micro-animations on all interactive elements. Do not override the dark theme for the /history route (ensure React router manages theme context or CSS scope separation properly). Never use placeholder URLs, only the provided unsplash URLs. All interactive and key informational elements MUST include a `data-testid` attribute in kebab-case. Do not apply `transition: all`. Emphasize generous spacing (p-8 to p-24) to establish a high-end feel."
 }
