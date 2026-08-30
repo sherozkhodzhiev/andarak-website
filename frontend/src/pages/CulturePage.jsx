@@ -75,7 +75,7 @@ export default function CulturePage({ lang }) {
           >
             <motion.div
               className="w-full max-w-2xl max-h-[85vh] overflow-y-auto"
-              style={{ background: "#F8F7F3", border: "1px solid #D1CFC7" }}
+              style={{ background: "var(--p-bg)", border: "1px solid var(--p-border)" }}
               initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 40, opacity: 0 }}
               transition={{ duration: 0.35, ease: EASE }}
               onClick={(e) => e.stopPropagation()}

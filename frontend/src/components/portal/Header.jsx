@@ -2,13 +2,13 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Sun, Moon } from "lucide-react";
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { NAV, T } from "@/data/portal";
 
-export default function Header({ lang, onLang }) {
+export default function Header({ lang, onLang, theme, onTheme }) {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState(null);
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export default function Header({ lang, onLang }) {
   return (
     <header
       className="sticky top-0 z-50"
-      style={{ background: "rgba(248,247,243,.86)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: "1px solid rgba(209,207,199,.6)" }}
+      style={{ background: "var(--p-surface)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: "1px solid var(--p-border)" }}
       data-testid="portal-header"
     >
       <div className="max-w-[1280px] mx-auto flex items-center justify-between px-5 lg:px-8" style={{ height: 68 }}>
@@ -49,13 +49,13 @@ export default function Header({ lang, onLang }) {
                 <DropdownMenuContent
                   align="start"
                   className="rounded-none min-w-[240px]"
-                  style={{ background: "#F8F7F3", border: "1px solid #D1CFC7", boxShadow: "0 14px 40px rgba(26,36,51,.10)", color: "var(--p-ink)" }}
+                  style={{ background: "var(--p-bg)", border: "1px solid var(--p-border)", boxShadow: "0 14px 40px rgba(26,36,51,.10)", color: "var(--p-ink)" }}
                 >
                   {group.items.map((item) => (
                     <DropdownMenuItem
                       key={item.label.en}
                       onClick={() => go(item)}
-                      className="cursor-pointer rounded-none py-2.5 px-3 focus:bg-[#EAE7DF] focus:text-[#1A2433] flex items-center justify-between gap-4"
+                      className="cursor-pointer rounded-none py-2.5 px-3 focus:bg-[var(--p-bg2)] focus:text-[var(--p-ink)] flex items-center justify-between gap-4"
                       data-testid={`navitem-${item.label.en.toLowerCase().replace(/[^a-z]+/g, "-")}`}
                     >
                       <span className="text-[13.5px]">{item.label[lang]}</span>
@@ -68,11 +68,14 @@ export default function Header({ lang, onLang }) {
           )}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           <button onClick={onLang} className="lang-pill" data-testid="portal-lang-toggle">
             <span style={{ color: lang === "ru" ? "var(--p-terra)" : "var(--p-slate)" }}>RU</span>
             <span style={{ color: "var(--p-border)" }}>/</span>
             <span style={{ color: lang === "en" ? "var(--p-terra)" : "var(--p-slate)" }}>EN</span>
+          </button>
+          <button onClick={onTheme} className="theme-pill" aria-label="Theme" data-testid="theme-toggle">
+            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
           </button>
           <button
             className="lg:hidden p-2 -mr-2"
@@ -91,14 +94,14 @@ export default function Header({ lang, onLang }) {
           {open && (
           <motion.div
             className="fixed inset-0 z-[60] lg:hidden flex flex-col"
-            style={{ background: "#F8F7F3" }}
+            style={{ background: "var(--p-bg)" }}
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             data-testid="mobile-menu"
           >
-            <div className="flex items-center justify-between px-5" style={{ height: 68, borderBottom: "1px solid #D1CFC7" }}>
+            <div className="flex items-center justify-between px-5" style={{ height: 68, borderBottom: "1px solid var(--p-border)" }}>
               <span className="font-display font-bold tracking-[.08em]" style={{ fontSize: 20, color: "var(--p-ink)" }}>{T.brand[lang]}</span>
               <button onClick={() => setOpen(false)} aria-label="Close" data-testid="mobile-menu-close" style={{ color: "var(--p-ink)" }}>
                 <X size={24} />
@@ -111,7 +114,7 @@ export default function Header({ lang, onLang }) {
                     {group.label[lang]}
                   </button>
                 ) : (
-                  <div key={group.id} style={{ borderBottom: "1px solid #E3E0D8" }}>
+                  <div key={group.id} style={{ borderBottom: "1px solid var(--p-border2)" }}>
                     <button
                       className="mobile-nav-row font-display flex items-center justify-between w-full"
                       style={{ borderBottom: "none" }}
@@ -137,11 +140,16 @@ export default function Header({ lang, onLang }) {
                   </div>
                 )
               )}
-              <button onClick={() => { onLang(); }} className="lang-pill mt-8" data-testid="mobile-lang-toggle">
-                <span style={{ color: lang === "ru" ? "var(--p-terra)" : "var(--p-slate)" }}>RU</span>
-                <span style={{ color: "var(--p-border)" }}>/</span>
-                <span style={{ color: lang === "en" ? "var(--p-terra)" : "var(--p-slate)" }}>EN</span>
-              </button>
+              <div className="flex items-center gap-3 mt-8">
+                <button onClick={() => { onLang(); }} className="lang-pill" data-testid="mobile-lang-toggle">
+                  <span style={{ color: lang === "ru" ? "var(--p-terra)" : "var(--p-slate)" }}>RU</span>
+                  <span style={{ color: "var(--p-border)" }}>/</span>
+                  <span style={{ color: lang === "en" ? "var(--p-terra)" : "var(--p-slate)" }}>EN</span>
+                </button>
+                <button onClick={onTheme} className="theme-pill" aria-label="Theme" data-testid="mobile-theme-toggle">
+                  {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
+                </button>
+              </div>
             </div>
           </motion.div>
           )}

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { T, HOME_TEASERS } from "@/data/portal";
+import Wisdom from "@/components/portal/Wisdom";
 
 const EASE = [0.22, 1, 0.36, 1];
 const reveal = (delay = 0) => ({
@@ -22,7 +23,7 @@ export default function HomePage({ lang }) {
     <div data-testid="home-page">
       <section ref={heroRef} className="relative overflow-hidden flex items-end" style={{ minHeight: "92vh" }} data-testid="home-hero">
         <motion.div className="absolute inset-0" style={{ y: bgY, scale: 1.12 }}>
-          <img src="/gallery/memorial-arch.png" alt="Андарак" className="w-full h-full object-cover" />
+          <img src="/gallery/hero-valley.jpg" alt="Андарак" className="w-full h-full object-cover" />
         </motion.div>
         <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(26,36,51,.72), rgba(26,36,51,.18) 45%, rgba(26,36,51,.08))" }} />
 
@@ -55,6 +56,8 @@ export default function HomePage({ lang }) {
           </motion.div>
         </motion.div>
       </section>
+
+      <Wisdom lang={lang} />
 
       <section className="relative max-w-[1280px] mx-auto px-5 lg:px-8 py-20 lg:py-24" data-testid="home-teasers">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-7">

@@ -209,6 +209,20 @@ body {
   --p-terra: #C25934;
   --p-gold: #D4AF37;
   --p-border: #D1CFC7;
+  --p-border2: #E3E0D8;
+  --p-card: #FFFFFF;
+  --p-surface: rgba(248,247,243,.86);
+}
+
+.portal-root.dark {
+  --p-bg: #131A25;
+  --p-bg2: #1A2433;
+  --p-ink: #EDEAE0;
+  --p-slate: #9DAEBF;
+  --p-border: #2C3A4D;
+  --p-border2: #263547;
+  --p-card: #1B2534;
+  --p-surface: rgba(19,26,37,.86);
 }
 
 .portal-root {
@@ -217,6 +231,7 @@ body {
   font-family: 'Manrope', sans-serif;
   font-weight: 400;
   min-height: 100vh;
+  transition: background-color .4s ease, color .4s ease;
 }
 .portal-root ::selection { background: var(--p-terra); color: var(--p-bg); }
 
@@ -245,6 +260,18 @@ body {
 .lang-pill:hover { border-color: var(--p-terra); }
 .lang-pill:active { transform: scale(.96); }
 
+.theme-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px;
+  border: 1px solid var(--p-border);
+  border-radius: 999px;
+  color: var(--p-slate);
+  background: transparent; cursor: pointer;
+  transition: border-color .25s ease, color .25s ease, transform .15s ease;
+}
+.theme-pill:hover { border-color: var(--p-gold); color: var(--p-gold); }
+.theme-pill:active { transform: scale(.92); }
+
 .soon-badge {
   display: inline-flex; align-items: center;
   font-family: 'JetBrains Mono', monospace; font-size: 9px;
@@ -262,7 +289,7 @@ body {
   font-size: 22px; font-weight: 600;
   color: var(--p-ink);
   padding: 15px 0;
-  border-bottom: 1px solid #E3E0D8;
+  border-bottom: 1px solid var(--p-border2);
 }
 
 .btn-terra {
@@ -357,7 +384,7 @@ body {
   display: flex; flex-direction: column;
   min-height: 250px;
   padding: 26px;
-  background: #FFFFFF;
+  background: var(--p-card);
   border: 1px solid var(--p-border);
   overflow: hidden;
   cursor: pointer;

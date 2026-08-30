@@ -31,6 +31,8 @@ Rebuild and upgrade a single-file HTML scrollytelling piece ("Andarak — A Hist
 - 2026-08-25: village gallery section in history page (5 author photos)
 - 2026-08-29: PORTAL Step 1 — routing, light theme, Home/Culture/Gallery/About/Soon pages, grouped nav + mobile menu (portaled), footer, emergency modal, lang persistence. Tested by testing agent: 43/44 → mobile menu clipping fixed (createPortal) + chevron layout fixed, verified 390px viewport.
 - 2026-08-30: Visual edits per user: removed flame logo + header subtitle, removed hero eyebrow, new hero text ("Таджикское село в Кыргызстане… тысячи лет"), hero photo → /gallery/memorial-arch.png (user will send a better photo), home teasers reduced to Gallery + About only (removed section heading, History/Culture teasers, soon-cards), removed footer RU/EN duplicate toggle.
+- 2026-08-30 (round 2): Dark/light theme toggle (theme-pill next to RU/EN, localStorage 'andarak-theme', .portal-root.dark CSS vars — footer & wisdom band stay fixed navy; history always dark). New user hero photo /gallery/hero-valley.jpg (compressed 2.3MB→230KB). Wisdom section: 51 Tajik proverbs from user's docx in /src/data/proverbs.js, Wisdom.jsx band below home hero (random start, 5.5s rotation, fade, instant lang switch) + small line variant in footer. Testing agent iteration_3: 16/16 pass.
+- Songs status: user again asked for the old YouTube tracks — they remain blocked by YouTube (embed error 150 + server download 403/bot check). Wired in YT_TRACKS; only real MP3 uploads can replace fallbacks. Do not retry hacks.
 
 ## Backlog / remaining
 - P0: Step 2 — People & Sport, Diaspora, News (admin-published), Calendar, Suggestions/comments + FastAPI/Mongo backend + /admin password login

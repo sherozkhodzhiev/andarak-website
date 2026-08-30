@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Phone, X } from "lucide-react";
 import { NAV, T } from "@/data/portal";
 import { KilimDivider } from "@/components/portal/Kilim";
+import Wisdom from "@/components/portal/Wisdom";
 
 export function EmergencyButton({ lang }) {
   const [open, setOpen] = useState(false);
@@ -29,7 +30,7 @@ export function EmergencyButton({ lang }) {
           >
             <motion.div
               className="w-full max-w-sm p-7"
-              style={{ background: "#F8F7F3", border: "1px solid #D1CFC7" }}
+              style={{ background: "var(--p-bg)", border: "1px solid var(--p-border)" }}
               initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 30, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
@@ -39,7 +40,7 @@ export function EmergencyButton({ lang }) {
                 <button onClick={() => setOpen(false)} aria-label="Close" data-testid="emergency-close" style={{ color: "var(--p-slate)" }}><X size={20} /></button>
               </div>
               {T.emergencyItems[lang].map(([num, label]) => (
-                <a key={num} href={`tel:${num}`} className="flex items-center justify-between py-3" style={{ borderBottom: "1px solid #E3E0D8" }} data-testid={`emergency-${num}`}>
+                <a key={num} href={`tel:${num}`} className="flex items-center justify-between py-3" style={{ borderBottom: "1px solid var(--p-border2)" }} data-testid={`emergency-${num}`}>
                   <span style={{ color: "var(--p-slate)", fontSize: 14 }}>{label}</span>
                   <span className="font-display font-bold" style={{ fontSize: 24, color: "var(--p-terra)" }}>{num}</span>
                 </a>
@@ -55,7 +56,7 @@ export function EmergencyButton({ lang }) {
 export default function Footer({ lang, onLang }) {
   const navigate = useNavigate();
   return (
-    <footer style={{ background: "var(--p-ink)", color: "var(--p-bg)" }} data-testid="portal-footer">
+    <footer style={{ background: "#16202E", color: "#F8F7F3" }} data-testid="portal-footer">
       <div className="max-w-[1280px] mx-auto px-5 lg:px-8 pt-16 pb-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-12 pb-12" style={{ borderBottom: "1px solid rgba(248,247,243,.12)" }}>
           <div>
@@ -66,6 +67,9 @@ export default function Footer({ lang, onLang }) {
             <p className="mt-6 font-mono-d text-[11px] tracking-[.08em] uppercase" style={{ color: "rgba(248,247,243,.45)" }}>
               {T.footerContact[lang]}: {T.footerContactSoon[lang]}
             </p>
+            <div className="mt-8 pt-6" style={{ borderTop: "1px solid rgba(248,247,243,.1)", maxWidth: 460 }}>
+              <Wisdom lang={lang} variant="line" />
+            </div>
           </div>
           <div className="grid grid-cols-2 gap-x-8 gap-y-2">
             {NAV.map((g) => (

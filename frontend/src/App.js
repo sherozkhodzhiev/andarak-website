@@ -18,10 +18,10 @@ function ScrollToTop() {
   return null;
 }
 
-function PortalLayout({ lang, onLang }) {
+function PortalLayout({ lang, onLang, theme, onTheme }) {
   return (
-    <div className="portal-root" data-testid="portal-root">
-      <Header lang={lang} onLang={onLang} />
+    <div className={`portal-root ${theme === "dark" ? "dark" : ""}`} data-testid="portal-root">
+      <Header lang={lang} onLang={onLang} theme={theme} onTheme={onTheme} />
       <main>
         <Outlet />
       </main>
@@ -33,10 +33,18 @@ function PortalLayout({ lang, onLang }) {
 
 export default function App() {
   const [lang, setLang] = useState(() => localStorage.getItem("andarak-lang") || "ru");
+  const [theme, setTheme] = useState(() => localStorage.getItem("andarak-theme") || "light");
   const onLang = () => {
     setLang((l) => {
       const next = l === "ru" ? "en" : "ru";
       localStorage.setItem("andarak-lang", next);
+      return next;
+    });
+  };
+  const onTheme = () => {
+    setTheme((t) => {
+      const next = t === "light" ? "dark" : "light";
+      localStorage.setItem("andarak-theme", next);
       return next;
     });
   };
@@ -46,7 +54,7 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/history" element={<HistoryPage initialLang={lang} />} />
-        <Route element={<PortalLayout lang={lang} onLang={onLang} />}>
+        <Route element={<PortalLayout lang={lang} onLang={onLang} theme={theme} onTheme={onTheme} />}>
           <Route path="/" element={<HomePage lang={lang} />} />
           <Route path="/culture" element={<CulturePage lang={lang} />} />
           <Route path="/gallery" element={<GalleryPage lang={lang} />} />

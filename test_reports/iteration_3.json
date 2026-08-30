@@ -1,0 +1,34 @@
+{
+  "summary": "Frontend regression + new-feature verification for Andarak portal (theme toggle, Wisdom band, new hero photo). All 7 requested items PASS. 16/16 real checks pass on desktop 1920x1080 + mobile 390x844. Portal fix from iter_2 (mobile menu createPortal) confirmed working — mobile-menu bbox height = 844 (full viewport).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "verified_features": [
+    "Theme toggle: [data-testid=theme-toggle] flips portal-root .dark class, computed bg goes from cream to rgb(19,26,37); icon Moon<->Sun; localStorage 'andarak-theme' persists across reload; toggle works both directions",
+    "Dark mode readability: /culture bento cards, /about blocks, headers all render with dark bg + light text (screenshots captured). No white-on-white or black-on-black.",
+    "Wisdom band: [data-testid=wisdom-band] present under hero. Eyebrow shows 'Мудрость поколений'/'Wisdom, passed down' (uppercase via CSS text-transform), wisdom-original + wisdom-translation testids present. Quote auto-rotates within 7s (verified: 'Ҳамсояи наздик...' → 'Хона аз ахлоқи...'). Language toggle updates translation line instantly without reload.",
+    "Footer wisdom-line: [data-testid=wisdom-line] present in footer",
+    "Hero image: <img src='/gallery/hero-valley.png'> loads OK (200, 1280x1267, 2.3MB), renders full-viewport autumn valley photo",
+    "Mobile 390px: [data-testid=mobile-theme-toggle] present in mobile menu, click toggles theme, localStorage persists",
+    "Regression /history: separate layout — no portal-root leaked, exit-to-portal link present, page renders",
+    "Regression mobile menu (iter_2 fix): bbox height = 844 (full viewport) — createPortal fix working"
+  ],
+  "test_report_links": ["/app/test_reports/iteration_3.json"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Wisdom.jsx: initial random idx is fine, but if a user keeps a tab open across route re-mounts they may see the same proverb again; interval clears/restarts on remount which is expected.",
+    "Minor console warning (framer-motion): 'container has a non-static position' — cosmetic, does not affect behavior.",
+    "Wisdom band bg is hardcoded '#16202E' (intentional per spec — always dark) which is consistent with footer's fixed navy — good."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (not tested per request)", "frontend": "100% (16/16 real checks; 3 initial 'failures' were false negatives from test-script substring/CSS-background assumptions)"},
+  "test_credentials": "N/A — public site",
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Round-3 (theme + wisdom + new hero) fully verified. Wisdom quote rotates every 5.5s as designed. Portal-mount fix for mobile menu from iter_2 confirmed. If future work touches Wisdom, note that eyebrow uses CSS text-transform:uppercase so DOM textContent is title-case ('Мудрость поколений'), not upper — assertion scripts should compare case-insensitively or read innerText. Hero uses <img> tag, not CSS background — future scripts should query 'img[src*=hero-valley]' not getComputedStyle.backgroundImage.",
+  "rca of the issue": "N/A — no issues found."
+}
