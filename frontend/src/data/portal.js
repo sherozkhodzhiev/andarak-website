@@ -58,8 +58,8 @@ export const T = {
   soonBadge: { ru: "скоро", en: "soon" },
   heroSlogan: { ru: "Земля, где встречаются эпохи", en: "The land where eras meet" },
   heroLead: {
-    ru: "Таджикско-персидское горное село на юге Кыргызстана. 2 500 лет истории, живая культура и люди, которые её хранят.",
-    en: "A Tajik-Persian mountain village in southern Kyrgyzstan. 2,500 years of history, a living culture, and the people who keep it.",
+    ru: "Таджикское село в Кыргызстане. Тысячи лет люди живут на этой земле — храня свой язык, культуру и традиции.",
+    en: "A Tajik village in Kyrgyzstan. For thousands of years people have lived on this land — keeping their language, culture and traditions.",
   },
   heroCta: { ru: "Исследовать историю", en: "Explore the History" },
   heroSecondary: { ru: "Культура и традиции", en: "Culture & Traditions" },
@@ -94,16 +94,6 @@ export const T = {
 
 export const HOME_TEASERS = [
   {
-    to: "/history", dark: true, img: "/art/01-sogdiana.png",
-    title: { ru: "История в огне", en: "A History in Fire" },
-    line: { ru: "2 500 лет за десять глав — со звуком и светом", en: "2,500 years in ten chapters — with sound and light" },
-  },
-  {
-    to: "/culture", img: "/gallery/village-street.webp",
-    title: { ru: "Культура и традиции", en: "Culture & Traditions" },
-    line: { ru: "Язык, кухня, праздники и честь горцев", en: "Language, cuisine, holidays and highlander honour" },
-  },
-  {
     to: "/gallery", img: "/gallery/mosque-winter.png",
     title: { ru: "Галерея", en: "Gallery" },
     line: { ru: "Настоящий Андарак — горы, улицы, люди", en: "The real Andarak — mountains, streets, people" },
@@ -113,13 +103,6 @@ export const HOME_TEASERS = [
     title: { ru: "О проекте", en: "About the Project" },
     line: { ru: "Кто и зачем делает этот сайт", en: "Who makes this site and why" },
   },
-];
-
-export const HOME_SOON = [
-  { title: { ru: "Новости и события", en: "News & Events" }, line: { ru: "Жизнь общины: стройки, праздники, достижения", en: "Community life: builds, holidays, achievements" } },
-  { title: { ru: "Жизнь в Андараке", en: "Life in Andarak" }, line: { ru: "Медицина, магазины, школы, транспорт", en: "Medicine, shops, schools, transport" } },
-  { title: { ru: "Гостям", en: "For Guests" }, line: { ru: "Маршруты, природа, как добраться", en: "Routes, nature, getting there" } },
-  { title: { ru: "Студентам", en: "For Students" }, line: { ru: "Стипендии, волонтёрство, развитие села", en: "Scholarships, volunteering, development" } },
 ];
 
 export const CULTURE_TOPICS = [

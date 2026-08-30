@@ -30,6 +30,7 @@ Rebuild and upgrade a single-file HTML scrollytelling piece ("Andarak — A Hist
 - 2026-08-25: full scrollytelling history (hero, marquee, 10 chapters, flame chrome, 3-tier audio, EN/RU), AI art 1–8, real photos ch9/10, video loops ch1/4/5
 - 2026-08-25: village gallery section in history page (5 author photos)
 - 2026-08-29: PORTAL Step 1 — routing, light theme, Home/Culture/Gallery/About/Soon pages, grouped nav + mobile menu (portaled), footer, emergency modal, lang persistence. Tested by testing agent: 43/44 → mobile menu clipping fixed (createPortal) + chevron layout fixed, verified 390px viewport.
+- 2026-08-30: Visual edits per user: removed flame logo + header subtitle, removed hero eyebrow, new hero text ("Таджикское село в Кыргызстане… тысячи лет"), hero photo → /gallery/memorial-arch.png (user will send a better photo), home teasers reduced to Gallery + About only (removed section heading, History/Culture teasers, soon-cards), removed footer RU/EN duplicate toggle.
 
 ## Backlog / remaining
 - P0: Step 2 — People & Sport, Diaspora, News (admin-published), Calendar, Suggestions/comments + FastAPI/Mongo backend + /admin password login

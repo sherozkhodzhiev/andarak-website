@@ -8,13 +8,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { NAV, T } from "@/data/portal";
 
-const FLAME = (
-  <svg width="18" height="22" viewBox="0 0 20 26" fill="none" aria-hidden="true">
-    <path d="M10 1C11 6 16 8 16 15a6 6 0 0 1-12 0C4 10 8 8 10 1Z" fill="#C25934" />
-    <path d="M10 10c.7 2.6 3 3.6 3 6.6a3 3 0 0 1-6 0c0-2.6 2.2-3.8 3-6.6Z" fill="#F8F7F3" />
-  </svg>
-);
-
 export default function Header({ lang, onLang }) {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState(null);
@@ -32,12 +25,8 @@ export default function Header({ lang, onLang }) {
       data-testid="portal-header"
     >
       <div className="max-w-[1280px] mx-auto flex items-center justify-between px-5 lg:px-8" style={{ height: 68 }}>
-        <Link to="/" className="flex items-center gap-2.5 group" data-testid="header-logo">
-          {FLAME}
-          <span className="flex flex-col leading-none">
-            <span className="font-display font-bold tracking-[.08em]" style={{ fontSize: 20, color: "var(--p-ink)" }}>{T.brand[lang]}</span>
-            <span className="font-mono-d uppercase" style={{ fontSize: 8.5, letterSpacing: ".14em", color: "var(--p-slate)" }}>{T.brandSub[lang]}</span>
-          </span>
+        <Link to="/" className="flex items-center group" data-testid="header-logo">
+          <span className="font-display font-bold tracking-[.08em]" style={{ fontSize: 20, color: "var(--p-ink)" }}>{T.brand[lang]}</span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" data-testid="desktop-nav">

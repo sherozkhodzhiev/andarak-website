@@ -87,11 +87,6 @@ export default function Footer({ lang, onLang }) {
           <p className="font-mono-d text-[10px] tracking-[.12em] uppercase" style={{ color: "rgba(248,247,243,.35)", maxWidth: 520 }}>
             {T.footerPilot[lang]}
           </p>
-          <button onClick={onLang} className="lang-pill" style={{ borderColor: "rgba(248,247,243,.25)" }} data-testid="footer-lang-toggle">
-            <span style={{ color: lang === "ru" ? "var(--p-gold)" : "rgba(248,247,243,.5)" }}>RU</span>
-            <span style={{ color: "rgba(248,247,243,.3)" }}>/</span>
-            <span style={{ color: lang === "en" ? "var(--p-gold)" : "rgba(248,247,243,.5)" }}>EN</span>
-          </button>
         </div>
         <p className="font-mono-d text-[10px] tracking-[.2em] uppercase mt-8" style={{ color: "rgba(248,247,243,.3)" }}>
           Andarak — MMXXVI
