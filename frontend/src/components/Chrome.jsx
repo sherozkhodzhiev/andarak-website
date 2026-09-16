@@ -1,4 +1,3 @@
-import { motion, AnimatePresence } from "framer-motion";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import { CHAPTERS, FLAME_STATES, UI } from "@/data/chapters";
 
@@ -107,26 +106,6 @@ export default function Chrome({ active, lang, audioOn, playing, onLang, onAudio
         ))}
       </nav>
 
-      <AnimatePresence>
-        {chapter && (
-          <motion.div
-            key={chapter.id + lang}
-            className="fixed bottom-7 left-6 z-[100] max-w-[300px] font-mono-d text-[11px]"
-            style={{ lineHeight: 1.6, color: "var(--parchment-dim)" }}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.6 }}
-            data-testid="score-cue"
-          >
-            <span className="uppercase tracking-[.12em] text-[10px]" style={{ color: "var(--ember)" }}>
-              {UI.score[lang]}
-            </span>
-            <br />
-            {chapter.cue[lang]}
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }

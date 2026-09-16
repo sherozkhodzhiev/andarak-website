@@ -1,149 +1,47 @@
-import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import { UI } from "@/data/chapters";
+import { useRef, useState } from "react";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
-const EASE = [0.22, 1, 0.36, 1];
-
-const GLOWS = {
-  sogdiana: "radial-gradient(ellipse at 30% 70%, rgba(228,87,46,.20), transparent 55%)",
-  invasion: "linear-gradient(160deg, rgba(201,162,39,.14), transparent 60%)",
-  alexandria: "linear-gradient(160deg, rgba(201,162,39,.14), transparent 60%)",
-  death: "radial-gradient(ellipse at 50% 50%, rgba(107,101,96,.20), transparent 60%)",
-  conquest: "radial-gradient(ellipse at 60% 30%, rgba(140,47,47,.26), transparent 55%)",
-  samanid: "radial-gradient(ellipse at 50% 40%, rgba(201,162,39,.26), transparent 60%)",
-  mongol: "radial-gradient(ellipse at 40% 60%, rgba(140,47,47,.32), transparent 55%)",
-  steppe: "radial-gradient(ellipse at 30% 40%, rgba(124,139,111,.22), transparent 55%)",
-  empires: "linear-gradient(200deg, rgba(140,47,47,.18), transparent 55%)",
-  today: "radial-gradient(ellipse at 50% 30%, rgba(228,87,46,.16), transparent 60%)",
+const CHAPTER_MOODS = {
+  sogdiana: { accent: "#f1a34c", wash: "rgba(100,45,17,.46)", position: "50% 48%", motion: "The flame answers the wind." },
+  invasion: { accent: "#dc9b4f", wash: "rgba(76,44,18,.48)", position: "58% 50%", motion: "Dust rises at the edge of the valley." },
+  alexandria: { accent: "#d9bd78", wash: "rgba(62,55,36,.42)", position: "50% 48%", motion: "Stone changes the horizon." },
+  death: { accent: "#b8c0a1", wash: "rgba(43,51,37,.45)", position: "48% 53%", motion: "The land takes its breath back." },
+  conquest: { accent: "#e16d43", wash: "rgba(93,23,16,.54)", position: "52% 50%", motion: "The old fire becomes memory." },
+  samanid: { accent: "#e5bf67", wash: "rgba(92,58,18,.38)", position: "50% 47%", motion: "A new dawn fills the libraries." },
+  mongol: { accent: "#ed8257", wash: "rgba(75,23,19,.56)", position: "50% 50%", motion: "Ash crosses the sky like snow." },
+  steppe: { accent: "#bdc28d", wash: "rgba(46,62,38,.42)", position: "50% 50%", motion: "Roads open. Voices return." },
+  empires: { accent: "#d6b67d", wash: "rgba(48,31,25,.50)", position: "52% 48%", motion: "A pencil divides a valley." },
+  today: { accent: "#f0c877", wash: "rgba(24,38,26,.38)", position: "50% 50%", motion: "The village remains." },
 };
 
-function Embers({ seed }) {
-  const parts = useMemo(
-    () =>
-      Array.from({ length: 16 }, (_, i) => ({
-        id: `${seed}-${i}`,
-        size: 2 + ((i * 37 + seed * 13) % 30) / 10,
-        left: ((i * 61 + seed * 17) % 100),
-        dur: 6 + ((i * 29 + seed * 7) % 60) / 10,
-        delay: ((i * 43 + seed * 11) % 60) / 10,
-      })),
-    [seed]
-  );
-  return (
-    <div className="embers" aria-hidden="true">
-      {parts.map((p) => (
-        <span
-          key={p.id}
-          style={{
-            width: p.size, height: p.size, left: `${p.left}%`,
-            animationDuration: `${p.dur}s`, animationDelay: `${p.delay}s`,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-const reveal = (delay) => ({
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.4 },
-  transition: { duration: 1, delay, ease: EASE },
-});
-
 export default function Chapter({ chapter, index, lang, sectionRef }) {
-  const [imgOk, setImgOk] = useState(true);
-  const [videoOk, setVideoOk] = useState(true);
+  const localRef = useRef(null);
+  const [ready, setReady] = useState(true);
+  const { scrollYProgress } = useScroll({ target: localRef, offset: ["start end", "end start"] });
+  const p = useSpring(scrollYProgress, { stiffness: 82, damping: 28, mass: 0.24 });
+  const imageScale = useTransform(p, [0, 0.38, 1], [1.28, 1.04, 1.2]);
+  const imageY = useTransform(p, [0, 0.5, 1], ["-7%", "0%", "7%"]);
+  const imageX = useTransform(p, [0, 1], [index % 2 ? "5%" : "-5%", index % 2 ? "-5%" : "5%"]);
+  const titleY = useTransform(p, [0.16, 0.48, 0.85], [70, 0, -70]);
+  const titleOpacity = useTransform(p, [0.12, 0.32, 0.74, 0.92], [0, 1, 1, 0]);
+  const detailY = useTransform(p, [0.35, 0.66, 0.9], [38, 0, -30]);
+  const detailOpacity = useTransform(p, [0.35, 0.56, 0.83], [0, 1, 0]);
+  const shade = useTransform(p, [0, 0.5, 1], [0.74, 0.28, 0.72]);
+  const mood = CHAPTER_MOODS[chapter.id];
 
   return (
-    <section
-      ref={sectionRef}
-      data-chapter={index + 1}
-      data-testid={`chapter-${chapter.num}`}
-      className="relative flex items-center overflow-hidden"
-      style={{ minHeight: "125vh", padding: "16vh 8vw", borderBottom: "1px solid rgba(237,227,208,.06)" }}
-    >
-      <div className="absolute inset-0 pointer-events-none" style={{ background: GLOWS[chapter.id] }} />
-      {chapter.embers && <Embers seed={index + 1} />}
-
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-20 items-start w-full">
-        <div className="max-w-[560px] lg:pt-[6vh]">
-          <motion.div
-            className="font-mono-d text-xs tracking-[.18em] uppercase flex items-center gap-3 mb-6"
-            style={{ color: "var(--ember)" }}
-            {...reveal(0)}
-          >
-            <span style={{ color: "var(--parchment-dim)" }}>{chapter.num}</span>
-            <span style={{ width: 34, height: 1, background: "var(--parchment-dim)" }} />
-            <span data-testid={`eyebrow-${chapter.num}`}>{chapter.eyebrow[lang]}</span>
-          </motion.div>
-
-          <motion.h2
-            className="font-display font-semibold mb-6"
-            style={{ fontSize: "clamp(2.2rem, 4.2vw, 4.2rem)", lineHeight: 1.06, color: "var(--parchment)" }}
-            data-testid={`title-${chapter.num}`}
-            {...reveal(0.12)}
-            dangerouslySetInnerHTML={{ __html: chapter.title[lang] }}
-          />
-
-          <motion.p
-            className="text-sm md:text-base font-light"
-            style={{ lineHeight: 1.85, color: "var(--parchment-dim)" }}
-            data-testid={`body-${chapter.num}`}
-            {...reveal(0.24)}
-          >
-            {chapter.body[lang]}
-          </motion.p>
-        </div>
-
-        <div className="lg:sticky" style={{ top: "14vh" }}>
-          <motion.figure
-            initial={{ opacity: 0, scale: 0.96, y: 24 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
-          >
-            <div className="art-frame" data-testid={`artwork-${chapter.num}`}>
-              {chapter.video && videoOk ? (
-                <>
-                  <video
-                    src={chapter.video}
-                    poster={chapter.art}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    onError={() => setVideoOk(false)}
-                  />
-                  <div className="art-scrim" />
-                </>
-              ) : imgOk ? (
-                <>
-                  <img
-                    src={chapter.art}
-                    alt={chapter.caption[lang]}
-                    loading="lazy"
-                    onError={() => setImgOk(false)}
-                  />
-                  <div className="art-scrim" />
-                </>
-              ) : (
-                <div className="art-fallback" style={{ background: GLOWS[chapter.id] }}>
-                  <span className="big-numeral">{chapter.num}</span>
-                  <span className="font-mono-d text-[11px] tracking-[.08em] uppercase" style={{ color: "var(--parchment-dim)" }}>
-                    {UI.artPending[lang]}
-                  </span>
-                </div>
-              )}
-            </div>
-            <figcaption
-              className="font-mono-d text-[10px] mt-3 tracking-[.06em]"
-              style={{ color: "var(--muted)" }}
-            >
-              {chapter.num} / {chapter.caption[lang]}
-            </figcaption>
-          </motion.figure>
-        </div>
+    <section ref={(el) => { localRef.current = el; if (typeof sectionRef === "function") sectionRef(el); }} data-chapter={index + 1} data-testid={`chapter-${chapter.num}`} className="cinema-chapter" style={{ "--cinema-accent": mood.accent, "--cinema-wash": mood.wash }}>
+      <div className="cinema-stage">
+        {ready ? <motion.img className="cinema-scene" src={chapter.art} alt={chapter.caption[lang]} onError={() => setReady(false)} style={{ scale: imageScale, x: imageX, y: imageY, objectPosition: mood.position }} /> : <div className="cinema-no-art" />}
+        <motion.div className="cinema-shade" style={{ opacity: shade }} />
+        <div className="cinema-color" /><div className="cinema-grain" /><div className="cinema-horizon" aria-hidden="true" />
+        <motion.div className="cinema-copy" style={{ y: titleY, opacity: titleOpacity }}>
+          <p className="cinema-index"><span>{chapter.num}</span><i />{chapter.eyebrow[lang]}</p>
+          <h2 data-testid={`title-${chapter.num}`} dangerouslySetInnerHTML={{ __html: chapter.title[lang] }} />
+          <p className="cinema-one-line">{mood.motion}</p>
+        </motion.div>
+        <motion.aside className="cinema-detail" style={{ y: detailY, opacity: detailOpacity }}><span>{lang === "ru" ? "СЦЕНА" : "SCENE"} {chapter.num}</span><p>{chapter.body[lang]}</p></motion.aside>
+        <motion.div className="cinema-marker" style={{ opacity: detailOpacity }} aria-hidden="true"><b>{chapter.num}</b><span>{chapter.caption[lang]}</span></motion.div>
       </div>
     </section>
   );

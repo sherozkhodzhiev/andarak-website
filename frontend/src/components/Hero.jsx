@@ -22,6 +22,7 @@ export default function Hero({ lang, sectionRef }) {
         my.set(e.clientY / window.innerHeight - 0.5);
       }}
     >
+      <div className="hero-fire-field" aria-hidden="true" />
       <motion.div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -100,7 +101,7 @@ export default function Hero({ lang, sectionRef }) {
         transition={{ duration: 1, delay: 1.8 }}
         data-testid="hero-scroll-hint"
       >
-        {UI.scrollHint[lang]} ↓
+        {lang === "ru" ? "Прокручивайте — время движется" : "Scroll — time moves"} ↓
       </motion.div>
     </section>
   );

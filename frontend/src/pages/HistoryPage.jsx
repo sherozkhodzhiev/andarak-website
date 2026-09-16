@@ -9,7 +9,6 @@ import { useTrack } from "@/hooks/useTrack";
 import { useYouTubeScore } from "@/hooks/useYouTubeScore";
 import Hero from "@/components/Hero";
 import Chapter from "@/components/Chapter";
-import Marquee from "@/components/Marquee";
 import Gallery from "@/components/Gallery";
 import Chrome from "@/components/Chrome";
 
@@ -120,7 +119,6 @@ export default function HistoryPage({ initialLang = "en" }) {
       </Link>
 
       <Hero lang={lang} sectionRef={(el) => (sectionRefs.current[0] = el)} />
-      <Marquee lang={lang} />
 
       {CHAPTERS.map((c, i) => (
         <Chapter
@@ -131,6 +129,11 @@ export default function HistoryPage({ initialLang = "en" }) {
           sectionRef={(el) => (sectionRefs.current[i + 1] = el)}
         />
       ))}
+
+      <section className="history-afterword">
+        <span>{lang === "ru" ? "АНДАРАК · 2026" : "ANDARAK · 2026"}</span>
+        <p>{lang === "ru" ? "Не музей прошлого. Живая земля — и история, которая продолжается." : "Not a museum of the past. A living land, and a history still in motion."}</p>
+      </section>
 
       <Gallery lang={lang} />
 
