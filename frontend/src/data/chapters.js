@@ -241,7 +241,7 @@ export const YT_TRACKS = {
   conquest: "QulvRHVs8ks",
   samanid: "Ov5ljc44Ajs",
   mongol: "58JoSx396a4",
-  steppe: "VAHHaafpHcw",
+  steppe: "gwjioseBjYc",
   empires: "4tjyxHqDNtc",
   today: "vtjhaNtHzMo",
 };
