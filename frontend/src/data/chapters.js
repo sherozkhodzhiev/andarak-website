@@ -1,10 +1,9 @@
-const FIRE_VIDEO = "https://upload.wikimedia.org/wikipedia/commons/b/bb/Fantastic-fireplace-fire-chimney-hearth-_background_-_texture_-_motion_graphics_-_free_video_library.webm";
-const WHEAT_VIDEO = "https://upload.wikimedia.org/wikipedia/commons/a/af/ASMR_field_of_wheat_-_nature.webm";
+
 
 export const CHAPTERS = [
   {
     id: "sogdiana", num: "01", flame: "alive", sound: "fire", embers: true,
-    art: "/art/01-sogdiana.png", video: FIRE_VIDEO, audio: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Ustad_Gada_Mohammad_-_Rababa.ogg",
+    art: "/art/01-sogdiana.png", audio: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Ustad_Gada_Mohammad_-_Rababa.ogg",
     eyebrow: { en: "Sogdiana, before empire", ru: "Согдиана, до империй" },
     title: { en: "A Land of <em>Fire</em>", ru: "Земля <em>Огня</em>" },
     body: {
@@ -49,7 +48,7 @@ export const CHAPTERS = [
   },
   {
     id: "death", num: "04", flame: "alive", sound: "calm", embers: false,
-    art: "/art/04-death.png", video: WHEAT_VIDEO, audio: null,
+    art: "/art/04-death.png",
     eyebrow: { en: "323 BC", ru: "323 г. до н.э." },
     title: { en: "The King Dies, the Land <em>Breathes</em>", ru: "Царь Умирает, Земля <em>Вздыхает</em>" },
     body: {
@@ -64,7 +63,7 @@ export const CHAPTERS = [
   },
   {
     id: "conquest", num: "05", flame: "dying", sound: "fire", embers: true,
-    art: "/art/05-conquest.png", video: FIRE_VIDEO, audio: null,
+    art: "/art/05-conquest.png", 
     eyebrow: { en: "8th century", ru: "VIII век" },
     title: { en: "The Fires Are <em>Put Out</em>", ru: "Огни <em>Угасают</em>" },
     body: {
