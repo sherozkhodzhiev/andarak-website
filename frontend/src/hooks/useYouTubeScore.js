@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+fimport { useEffect, useRef, useState } from "react";
 
 const MAX_VOL = 55;
 
@@ -100,8 +100,11 @@ export function useYouTubeScore(on, videoId, onError) {
     fadeVolume(player, MAX_VOL, 0, 900, () => {
       try {
         if (player.mute) player.mute();
-        player.loadVideoById(videoId);
-        player.playVideo();
+        player.loadVideoById({
+  videoId,
+  startSeconds: videoId === "gwjioseBjYc" ? 45 : 0,
+});
+        player.playVideo();f
         player.setVolume(0);
         fadeVolume(player, 0, MAX_VOL, 1500);
       } catch (e) { /* released */ }
