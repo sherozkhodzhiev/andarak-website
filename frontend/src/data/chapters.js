@@ -3,7 +3,7 @@
 export const CHAPTERS = [
   {
     id: "sogdiana", num: "01", flame: "alive", sound: "fire", embers: true,
-    art: "/art/01-sogdiana.png", audio: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Ustad_Gada_Mohammad_-_Rababa.ogg",
+    art: "/art/01-sogdiana.png", 
     eyebrow: { en: "Sogdiana, before empire", ru: "Согдиана, до империй" },
     title: { en: "A Land of <em>Fire</em>", ru: "Земля <em>Огня</em>" },
     body: {
