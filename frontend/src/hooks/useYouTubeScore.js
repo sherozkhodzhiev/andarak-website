@@ -1,4 +1,4 @@
-fimport { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const MAX_VOL = 55;
 
