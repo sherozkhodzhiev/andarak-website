@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Outlet, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet, useLocation, Navigate } from "react-router-dom";
 import "@/App.css";
 import Header from "@/components/portal/Header";
 import Footer, { EmergencyButton } from "@/components/portal/Footer";
 import HomePage from "@/pages/HomePage";
-import HistoryPage from "@/pages/HistoryPage";
+import HistorySlides from "@/pages/HistorySlides";
 import CulturePage from "@/pages/CulturePage";
 import GalleryPage from "@/pages/GalleryPage";
 import AboutPage from "@/pages/AboutPage";
@@ -34,6 +34,9 @@ function PortalLayout({ lang, onLang, theme, onTheme }) {
 export default function App() {
   const [lang, setLang] = useState(() => localStorage.getItem("andarak-lang") || "ru");
   const [theme, setTheme] = useState(() => localStorage.getItem("andarak-theme") || "light");
+  useEffect(() => {
+  document.documentElement.setAttribute("data-theme", theme);
+}, [theme]);
   const onLang = () => {
     setLang((l) => {
       const next = l === "ru" ? "en" : "ru";
@@ -53,7 +56,8 @@ export default function App() {
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path="/history" element={<HistoryPage initialLang={lang} />} />
+        <Route path="/history" element={<HistorySlides lang={lang} onLang={onLang} />} />
+        <Route path="/history/classic" element={<Navigate to="/history" replace />} />
         <Route element={<PortalLayout lang={lang} onLang={onLang} theme={theme} onTheme={onTheme} />}>
           <Route path="/" element={<HomePage lang={lang} />} />
           <Route path="/culture" element={<CulturePage lang={lang} />} />

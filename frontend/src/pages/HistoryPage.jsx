@@ -10,7 +10,6 @@ import { useYouTubeScore } from "@/hooks/useYouTubeScore";
 import Hero from "@/components/Hero";
 import Chapter from "@/components/Chapter";
 import Marquee from "@/components/Marquee";
-import Gallery from "@/components/Gallery";
 import Chrome from "@/components/Chrome";
 
 export default function HistoryPage({ initialLang = "en" }) {
@@ -80,8 +79,8 @@ export default function HistoryPage({ initialLang = "en" }) {
   const rawYtId = chapter ? YT_TRACKS[chapter.id] : null;
   const ytId = rawYtId && !ytFailed[rawYtId] ? rawYtId : null;
   const trackUrl = !ytId && chapter?.audio ? chapter.audio : null;
-  useAmbience(audioOn && !ytId && !trackUrl, chapter ? chapter.sound : "calm");
-  useTrack(audioOn, trackUrl);
+  useAmbience(false, chapter ? chapter.sound : "calm");
+  useTrack(false, trackUrl);
   useYouTubeScore(audioOn, ytId, useCallback((id) => setYtFailed((f) => (f[id] ? f : { ...f, [id]: true })), []));
 
   const scrollTo = useCallback((idx) => {
@@ -106,7 +105,7 @@ export default function HistoryPage({ initialLang = "en" }) {
 
       <Link
         to="/"
-        className="fixed bottom-5 left-5 z-[95] font-mono-d text-[10px] tracking-[.14em] uppercase px-3.5 py-2"
+        className="fixed top-6 left-6 z-[95] font-mono-d text-[10px] tracking-[.14em] uppercase px-3.5 py-2"
         style={{
           color: "var(--parchment-dim)",
           background: "rgba(20,17,15,.6)",
@@ -116,7 +115,7 @@ export default function HistoryPage({ initialLang = "en" }) {
         }}
         data-testid="exit-to-portal"
       >
-        {T.backToPortal[lang]}
+        {lang === "en" ? "← Back" : "← Назад"}
       </Link>
 
       <Hero lang={lang} sectionRef={(el) => (sectionRefs.current[0] = el)} />
@@ -132,8 +131,6 @@ export default function HistoryPage({ initialLang = "en" }) {
         />
       ))}
 
-      <Gallery lang={lang} />
-
       <footer
         className="relative flex flex-col items-center justify-center text-center"
         style={{ minHeight: "55vh", background: "radial-gradient(ellipse at 50% 100%, rgba(228,87,46,.12), transparent 60%)" }}
@@ -142,7 +139,7 @@ export default function HistoryPage({ initialLang = "en" }) {
           {lang === "en" ? "The fire is still burning." : "Огонь всё ещё горит."}
         </p>
         <p className="font-mono-d text-[10px] tracking-[.2em] uppercase mt-6" style={{ color: "var(--muted)" }}>
-          Andarak — {lang === "en" ? "a history in fire" : "история в огне"} — MMXXVI
+          {lang === "en" ? "Andarak: a history in fire." : "Андарак: история в огне."}
         </p>
       </footer>
     </div>

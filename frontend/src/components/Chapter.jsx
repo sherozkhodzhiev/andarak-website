@@ -60,8 +60,7 @@ export default function Chapter({ chapter, index, lang, sectionRef }) {
       ref={sectionRef}
       data-chapter={index + 1}
       data-testid={`chapter-${chapter.num}`}
-      className="relative flex items-center overflow-hidden"
-      style={{ minHeight: "125vh", padding: "16vh 8vw", borderBottom: "1px solid rgba(237,227,208,.06)" }}
+      className="chapter-full-photo relative flex items-center overflow-hidden"
     >
       <div className="absolute inset-0 pointer-events-none" style={{ background: GLOWS[chapter.id] }} />
       {chapter.embers && <Embers seed={index + 1} />}
@@ -136,12 +135,6 @@ export default function Chapter({ chapter, index, lang, sectionRef }) {
                 </div>
               )}
             </div>
-            <figcaption
-              className="font-mono-d text-[10px] mt-3 tracking-[.06em]"
-              style={{ color: "var(--muted)" }}
-            >
-              {chapter.num} / {chapter.caption[lang]}
-            </figcaption>
           </motion.figure>
         </div>
       </div>

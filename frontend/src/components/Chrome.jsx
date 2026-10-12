@@ -9,7 +9,7 @@ function Farvahar({ lit }) {
       data-testid="symbol-farvahar" role="img" aria-label="Farvahar — symbol of ancient Sogdiana"
       style={{ opacity: lit ? 1 : 0.2, transition: "opacity 1.2s ease" }}
     >
-      <g fill="none" stroke="#C9A227" strokeWidth="1.5" strokeLinecap="round">
+      <g fill="none" stroke="#c39e23" strokeWidth="1.5" strokeLinecap="round">
         <circle cx="22" cy="10" r="3.4" />
         <path d="M18.4 8.6 L3 4.2" />
         <path d="M18.4 10.4 L4.5 9" />
@@ -44,7 +44,7 @@ export default function Chrome({ active, lang, audioOn, playing, onLang, onAudio
 
   return (
     <>
-      <div className="fixed top-6 left-6 z-[100]" style={{ mixBlendMode: "screen" }}>
+      <div className="hidden" style={{ mixBlendMode: "screen" }}>
         <div className="flex items-center gap-4">
           <svg
             width="26" height="34" viewBox="0 0 26 34"
@@ -71,18 +71,23 @@ export default function Chrome({ active, lang, audioOn, playing, onLang, onAudio
         </span>
       </div>
 
-      <div className="fixed top-6 right-6 z-[100] flex gap-3 items-center">
+      <div className="history-controls fixed top-6 right-6 z-[100] flex gap-3 items-center">
         <button className="ctrl-btn" onClick={onLang} data-testid="lang-toggle-btn">
-          {lang === "en" ? "RU" : "EN"}
+          {lang === "en" ? "EN" : "RU"}
         </button>
-        <button className="ctrl-btn" onClick={onAudio} data-testid="audio-toggle-btn">
-          {audioOn ? <Volume2 size={13} /> : <VolumeX size={13} />}
-          {audioOn ? UI.audioOn[lang] : UI.audioOff[lang]}
-        </button>
-        <button className="ctrl-btn" onClick={onPlay} data-testid="play-through-btn">
-          {playing ? <Pause size={13} /> : <Play size={13} />}
-          {playing ? UI.playing[lang] : UI.play[lang]}
-        </button>
+        <button
+  className="ctrl-btn"
+  onClick={onAudio}
+  data-testid="audio-toggle-btn"
+  aria-label={
+    lang === "en"
+      ? audioOn ? "Mute sound" : "Enable sound"
+      : audioOn ? "Выключить звук" : "Включить звук"
+  }
+  aria-pressed={audioOn}
+>
+  {audioOn ? <Volume2 size={20} /> : <VolumeX size={20} />}
+</button>
       </div>
 
       <nav className="fixed right-6 top-1/2 -translate-y-1/2 z-[100] hidden md:flex flex-col gap-3.5" data-testid="chapter-nav">

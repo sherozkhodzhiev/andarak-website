@@ -1,10 +1,5 @@
-export const KilimDivider = ({ color = "#C25934", opacity = 0.55 }) => (
-  <svg width="120" height="12" viewBox="0 0 120 12" fill="none" aria-hidden="true" style={{ opacity }}>
-    {Array.from({ length: 10 }, (_, i) => (
-      <rect key={i} x={i * 12 + 3} y="3" width="6" height="6" transform={`rotate(45 ${i * 12 + 6} 6)`} fill={i % 2 ? color : "#D4AF37"} />
-    ))}
-  </svg>
-);
+// Keep existing imports working without rendering the decorative diamond row.
+export const KilimDivider = () => null;
 
 export const KilimWatermark = ({ className = "" }) => (
   <svg className={className} width="360" height="360" viewBox="0 0 360 360" fill="none" aria-hidden="true">

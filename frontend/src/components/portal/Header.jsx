@@ -1,3 +1,4 @@
+import HeaderWeather from "./HeaderWeather";  
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -68,12 +69,39 @@ export default function Header({ lang, onLang, theme, onTheme }) {
           )}
         </nav>
 
-        <div className="flex items-center gap-2.5">
-          <button onClick={onLang} className="lang-pill" data-testid="portal-lang-toggle">
-            <span style={{ color: lang === "ru" ? "var(--p-terra)" : "var(--p-slate)" }}>RU</span>
-            <span style={{ color: "var(--p-border)" }}>/</span>
-            <span style={{ color: lang === "en" ? "var(--p-terra)" : "var(--p-slate)" }}>EN</span>
-          </button>
+                <div className="header-actions flex items-center gap-2.5">
+          <HeaderWeather lang={lang} />
+
+          <div
+            className="header-language"
+            role="group"
+            aria-label={lang === "ru" ? "Язык" : "Language"}
+            data-testid="portal-lang-toggle"
+          >
+            <button
+              type="button"
+              lang="en"
+              aria-label="English"
+              aria-pressed={lang === "en"}
+              onClick={() => {
+                if (lang !== "en") onLang();
+              }}
+            >
+              EN
+            </button>
+
+            <button
+              type="button"
+              lang="ru"
+              aria-label="Русский"
+              aria-pressed={lang === "ru"}
+              onClick={() => {
+                if (lang !== "ru") onLang();
+              }}
+            >
+              RU
+            </button>
+          </div>
           <button onClick={onTheme} className="theme-pill" aria-label="Theme" data-testid="theme-toggle">
             {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
           </button>

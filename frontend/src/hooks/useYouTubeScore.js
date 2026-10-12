@@ -100,11 +100,18 @@ export function useYouTubeScore(on, videoId, onError) {
     fadeVolume(player, MAX_VOL, 0, 900, () => {
       try {
         if (player.mute) player.mute();
+                const startTimes = {
+          DjJ9mOuACoc: 20, // Slide 1: start at 0:20
+          tBV5QhJV8Gk: 10, // Slide 2: start at 0:30s
+          gwjioseBjYc: 45, // Slide 8: start at 0:45
+         "4tFDIz75vDg": 14,  // Slide 10: start at 0:00
+        };
+
         player.loadVideoById({
-  videoId,
-  startSeconds: videoId === "gwjioseBjYc" ? 45 : 0,
-});
-        player.playVideo();f
+          videoId,
+          startSeconds: startTimes[videoId] ?? 0,
+        });
+        player.playVideo();
         player.setVolume(0);
         fadeVolume(player, 0, MAX_VOL, 1500);
       } catch (e) { /* released */ }
