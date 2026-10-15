@@ -172,8 +172,8 @@ export const CHAPTERS = [
     eyebrow: { en: "Present day", ru: "Наши дни" },
     title: { en: "Andarak <em>Still Stands</em>", ru: "Андарак <em>Всё Ещё Стоит</em>" },
     body: {
-  "en": "After Greeks, Arabs, Samanids, Mongols, Turkic khans, empires and unions, the village is still here. The mountains still stand over the rooftops. Homes glow with evening light, children run through the streets, and elders sit in the shade and tell the old stories. Every era tried to change this place, and none could take its heart. This is where I am from.",
-  "ru": "После греков, арабов, саманидов, монголов, тюркских ханов, империй и союзов село всё ещё здесь. Горы всё так же стоят над крышами. В домах горит вечерний свет, дети бегают по улицам, а аксакалы сидят в тени и рассказывают старые истории. Каждая эпоха пыталась изменить это место, и ни одна не смогла отнять его сердце. Это моё родное место."
+  "en": "After Greeks, Arabs, Samanids, Mongols, Turkic khans, empires and unions, the village is still here. The mountains still stand over the rooftops. Homes glow with evening light, children run through the streets, and elders sit in the shade and tell the old stories. Every era tried to change this place, and none could take its heart. This is the land of Andarakians — a wise, brave, and noble people",
+  "ru": "После греков, арабов, саманидов, монголов, тюркских ханов, империй и союзов село всё ещё здесь. Горы всё так же стоят над крышами. В домах горит вечерний свет, дети бегают по улицам, а аксакалы сидят в тени и рассказывают старые истории. Каждая эпоха пыталась изменить это место, и ни одна не смогла отнять его сердце. Это земля Aндаракийцев — мудрого, храброго и благородного народа."
 },
     caption: {
       en: "Andarak — the village today",
