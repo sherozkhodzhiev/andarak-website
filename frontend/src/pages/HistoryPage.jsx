@@ -2,15 +2,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Lenis from "lenis";
 import "@/App.css";
-import { CHAPTERS, YT_TRACKS } from "@/data/chapters";
+import { CHAPTERS } from "@/data/chapters";
 import { T } from "@/data/portal";
 import { useAmbience } from "@/hooks/useAmbience";
-import { useTrack } from "@/hooks/useTrack";
 import { useYouTubeScore } from "@/hooks/useYouTubeScore";
 import Hero from "@/components/Hero";
 import Chapter from "@/components/Chapter";
-import Marquee from "@/components/Marquee";
-import Chrome from "@/components/Chrome";
+import Gallery from "@/components/Gallery";
 
 export default function HistoryPage({ initialLang = "en" }) {
   const [lang, setLang] = useState(initialLang === "ru" ? "ru" : "en");
@@ -75,12 +73,9 @@ export default function HistoryPage({ initialLang = "en" }) {
     };
   }, [playing]);
 
-  const chapter = active >= 1 ? CHAPTERS[active - 1] : null;
-  const rawYtId = chapter ? YT_TRACKS[chapter.id] : null;
-  const ytId = rawYtId && !ytFailed[rawYtId] ? rawYtId : null;
-  const trackUrl = !ytId && chapter?.audio ? chapter.audio : null;
-  useAmbience(false, chapter ? chapter.sound : "calm");
-  useTrack(false, trackUrl);
+  const chapter = active >= 1 ? CHAPTERS[Math.min(active - 1, CHAPTERS.length - 1)] : null;
+  const ytId = !ytFailed["7Wev3CEcu8g"] ? "7Wev3CEcu8g" : null;
+  useAmbience(audioOn && !ytId, chapter ? chapter.sound : "calm");
   useYouTubeScore(audioOn, ytId, useCallback((id) => setYtFailed((f) => (f[id] ? f : { ...f, [id]: true })), []));
 
   const scrollTo = useCallback((idx) => {
@@ -119,7 +114,6 @@ export default function HistoryPage({ initialLang = "en" }) {
       </Link>
 
       <Hero lang={lang} sectionRef={(el) => (sectionRefs.current[0] = el)} />
-      <Marquee lang={lang} />
 
       {CHAPTERS.map((c, i) => (
         <Chapter

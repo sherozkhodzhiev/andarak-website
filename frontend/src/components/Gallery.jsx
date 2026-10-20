@@ -1,81 +1,33 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { GALLERY, UI } from "@/data/chapters";
 
-const EASE = [0.22, 1, 0.36, 1];
+function VillageScene({ photo, index, lang }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const p = useSpring(scrollYProgress, { stiffness: 82, damping: 28, mass: 0.24 });
+  const scale = useTransform(p, [0, 0.5, 1], [1.26, 1.04, 1.2]);
+  const y = useTransform(p, [0, 1], ["-7%", "7%"]);
+  const copyY = useTransform(p, [0.15, 0.5, 0.88], [80, 0, -70]);
+  const copyOpacity = useTransform(p, [0.13, 0.3, 0.74, 0.92], [0, 1, 1, 0]);
+  const caption = photo.caption[lang];
+  const title = index === 0 ? (lang === "ru" ? "Село,<br><em>сейчас.</em>" : "The village,<br><em>now.</em>") : (lang === "ru" ? "Земля,<br><em>которая помнит.</em>" : "A land<br><em>that remembers.</em>");
 
-export default function Gallery({ lang }) {
   return (
-    <section
-      className="relative overflow-hidden"
-      style={{ padding: "18vh 8vw 14vh", borderBottom: "1px solid rgba(237,227,208,.06)" }}
-      data-testid="village-gallery"
-    >
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(201,162,39,.10), transparent 55%)" }}
-      />
-
-      <div className="relative z-10 max-w-[1200px] mx-auto">
-        <motion.div
-          className="font-mono-d text-xs tracking-[.18em] uppercase flex items-center gap-3 mb-6"
-          style={{ color: "var(--ember)" }}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 1, ease: EASE }}
-        >
-          <span style={{ color: "var(--parchment-dim)" }}>+</span>
-          <span style={{ width: 34, height: 1, background: "var(--parchment-dim)" }} />
-          <span data-testid="gallery-eyebrow">{UI.galleryEyebrow[lang]}</span>
+    <section className="cinema-chapter village-cinema" ref={ref} data-testid={`gallery-photo-${index + 1}`} style={{ "--cinema-accent": "#e8c47c", "--cinema-wash": "rgba(28,48,33,.34)" }}>
+      <div className="cinema-stage">
+        <motion.img className="cinema-scene" src={photo.src} alt={caption} loading="lazy" style={{ scale, y }} />
+        <div className="cinema-shade village-shade" /><div className="cinema-color" /><div className="cinema-grain" /><div className="cinema-horizon" />
+        <motion.div className="cinema-copy" style={{ y: copyY, opacity: copyOpacity }}>
+          <p className="cinema-index"><span>{String(index + 1).padStart(2, "0")}</span><i />{index === 0 ? UI.galleryEyebrow[lang] : (lang === "ru" ? "АНДАРАК · АРХИВ" : "ANDARAK · ARCHIVE")}</p>
+          <h2 dangerouslySetInnerHTML={{ __html: title }} />
         </motion.div>
-
-        <motion.h2
-          className="font-display font-semibold mb-4"
-          style={{ fontSize: "clamp(2.2rem, 4.2vw, 4.2rem)", lineHeight: 1.06, color: "var(--parchment)" }}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 1, delay: 0.12, ease: EASE }}
-          data-testid="gallery-title"
-          dangerouslySetInnerHTML={{ __html: UI.galleryTitle[lang] }}
-        />
-
-        <motion.p
-          className="text-sm md:text-base font-light max-w-[560px] mb-16"
-          style={{ lineHeight: 1.85, color: "var(--parchment-dim)" }}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 1, delay: 0.24, ease: EASE }}
-        >
-          {UI.galleryIntro[lang]}
-        </motion.p>
-
-        <div className="gallery-wall">
-          {GALLERY.map((photo, i) => (
-            <motion.figure
-              key={photo.src}
-              className={`gallery-item ${photo.span || ""}`}
-              initial={{ opacity: 0, y: 40, scale: 0.97 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 1.1, delay: (i % 3) * 0.14, ease: EASE }}
-              data-testid={`gallery-photo-${i + 1}`}
-            >
-              <div className="gallery-frame">
-                <img src={photo.src} alt={photo.caption[lang]} loading="lazy" />
-                <div className="gallery-scrim" />
-              </div>
-              <figcaption
-                className="font-mono-d text-[10px] mt-3 tracking-[.06em]"
-                style={{ color: "var(--muted)" }}
-              >
-                {String(i + 1).padStart(2, "0")} / {photo.caption[lang]}
-              </figcaption>
-            </motion.figure>
-          ))}
-        </div>
+        <motion.div className="cinema-marker" style={{ opacity: copyOpacity }}><b>{String(index + 1).padStart(2, "0")}</b><span>{caption}</span></motion.div>
       </div>
     </section>
   );
+}
+
+export default function Gallery({ lang }) {
+  return <section data-testid="village-gallery">{GALLERY.map((photo, index) => <VillageScene key={photo.src} photo={photo} index={index} lang={lang} />)}</section>;
 }

@@ -1,0 +1,45 @@
+/* Full-bleed, rounded-window scene openings. Scoped to the presentation. */
+.journey { --paper:#f6f6f2; --gold:#d4f36b; background:#121413; }
+.j-viewport,.j-frame { perspective:none; transform-style:flat; }
+.j-frame { background:#111512; will-change:clip-path,transform; }
+.j-header { padding:23px 3.5vw; background:linear-gradient(#0008,transparent); }
+.j-wordmark { font-size:21px; font-weight:800; letter-spacing:-.055em; }
+.j-wordmark span { letter-spacing:.18em; margin-top:7px; }
+.j-controls button { border-radius:30px; padding:0 16px; background:#ffffff14; backdrop-filter:blur(16px); }
+.j-controls button:last-child { border:0; padding:0 17px; background:#f3f4ef; color:#131514; }
+.j-controls button:last-child span { color:inherit; }
+.j-progress i { background:var(--gold); box-shadow:none; }
+.j-picture-wrap { inset:0; width:100%; height:100%; filter:none; }
+.j-art { object-fit:cover; object-position:center; }
+.j-picture-glass,.j-backdrop,.j-atmosphere,.j-hero-lines,.j-ghost-number { display:none; }
+.j-scene-shade { background:linear-gradient(90deg,#070d0bc9,transparent 82%),linear-gradient(0deg,#050907eb,transparent 75%); }
+.j-copy { left:5vw; top:auto; bottom:17vh; width:74vw; max-width:1120px; }
+.journey h1,.journey h2 { font-family:Manrope,Arial,sans-serif; font-weight:600; letter-spacing:-.065em; line-height:1.02; }
+.j-copy h2 { font-size:clamp(48px,6.8vw,105px); text-shadow:none; }
+.j-title-line { display:block; }
+.j-word-mask { display:inline-block; overflow:hidden; vertical-align:top; padding-bottom:.09em; margin-bottom:-.09em; perspective:700px; }
+.j-word-mask>span { display:block; transform-origin:50% 100%; }
+.j-title-line:last-child { color:var(--gold); }
+.j-description { max-width:510px; margin:25px 0 12px; color:#ecefe8; font-size:13px; line-height:1.7; }
+.j-kicker { color:#e4e7df; font-size:10px; letter-spacing:.12em; }
+.j-details-open { border:1px solid #ffffff50; padding:0 15px; border-radius:24px; font-size:9px; background:#ffffff0d; }
+.j-hero-copy { left:5vw; top:auto; bottom:18vh; width:89vw; }
+.j-hero-copy h1 { font-size:clamp(64px,8.4vw,134px); }
+.j-hero-copy>p:not(.j-kicker) { max-width:450px; margin:24px 0; color:#e4e7df; }
+.j-hero-shade { background:linear-gradient(90deg,#030806b8,transparent 90%),linear-gradient(0deg,#030806d9,transparent); }
+.j-primary { background:var(--paper); color:#111; border:0; border-radius:32px; gap:30px; font-weight:700; padding:19px 25px; }
+.j-primary:hover { transform:translateY(-3px); }
+.j-arrows { bottom:55px; }.j-arrows button { width:52px;height:52px;background:#ffffff18; }
+.j-arrows button:hover:not(:disabled) { background:var(--paper);color:#111;border-color:var(--paper); }
+.j-menu-grid button>span,.j-details>p:not(.j-kicker) { font-family:Manrope,Arial,sans-serif; }
+.j-menu-grid button>span { font-size:16px; }.j-details h2 { font-size:46px; }
+@media(max-width:760px) {
+ .j-header{padding:14px 18px}.j-wordmark{font-size:18px}.j-controls{gap:6px}.j-controls button,.j-controls button:last-child{padding:0 11px}
+ .j-picture-wrap{inset:0;height:100%;width:100%}.j-art{object-position:58% center}
+ .j-copy{left:6vw;bottom:18vh;width:88vw;right:auto}.j-copy h2{font-size:clamp(35px,9.5vw,66px)}
+ .j-description{font-size:12px;max-width:440px;margin:19px 0 12px}.j-kicker{font-size:8px}
+ .j-hero-copy{left:6vw;bottom:18vh;top:auto;width:88vw}.j-hero-copy h1{font-size:clamp(42px,11vw,76px)}
+ .j-hero-copy>p:not(.j-kicker){font-size:12px}.j-primary{padding:16px 20px}
+ .j-arrows{bottom:44px}.j-arrows button{width:42px;height:42px}.j-frame-meta{font-size:5px}
+}
+@media(max-height:620px) and (min-width:761px){.j-copy,.j-hero-copy{top:auto;bottom:19vh}.j-copy h2,.j-hero-copy h1{font-size:55px}.j-description,.j-hero-copy>p:not(.j-kicker){margin:12px 0;font-size:11px}.j-kicker{margin-bottom:10px}}

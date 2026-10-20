@@ -150,7 +150,7 @@ export const CHAPTERS = [
 
   {
     id: "empires", num: "09", flame: "ember", sound: "calm", embers: false,
-    art: "/art/09-empires.jpg", audio: null,
+    art: "/art/09-empires-v2.png", audio: null,
     eyebrow: { en: "19th–20th century", ru: "XIX–XX века" },
     title: { en: "Empires Draw <em>the Lines</em>", ru: "Империи Чертят <em>Границы</em>" },
     body: {
