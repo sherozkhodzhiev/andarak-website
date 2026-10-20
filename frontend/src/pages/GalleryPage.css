@@ -1,0 +1,223 @@
+.andarak-gallery {
+  --gallery-cream: #f3efe4;
+  --gallery-sage: #c1d2b0;
+  background: radial-gradient(ellipse at top, #222a42, #101722 75%);
+  color: var(--gallery-cream);
+  padding: 64px 0;
+  overflow: hidden;
+}
+
+.andarak-gallery button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.andarak-gallery button:focus-visible {
+  outline: 3px solid var(--gallery-sage);
+  outline-offset: 5px;
+}
+
+.ag-heading {
+  text-align: center;
+  padding: 0 24px;
+}
+
+.ag-eyebrow {
+  color: var(--gallery-sage);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.ag-heading h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(32px, 5vw, 72px);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 20px 0 40px;
+}
+
+.ag-stage {
+  position: relative;
+  height: clamp(320px, 42vw, 580px);
+  perspective: 1400px;
+  touch-action: pan-y;
+}
+
+.ag-orbit {
+  position: absolute;
+  width: 120%;
+  height: 85%;
+  left: -10%;
+  top: 18%;
+  border: 1px solid #c1d2b055;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ag-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(42vw, 560px);
+  height: 90%;
+  padding: 0;
+  border: 1px solid #ffffff24;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #182133;
+  box-shadow: 0 24px 60px #0005;
+  transition:
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 700ms,
+    filter 700ms;
+}
+
+.ag-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ag-arrow {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--gallery-sage);
+  border-radius: 50%;
+  background: #101722dd;
+  color: var(--gallery-cream);
+}
+
+.ag-arrow-prev { left: 4%; }
+.ag-arrow-next { right: 4%; }
+
+.ag-details {
+  text-align: center;
+  padding: 28px 24px 0;
+  max-width: 720px;
+  margin: auto;
+}
+
+.ag-count {
+  color: var(--gallery-sage);
+  font-size: 12px;
+  letter-spacing: 0.25em;
+}
+
+.ag-caption {
+  font-family: Georgia, serif;
+  font-size: clamp(20px, 2.4vw, 32px);
+  margin: 16px 0;
+  min-height: 2.6em;
+}
+
+.ag-hint {
+  color: #b0bac8;
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+.ag-all-button {
+  border: 1px solid var(--gallery-sage);
+  border-radius: 999px;
+  padding: 14px 28px;
+  color: var(--gallery-cream);
+  background: transparent;
+}
+
+.ag-all-button:hover {
+  background: #c1d2b018;
+}
+
+.ag-grid {
+  max-width: 1280px;
+  margin: 48px auto 0;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.ag-grid button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--gallery-cream);
+  text-align: left;
+}
+
+.ag-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.ag-grid span {
+  display: block;
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.ag-dialog {
+  width: min(1100px, 94vw);
+  max-height: 92vh;
+  padding: 24px;
+  border: 1px solid #ffffff30;
+  border-radius: 20px;
+  background: #101722;
+  color: var(--gallery-cream);
+}
+
+.ag-dialog::backdrop {
+  background: #060b14e8;
+  backdrop-filter: blur(12px);
+}
+
+.ag-dialog img {
+  display: block;
+  max-width: 100%;
+  max-height: 65vh;
+  margin: 20px auto;
+  object-fit: contain;
+}
+
+.ag-dialog-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ag-dialog button {
+  background: transparent;
+  color: inherit;
+  border: 1px solid #c1d2b080;
+  border-radius: 999px;
+  padding: 10px 18px;
+}
+
+.ag-dialog p {
+  text-align: center;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .andarak-gallery { padding: 40px 0; }
+  .ag-card { width: 72vw; border-radius: 18px; }
+  .ag-arrow { width: 42px; height: 42px; }
+  .ag-arrow-prev { left: 2%; }
+  .ag-arrow-next { right: 2%; }
+  .ag-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ag-card { transition: none; }
+}

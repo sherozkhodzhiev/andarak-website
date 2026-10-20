@@ -1,1 +1,142 @@
 /* Andarak — A History in Fire */
+/* Make the existing photo fill its slide. */
+.chapter-full-photo {
+  isolation: isolate;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(100px, 16vh, 180px) 8vw;
+}
+
+/* Let the photo position itself against the whole section. */
+.chapter-full-photo > .grid {
+  position: static;
+}
+
+/* Keep the existing text above the background. */
+.chapter-full-photo > .grid > :first-child {
+  position: relative;
+  z-index: 2;
+}
+
+/* Expand the existing photo container. */
+.chapter-full-photo > .grid > :last-child {
+  position: absolute;
+  inset: 0;
+  top: 0 !important;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.chapter-full-photo > .grid > :last-child > figure {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.chapter-full-photo .art-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.chapter-full-photo .art-frame::after {
+  display: none;
+}
+
+.chapter-full-photo .art-frame img,
+.chapter-full-photo .art-frame video {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+  object-position: center center;
+  /* Avoid further cropping from the shared zoom animation. */
+  animation: none;
+  transform: none;
+}
+
+/* Shade the photo behind the existing text. */
+.chapter-full-photo .art-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 12, 10, 0.92) 0%,
+    rgba(15, 12, 10, 0.78) 40%,
+    rgba(15, 12, 10, 0.18) 100%
+  );
+}
+
+/* Keep the original caption visible over the photo. */
+.chapter-full-photo figcaption {
+  position: absolute;
+  right: 8vw;
+  bottom: 5vh;
+  max-width: 40%;
+  color: #e3ddd3 !important;
+  text-shadow: 0 1px 5px #000;
+}
+/* Borderless presentation controls */
+[data-testid="exit-to-portal"],
+.history-controls .ctrl-btn {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  color: #f4ecdf !important;
+  min-height: 44px;
+}
+
+.history-controls .ctrl-btn {
+  min-width: 44px;
+}
+
+/* Phone: Back on the left, language and sound on the right */
+@media (max-width: 767px) {
+  .chapter-full-photo {
+    padding: 100px 24px 150px;
+  }
+
+  .chapter-full-photo .art-scrim {
+    background: linear-gradient(to bottom,
+      rgba(15, 12, 10, .35),
+      rgba(15, 12, 10, .72) 45%,
+      rgba(15, 12, 10, .88));
+  }
+
+  .chapter-full-photo figcaption {
+    right: 24px;
+    left: 24px;
+    bottom: 32px;
+    max-width: none;
+  }
+
+  [data-testid="exit-to-portal"] {
+    top: calc(env(safe-area-inset-top, 0px) + 12px);
+    left: 12px;
+    max-width: calc(100vw - 140px);
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .history-controls {
+    top: calc(env(safe-area-inset-top, 0px) + 12px);
+    left: auto;
+    right: 12px;
+    gap: 4px;
+    flex-wrap: nowrap;
+  }
+
+  .history-controls .ctrl-btn {
+    padding: 10px 12px;
+  }
+}

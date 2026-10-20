@@ -6,16 +6,21 @@ export default function Chrome({ active, lang, audioOn, playing, onLang, onAudio
     <>
       <div className="fixed top-6 right-6 z-[100] flex gap-3 items-center">
         <button className="ctrl-btn" onClick={onLang} data-testid="lang-toggle-btn">
-          {lang === "en" ? "RU" : "EN"}
+          {lang === "en" ? "EN" : "RU"}
         </button>
-        <button className="ctrl-btn" onClick={onAudio} data-testid="audio-toggle-btn">
-          {audioOn ? <Volume2 size={13} /> : <VolumeX size={13} />}
-          {audioOn ? UI.audioOn[lang] : UI.audioOff[lang]}
-        </button>
-        <button className="ctrl-btn" onClick={onPlay} data-testid="play-through-btn">
-          {playing ? <Pause size={13} /> : <Play size={13} />}
-          {playing ? UI.playing[lang] : UI.play[lang]}
-        </button>
+        <button
+  className="ctrl-btn"
+  onClick={onAudio}
+  data-testid="audio-toggle-btn"
+  aria-label={
+    lang === "en"
+      ? audioOn ? "Mute sound" : "Enable sound"
+      : audioOn ? "Выключить звук" : "Включить звук"
+  }
+  aria-pressed={audioOn}
+>
+  {audioOn ? <Volume2 size={20} /> : <VolumeX size={20} />}
+</button>
       </div>
 
       <nav className="fixed right-6 top-1/2 -translate-y-1/2 z-[100] hidden md:flex flex-col gap-3.5" data-testid="chapter-nav">

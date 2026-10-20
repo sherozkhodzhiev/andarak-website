@@ -236,6 +236,7 @@ body {
   --p-surface: rgba(248,247,243,.86);
 }
 
+:root[data-theme="dark"],
 .portal-root.dark {
   --p-bg: #131A25;
   --p-bg2: #1A2433;
@@ -612,3 +613,106 @@ body {
   .neo-footer{padding:9vh 22px 25px}.neo-footer-top span{font-size:21vw}.neo-footer-grid{grid-template-columns:1fr;gap:60px}.neo-footer-bottom{display:block}.neo-footer-bottom button{margin-top:25px}
 }
 @media(prefers-reduced-motion:reduce){.neo-logo-mark{animation:none}.kinetic-word::after{display:none}}
+/* Compact header weather and language controls */
+.header-actions {
+  flex-shrink: 0;
+}
+
+.header-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 44px;
+  min-height: 48px;
+  color: var(--p-ink);
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.header-weather svg {
+  color: var(--p-terra);
+}
+
+.header-weather-placeholder {
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+}
+
+.header-language {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.header-language button {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  min-height: 26px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--p-slate);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.header-language button[aria-pressed="true"] {
+  color: var(--p-terra);
+  font-weight: 600;
+}
+
+.header-actions .theme-pill {
+  width: 36px;
+  min-width: 36px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.header-actions .theme-pill svg {
+  width: 22px;
+  height: 22px;
+}
+
+.header-weather:focus-visible,
+.header-language button:focus-visible {
+  outline: 2px solid var(--p-terra);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Keep controls and village name comfortably separated on phones */
+@media (max-width: 767px) {
+  [data-testid="portal-header"] > div:first-child {
+    padding-left: 12px;
+    padding-right: 12px;
+    gap: 8px;
+  }
+
+  [data-testid="header-logo"] {
+    min-width: 0;
+  }
+
+  [data-testid="header-logo"] span {
+    font-size: clamp(15px, 4.4vw, 20px) !important;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .header-actions {
+    gap: 4px;
+  }
+}

@@ -1,6 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { GALLERY } from "@/data/chapters";
 import { GALLERY_PAGE } from "@/data/portal";
 import { EASE, PageIntro } from "@/components/portal/MotionKit";
@@ -36,7 +34,69 @@ export default function GalleryPage({ lang }) {
             <button className="gallery-next" onClick={(e) => { e.stopPropagation(); step(1); }} data-testid="lightbox-next"><ChevronRight /></button>
           </motion.div>
         )}
-      </AnimatePresence>
-    </div>
+      </div>
+
+      <dialog
+        ref={dialogRef}
+        className="ag-dialog"
+        style={{ margin: "auto" }}
+        aria-label={ru ? "Просмотр фотографии" : "Photo viewer"}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowRight") {
+            event.preventDefault();
+            setOpened((index) => wrap(index + 1));
+          }
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            setOpened((index) => wrap(index - 1));
+          }
+        }}
+        onClick={(event) => {
+          if (event.target !== event.currentTarget) return;
+          const rect = event.currentTarget.getBoundingClientRect();
+          if (
+            event.clientX < rect.left ||
+            event.clientX > rect.right ||
+            event.clientY < rect.top ||
+            event.clientY > rect.bottom
+          ) {
+            dialogRef.current.close();
+          }
+        }}
+      >
+        <div className="ag-dialog-controls">
+          <button
+            type="button"
+            disabled={count < 2}
+            onClick={() => setOpened((index) => wrap(index - 1))}
+            aria-label={ru ? "Предыдущее фото" : "Previous photo"}
+          >
+            ←
+          </button>
+
+          <button
+            type="button"
+            onClick={() => dialogRef.current.close()}
+          >
+            {ru ? "Закрыть ×" : "Close ×"}
+          </button>
+
+          <button
+            type="button"
+            disabled={count < 2}
+            onClick={() => setOpened((index) => wrap(index + 1))}
+            aria-label={ru ? "Следующее фото" : "Next photo"}
+          >
+            →
+          </button>
+        </div>
+
+        <img
+          src={GALLERY[opened].src}
+          alt={caption(GALLERY[opened])}
+        />
+        <p>{caption(GALLERY[opened])}</p>
+      </dialog>
+    </section>
   );
 }

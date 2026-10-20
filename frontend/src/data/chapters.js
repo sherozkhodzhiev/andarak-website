@@ -1,156 +1,188 @@
-const FIRE_VIDEO = "https://upload.wikimedia.org/wikipedia/commons/b/bb/Fantastic-fireplace-fire-chimney-hearth-_background_-_texture_-_motion_graphics_-_free_video_library.webm";
-const WHEAT_VIDEO = "https://upload.wikimedia.org/wikipedia/commons/a/af/ASMR_field_of_wheat_-_nature.webm";
+
 
 export const CHAPTERS = [
   {
     id: "sogdiana", num: "01", flame: "alive", sound: "fire", embers: true,
-    art: "/art/01-sogdiana.png", video: FIRE_VIDEO, audio: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Ustad_Gada_Mohammad_-_Rababa.ogg",
+    art: "/art/01-sogdiana.png", 
     eyebrow: { en: "Sogdiana, before empire", ru: "Согдиана, до империй" },
     title: { en: "A Land of <em>Fire</em>", ru: "Земля <em>Огня</em>" },
     body: {
-      en: "Before empires, before conquerors — this was Sogdiana. Golden light over the Fergana valley, smoke rising from an eternal flame inside a stone temple. Priests in white tend the fire; villagers bow, offer bread and water. A people who worshipped light, and called it Ahura Mazda.",
-      ru: "До империй и завоевателей это была Согдиана. Золотой свет над Ферганской долиной, дым вечного огня в каменном храме. Жрецы в белых одеждах поддерживают пламя; жители приносят хлеб и воду. Народ, поклонявшийся свету и звавший его Ахура Мазда.",
-    },
+  "en": "Before empires and conquerors, this land was Sogdiana. Golden light spills over the Fergana valley, and smoke rises from an eternal flame inside a stone temple. Priests in white robes tend the fire. Villagers bow and offer bread and water. These were people who revered light as the face of truth, and called its source Ahura Mazda, the Wise Lord.",
+  "ru": "До империй и завоевателей эта земля называлась Согдианой. Золотой свет заливает Ферганскую долину, а в каменном храме поднимается дым вечного огня. Жрецы в белых одеждах хранят пламя. Люди склоняются и приносят хлеб и воду. Это был народ, который почитал свет как лик истины и называл его источник Ахура Мазда, Мудрый Господь."
+},
     caption: {
       en: "Sogdian priests in white robes tending the sacred fire-altar, clay homes behind",
       ru: "Согдийские жрецы в белых одеждах у священного алтаря огня",
     },
-    cue: { en: "Sacred, meditative — soft flute, deep drone, distant temple bells", ru: "Священно, медитативно — тихая флейта, гул, далёкие колокола" },
+    cue: {
+  "en": "Understand a faith before you judge its rituals. Zoroastrians did not worship fire. Fire was a symbol of purity, truth and light, and their creed was simple: good thoughts, good words, good deeds. Our generation honours its roots by asking, listening and learning. Respect begins with understanding.",
+  "ru": "Прежде чем судить об обрядах, поймите саму веру. Зороастрийцы не поклонялись огню. Огонь был символом чистоты, истины и света, а их вера держалась на простом: благие мысли, благие слова, благие дела. Наше поколение чтит свои корни, когда спрашивает, слушает и учится. Уважение начинается с понимания."
+},
   },
-  {
+{
     id: "invasion", num: "02", flame: "alive", sound: "storm", embers: false,
     art: "/art/02-invasion.png", audio: "https://upload.wikimedia.org/wikipedia/commons/9/97/02_Taiko2_%28short%29.oga",
     eyebrow: { en: "329 BC", ru: "329 г. до н.э." },
     title: { en: "Alexander <em>Invades</em>", ru: "Вторжение <em>Александра</em>" },
     body: {
-      en: "Dust rises on the horizon. Greek phalanxes cross the Jaxartes. Sogdian horsemen resist fiercely, led by Spitamenes' guerrilla raids. A young king from Macedon has crossed the world to claim this land — it will not fall quietly.",
-      ru: "Пыль поднимается на горизонте. Греческие фаланги пересекают Яксарт. Согдийские всадники отчаянно сопротивляются под руководством Спитамена. Молодой царь Македонии пересёк мир, чтобы захватить эту землю — но она не сдастся без боя.",
-    },
+  "en": "Dust rises on the horizon. Greek phalanxes cross the Jaxartes, and Sogdian horsemen meet them with fierce resistance. Led by Spitamenes, they strike from the steppe and vanish again and again. A young king from Macedon has crossed half the known world to claim this land, but it refuses to fall quietly.",
+  "ru": "На горизонте поднимается пыль. Греческие фаланги переходят Яксарт, и согдийские всадники встречают их отчаянным сопротивлением. Под началом Спитамена они раз за разом налетают из степи и исчезают. Молодой царь Македонии пересёк полмира, чтобы покорить эту землю, но она не сдаётся без боя."
+},
     caption: {
       en: "Sogdian horse-archers clash with Macedonian bronze phalanxes",
       ru: "Согдийские конные лучники против македонских фаланг",
     },
-    cue: { en: "Battle drums, rising brass — tension before the clash", ru: "Боевые барабаны, нарастающее напряжение" },
-  },
+    cue: {
+  "en": "Courage is not the certainty of victory. It is the decision to defend what is yours when the enemy is stronger. Today our battlefield is quieter: we protect our language, our culture and one another. The same resolve is still required.",
+  "ru": "Мужество не в уверенности победить, а в решимости защищать своё, когда враг сильнее. Сегодня наше поле боя тише: мы защищаем язык, культуру и друг друга. Но решимость нужна та же."
+},
+},
   {
     id: "alexandria", num: "03", flame: "alive", sound: "wind", embers: false,
     art: "/art/03-alexandria.png",
     eyebrow: { en: "Khujand", ru: "Худжанд" },
     title: { en: "Alexandria <em>Eschate</em>", ru: "Александрия <em>Крайняя</em>" },
     body: {
-      en: "On the river's edge, new walls rise from Sogdian soil. Greek and local stonemasons work side by side, column and native form fused into one. At the furthest edge of his known world, Alexander built a city — 'the Furthest' — Greek stone on Sogdian earth.",
-      ru: "На берегу реки из согдийской земли поднимаются новые стены. Греческие и местные каменщики работают бок о бок. На самом краю известного ему мира Александр построил город — «Крайний» — греческий камень на согдийской земле.",
-    },
+  "en": "On the river's edge, new walls rise from Sogdian soil. Greek engineers and local stonemasons work side by side, and column and native form fuse into one. At the far edge of his known world, Alexander founded a city called Alexandria Eschate, \"the Furthest\": Greek stone upon Sogdian earth. It began as an act of force and slowly became a meeting place of two worlds.",
+  "ru": "На берегу реки из согдийской земли поднимаются новые стены. Греческие зодчие и местные каменщики работают бок о бок, и колонна сливается с местной формой. На самом краю известного ему мира Александр основал город Александрию Крайнюю: греческий камень на согдийской земле. Он родился из силы, но постепенно стал местом встречи двух миров."
+},
     caption: {
       en: "Hellenistic pillars and fortresses rise beside Sogdian settlements",
       ru: "Эллинистические колонны рядом с согдийскими домами",
     },
-    cue: { en: "Triumphant but uneasy brass, fading into something solemn", ru: "Триумфальная, но тревожная музыка строительства" },
+    cue: {
+  "en": "Taking a land is not the same as winning its people. Even the mightiest conqueror needed alliances, marriage and compromise to rule. Lasting strength comes from respect and cooperation, not force alone. And when cultures meet, they can create something new without erasing each other.",
+  "ru": "Захватить землю не значит завоевать её народ. Даже могущественному завоевателю для власти нужны были союзы, браки и уступки. Прочная сила рождается из уважения и сотрудничества, а не из одной лишь силы оружия. А когда культуры встречаются, они могут создать новое, не стирая друг друга."
+},
+  },
+   {
+    id: "steppe", num: "04", flame: "ember", sound: "wind", embers: false,
+    art: "/art/08-steppe.png",
+    eyebrow: { en: "329 BC", ru: "329 г. до н.э." },
+    title: { 
+      en: "A New Home Found in Freedom", 
+      ru: "Новый дом, обретённый свободой"  
+    },
+    body: {
+  "en": "In 329 BC, as Alexander's army pressed through Sogdiana, the ancient city of Khurkand fell and Spitamenes' resistance was broken. According to the memory of our people, the elders who refused to accept the conqueror's rule were put to death, and the survivors were marked for forced labour to build Alexandria. Rather than live in chains, seven families gathered their women and children and fled into the mountains. They chose hardship with freedom over comfort with slavery. Their road led them to Andarak.",
+  "ru": "В 329 г. до н.э., когда армия Александра прошла через Согдиану, древний город Курканд пал, а сопротивление Спитамена было сломлено. По памяти нашего народа, старейшины, не признавшие власть завоевателя, были казнены, а уцелевших обрекли на принудительный труд при строительстве Александрии. Не желая жить в оковах, семь семей собрали женщин и детей и ушли в горы. Они выбрали трудности со свободой, а не покой в рабстве. Их путь привёл их в Андарак."
+},
+    caption: {
+      en: "Seven families escaping into the mountains to find Andarak",
+      ru: "Семь семей бегут в горы в поисках Андарака"
+    },
+    cue: {
+  "en": "Freedom is worth more than comfort. The first families of Andarak left everything behind to protect their children's dignity. We are the descendants of that choice. Let us value freedom, family and honour, and build with gratitude the home they sacrificed so much to find.",
+  "ru": "Свобода дороже удобства. Первые семьи Андарака оставили всё, чтобы сохранить достоинство своих детей. Мы потомки этого выбора. Будем дорожить свободой, семьёй и честью и с благодарностью строить дом, который они с таким трудом нашли."
+},
   },
   {
-    id: "death", num: "04", flame: "alive", sound: "calm", embers: false,
-    art: "/art/04-death.png", video: WHEAT_VIDEO, audio: null,
+    id: "death", num: "05", flame: "alive", sound: "calm", embers: false,
+    art: "/art/04-death.png",
     eyebrow: { en: "323 BC", ru: "323 г. до н.э." },
     title: { en: "The King Dies, the Land <em>Breathes</em>", ru: "Царь Умирает, Земля <em>Вздыхает</em>" },
     body: {
-      en: "Alexander died young in Babylon, his generals dividing the map he left behind. Far from the throne rooms, Sogdiana's fire temples still burned, untouched — and the land quietly returned to itself.",
-      ru: "Александр умер молодым в Вавилоне, и его полководцы разделили оставленную им карту. Вдали от тронных залов храмы огня Согдианы всё так же горели, нетронутые — и земля тихо вернулась к своей жизни.",
-    },
+  "en": "Alexander died young in Babylon, and his generals tore apart the map he left behind. Far from the throne rooms, Sogdiana's fire temples still burned, untouched. In valleys and villages the land quietly returned to itself. Farmers harvested, families rebuilt, and daily life carried on as it always had.",
+  "ru": "Александр умер молодым в Вавилоне, и его полководцы разделили оставленную им карту. Вдали от тронных залов храмы огня Согдианы всё так же горели, нетронутые. В долинах и селениях земля тихо вернулась к своей жизни. Дехкане собирали урожай, семьи отстраивались, и жизнь шла так, как шла всегда."
+},
     caption: {
       en: "Sogdian farmers harvest beneath the cliffs as garrisons withdraw",
       ru: "Согдийские дехкане собирают урожай, гарнизоны уходят",
     },
-    cue: { en: "Mournful strings — a lone duduk, sparse and slow", ru: "Скорбные струны — одинокий дудук" },
+    cue: {
+  "en": "The death of a conqueror does not automatically bring freedom back or restore what war destroyed. Renewal is the work of ordinary people: rebuilding communities, preserving knowledge and passing traditions to the next generation. Do not wait for history to heal your home. Build it.",
+  "ru": "Смерть завоевателя не возвращает свободу сама собой и не восполняет потери войны. Возрождение это труд простых людей: восстанавливать общины, сохранять знания и передавать традиции следующему поколению. Не ждите, пока история исцелит ваш дом. Стройте его."
+},
   },
   {
-    id: "conquest", num: "05", flame: "dying", sound: "fire", embers: true,
-    art: "/art/05-conquest.png", video: FIRE_VIDEO, audio: null,
+    id: "conquest", num: "06", flame: "dying", sound: "fire", embers: true,
+    art: "/art/05-conquest.png", 
     eyebrow: { en: "8th century", ru: "VIII век" },
     title: { en: "The Fires Are <em>Put Out</em>", ru: "Огни <em>Угасают</em>" },
     body: {
-      en: "Arab armies swept across Transoxiana under the banners of the caliphate. Fire temples burned — not with sacred flame now, but with conquest. Nobles and scholars resisted, then fell. Old symbols were chiselled from the walls. Villagers knelt in the shadow of new minarets, rising where fire-altars once stood. Islam took root in blood and prayer.",
-      ru: "Арабские армии прошлись по Мавераннахру под знамёнами халифата. Храмы огня горели — теперь не священным пламенем, а огнём завоевания. Старые символы сбивали со стен. Жители склонялись в тени новых минаретов, поднявшихся на месте алтарей. Ислам укоренился в крови и молитвах.",
-    },
+  "en": "In the 8th century, Arab armies under the banners of the caliphate swept across Transoxiana. Fire temples fell, nobles and scholars resisted and were overcome, and old symbols were chiselled from the walls. In the shadow of new minarets rising where fire altars once stood, the region slowly turned to a new faith. It was a profound change, born of conquest and carried forward through generations of prayer.",
+  "ru": "В VIII веке арабские войска под знамёнами халифата прошли по Мавераннахру. Храмы огня пали, знать и учёные сопротивлялись и были побеждены, а старые символы сбивали со стен. В тени новых минаретов, поднявшихся на месте алтарей огня, край постепенно принял новую веру. Это была глубокая перемена, рождённая завоеванием и пронесённая через поколения молитв."
+},
     caption: {
       en: "Arab cavalry enters the stone towns; altars extinguished, first minarets rise",
       ru: "Арабская конница входит в города; потушенные алтари, первые минареты",
     },
-    cue: { en: "Dark war drums building to violence — then abrupt silence", ru: "Тёмные барабаны войны — и внезапная тишина" },
+    cue: {
+  "en": "Conquest can take more than lives. When teachers fall silent and learning is broken, generations lose their link to their own past. Honour those losses by preserving knowledge and defending freedom of conscience. Cherishing our faith today must never mean excusing coercion or dishonouring those who believed differently.",
+  "ru": "Завоевание может отнять не только жизни. Когда умолкают учителя и обрывается передача знаний, поколения теряют связь со своим прошлым. Чтите память об утраченном, сохраняя знания и защищая свободу совести. Любовь к своей вере сегодня не должна означать оправдание принуждения или неуважение к тем, кто верил иначе."
+},
   },
   {
-    id: "samanid", num: "06", flame: "reborn", sound: "calm", embers: true,
+    id: "samanid", num: "07", flame: "reborn", embers: true,
     art: "/art/06-samanid.png",
     eyebrow: { en: "9th–10th century", ru: "IX–X века" },
-    title: { en: "A Golden Age, <em>Reborn</em>", ru: "Золотой Век, <em>Возрождение</em>" },
+    title: { en: "A Golden Age of Islam, <em>Reborn</em>", ru: "Золотой Век Ислама, <em>Возрождение</em>" },
     body: {
-      en: "Generations later, a Persian dynasty rose from the same soil — ruling now in the name of Islam, but reviving Persian language and science. Bukhara's domes glowed at dawn; Avicenna bent over manuscripts, astronomers charted the stars, Rudaki recited verse at court. Out of conquest, a civilization of medicine, philosophy, and poetry — wrapped in a new faith.",
-      ru: "Спустя поколения персидская династия Саманидов поднялась на этой же земле, возродив персидский язык и науки. Купола Бухары сияли на рассвете; Ибн Сина работал над рукописями, астрономы изучали звёзды, Рудаки читал стихи. Из завоеваний родилась цивилизация медицины, философии и поэзии.",
-    },
+  "en": "Generations later, a Persian dynasty, the Samanids, rose from the same soil. They ruled in the name of Islam while reviving the Persian language and learning. Bukhara's domes glowed at dawn. Rudaki recited verse at court, astronomers charted the stars, and the age of Avicenna, Ibn Sina, brought medicine and philosophy to new heights. Out of conquest grew a civilization of science, poetry and wisdom, wrapped in a new faith but speaking the old language of the people.",
+  "ru": "Спустя поколения на этой же земле поднялась персидская династия Саманидов. Они правили во имя ислама, но возрождали персидский язык и науку. Купола Бухары сияли на рассвете. Рудаки читал стихи при дворе, астрономы изучали звёзды, а эпоха Ибн Сины подняла медицину и философию на новую высоту. Из завоевания выросла цивилизация науки, поэзии и мудрости: в новой вере, но на древнем языке народа."
+},
     caption: {
       en: "Scholars, poets and architects in Samanid Bukhara at dawn",
       ru: "Учёные, поэты и зодчие Бухары эпохи Саманидов",
     },
-    cue: { en: "Elegant and victorious — oud, strings, a hopeful rising melody", ru: "Изящно и победно — уд, струны, светлая мелодия" },
-  },
+    cue: {
+  "en": "A people can lose a war and still win the future through knowledge, language and art. Honouring Islam today does not require dishonouring our Zoroastrian ancestors. Faith can change across generations while the memory of those who came before stays worthy of respect. Let us be proud of all the layers of our heritage.",
+  "ru": "Народ может проиграть войну, но выиграть будущее силой знаний, языка и искусства. Чтить ислам сегодня не значит принижать наших предков-зороастрийцев. Вера может меняться от поколения к поколению, но память о тех, кто был до нас, остаётся достойной уважения. Будем гордиться всеми слоями нашего наследия."
+},
+},
   {
-    id: "mongol", num: "07", flame: "dying", sound: "storm", embers: true,
+    id: "mongol", num: "08", flame: "dying", sound: "storm", embers: true,
     art: "/art/07-mongol.png",
-    eyebrow: { en: "1219", ru: "1219 год" },
+    eyebrow: { en: "1219–1221", ru: "1219–1221 гг." },
     title: { en: "The Mongols <em>Arrive</em>", ru: "Нашествие <em>Монголов</em>" },
     body: {
-      en: "Genghis Khan's horsemen pour across the steppe. Bukhara and Samarkand burn. The same libraries filled with science and poetry are put to the torch. Ash falls like snow — a civilization built over centuries falls in weeks.",
-      ru: "Всадники Чингисхана хлынули через степь. Бухара и Самарканд горят. Библиотеки, полные книг по науке и поэзии, преданы огню. Пепел падает как снег — цивилизация, строившаяся веками, рушится за считаные недели.",
-    },
+  "en": "From the eastern steppe, the armies of Genghis Khan advance on the cities of Transoxiana, the lands of ancient Sogdiana. Beyond the walls, cavalry approaches. Within them, families wait as rulers and defenders face the invasion. Bukhara falls. Samarkand follows. For the people living there, these were not names on a conqueror's map but homes, workshops, places of worship and streets known since childhood. The conquest brings death, captivity and flight. Those who escape carry what they can, and leave behind a world they may never see again.",
+  "ru": "С восточных степей войска Чингисхана движутся на города Мавераннахра, земли древней Согдианы. За стенами приближается конница, внутри ждут семьи, пока правители и защитники встречают нашествие. Падает Бухара. За ней Самарканд. Для людей это были не названия на карте завоевателя, а дома, мастерские, святыни и улицы, знакомые с детства. Завоевание приносит смерть, плен и бегство. Спасшиеся уносят то, что могут, и оставляют позади мир, который, возможно, больше никогда не увидят."
+},
     caption: {
       en: "Mongol horse-archers against burning citadels and collapsing gates",
       ru: "Монгольские конники на фоне горящих цитаделей",
     },
-    cue: { en: "Thunderous drums, screaming brass, chaos — the darkest cue", ru: "Громовые барабаны, хаос — самая тёмная глава" },
-  },
-  {
-    id: "steppe", num: "08", flame: "ember", sound: "wind", embers: false,
-    art: "/art/08-steppe.png",
-    eyebrow: { en: "13th–16th century", ru: "XIII–XVI века" },
-    title: { en: "New Peoples, <em>New Roots</em>", ru: "Новые Народы, <em>Новые Корни</em>" },
-    body: {
-      en: "Generations pass. Turkic and Mongolic tribes settle the land, intermarry, adopt Persian-Islamic culture. New khanates rise — the Bukhara Khanate carries old traditions forward in new hands. Markets bustle again; caravans move silk and spice.",
-      ru: "Проходят поколения. Тюркские и монгольские племена селятся на этой земле, смешиваются с местным населением и перенимают персидско-исламскую культуру. Поднимаются новые ханства, рынки снова шумят, а караваны везут шёлк и специи.",
-    },
-    caption: {
-      en: "Yurts beside mountain villages; Silk Road caravans trade silk and spice",
-      ru: "Юрты рядом с горными селениями, караваны Шёлкового пути",
-    },
-    cue: { en: "Steppe strings — horsehead fiddle, slowly turning warm", ru: "Струнные степи — тепло и размеренно" },
-  },
+    cue: {
+  "en": "The past greatness of a civilization does not guarantee its future. To honour our ancestors is not only to praise what they built, but to take responsibility for what we could still lose. Protect one another, teach what you know, and preserve your heritage now, before a crisis teaches you its value.",
+  "ru": "Былое величие цивилизации не гарантирует ей будущего. Чтить предков значит не только гордиться созданным ими, но и отвечать за то, что мы ещё можем потерять. Защищайте друг друга, передавайте знания и берегите наследие сейчас, пока беда не научила вас его ценить."
+},},
+
   {
     id: "empires", num: "09", flame: "ember", sound: "calm", embers: false,
     art: "/art/09-empires-v2.png", audio: null,
     eyebrow: { en: "19th–20th century", ru: "XIX–XX века" },
     title: { en: "Empires Draw <em>the Lines</em>", ru: "Империи Чертят <em>Границы</em>" },
     body: {
-      en: "Russian imperial troops arrive with maps and rifles; the Tsar's flag gives way to the hammer and sickle. In 1924, Soviet cartographers bend over a table, pencils cutting through valleys and villages that never had borders — carving Central Asia into republics. Andarak, a Tajik-Persian village, ends up inside the new Kyrgyz SSR.",
-      ru: "Войска Российской империи приходят с картами и ружьями; флаг царя уступает место серпу и молоту. В 1924 году советские картографы чертят границы прямо по долинам и деревням. Андарак, таджикско-персидское село, оказывается в составе Киргизской ССР.",
-    },
+  "en": "Russian imperial troops arrive with maps and rifles. Then the Tsar's flag gives way to the hammer and sickle. In 1924, Soviet cartographers bend over a table, their pencils cutting through valleys and villages that never had borders, carving Central Asia into republics. Andarak, a Tajik-Persian village, finds itself inside the new Kyrgyz SSR. A line drawn in an office divides families, languages and kin, yet the people remain who they always were.",
+  "ru": "Войска Российской империи приходят с картами и ружьями. Затем флаг царя уступает место серпу и молоту. В 1924 году советские картографы склоняются над столом, и их карандаши режут долины и селения, которые никогда не знали границ, разделяя Центральную Азию на республики. Андарак, таджикско-персидское село, оказывается в составе новой Киргизской ССР. Линия, проведённая в кабинете, разделяет семьи, языки и родню, но люди остаются теми, кем были всегда."
+},
     caption: {
-      en: "Samarkand in the final years of the Emirate — colour photograph by S. Prokudin-Gorsky, c. 1911",
-      ru: "Самарканд в последние годы эмирата — цветная фотография С. Прокудина-Горского, ок. 1911",
+      en: "Illustration of a family studying a large map with boundary lines",
+      ru: "Иллюстрация: семья рассматривает большую карту с линиями границ",
     },
-    cue: { en: "Cold imperial march fading into bureaucratic quiet", ru: "Холодный марш, растворяющийся в тишине кабинетов" },
+    cue: {
+  "en": "Borders are drawn by pencils, but identity is carried by people. A line on a map can divide land, but it cannot erase language, memory or kinship. Know your roots wherever the border falls, live in peace with your neighbours, and be a loyal citizen of the country you live in while staying true to who you are.",
+  "ru": "Границы чертят карандашом, а самобытность носят в себе люди. Линия на карте может разделить землю, но не может стереть язык, память и родство. Знайте свои корни, где бы ни пролегла граница, живите в мире с соседями и будьте честными гражданами своей страны, оставаясь верными себе."
+},
   },
   {
     id: "today", num: "10", flame: "alive", sound: "birds", embers: true,
     art: "/art/10-today.jpg", audio: null,
-    eyebrow: { en: "Today", ru: "Наши дни" },
+    eyebrow: { en: "Present day", ru: "Наши дни" },
     title: { en: "Andarak <em>Still Stands</em>", ru: "Андарак <em>Всё Ещё Стоит</em>" },
     body: {
-      en: "After Sogdians, Greeks, Arabs, Samanids, Mongols, Turkic khanates, empires and unions — the village is still here. Mountains, homes, daily life, children, elders. This is where I am from.",
-      ru: "После согдийцев, греков, арабов, саманидов, монголов, тюркских ханов, империй и союзов — село всё ещё здесь. Горы, дома, повседневная жизнь, дети и аксакалы. Это моё родное место.",
-    },
+  "en": "After Greeks, Arabs, Samanids, Mongols, Turkic khans, empires and unions, the village is still here. The mountains still stand over the rooftops. Homes glow with evening light, children run through the streets, and elders sit in the shade and tell the old stories. Every era tried to change this place, and none could take its heart. This is the land of Andarakians — a wise, brave, and noble people",
+  "ru": "После греков, арабов, саманидов, монголов, тюркских ханов, империй и союзов село всё ещё здесь. Горы всё так же стоят над крышами. В домах горит вечерний свет, дети бегают по улицам, а аксакалы сидят в тени и рассказывают старые истории. Каждая эпоха пыталась изменить это место, и ни одна не смогла отнять его сердце. Это земля Aндаракийцев — мудрого, храброго и благородного народа."
+},
     caption: {
-      en: "Andarak — the village today, from the author's archive",
-      ru: "Андарак — село сегодня, фото из архива автора",
+      en: "Andarak — the village today",
+      ru: "Андарак — село сегодня",
     },
-    cue: { en: "Warm and hopeful — the flute from chapter one returns", ru: "Тепло и светло — возвращается флейта первой главы" },
+    cue: {
+  "en": "Survival is not the work of one generation but of every generation. Our ancestors kept the fire alive through every storm. Now it is our turn. Learn, build, study, return, and carry Andarak in your heart wherever you go. HomeLand lives as long as its children remember it and care for it.",
+  "ru": "Выживание это дело не одного поколения, а каждого. Наши предки сохраняли огонь в любую бурю. Теперь наша очередь. Учитесь, созидайте, возвращайтесь и носите Андарак в сердце, где бы вы ни были. Родина живёт, пока его дети помнят о нём и заботятся о нём."
+},
   },
 ];
 
@@ -162,26 +194,27 @@ export const FLAME_STATES = {
 };
 
 export const UI = {
-  kicker: { en: "A history of Andarak", ru: "История Андарака" },
-  heroName: { en: "ANDARAK", ru: "АНДАРАК" },
+  kicker: { en: "A history of", ru: "История" },
+  heroName: { en: "ANDARAK", ru: "АНДАРАКА" },
   heroSub: {
-    en: "Fire, Empire, and What Remains",
-    ru: "Огонь, Империи и то, что осталось",
+    en: "The Land Remembers. So Do We.",
+    ru: "Земля помнит. И мы помним.",
   },
-  heroGhost: { en: "FERGANA", ru: "ФЕРГАНА" },
+  heroGhost: { en: "HOME", ru: "РОДИНА" },
   heroIntro: {
-    en: "Ten chapters. Two and a half thousand years. One village in the Fergana valley that outlasted every empire that passed through it.",
-    ru: "Десять глав. Две с половиной тысячи лет. Одно село в Ферганской долине, пережившее все прошедшие через него империи.",
-  },
+  "en": "Long before modern borders existed, the people of Andarak traced their living ancestry to the great East Iranian civilizations of Central Asia. They were the Sogdians, whose caravans carried silk, ideas and languages along the Silk Road. They were the Bactrians, master city-builders, where the art, philosophy and trade of East and West met. They were the Khwarazmians, who turned deserts into gardens through irrigation. And they were the Saka-Massagetae, who were far more than horse warriors: they were skilled metalworkers and fierce defenders of their homeland. Their blood, their language and their memory live on in us.",
+  "ru": "Задолго до появления современных границ жители Андарака вели свою живую родословную от великих восточноиранских цивилизаций Центральной Азии. Это были согдийцы, чьи караваны несли по Шёлковому пути шёлк, идеи и языки. Бактрийцы, мастера градостроительства, у которых встретились искусство, философия и торговля Востока и Запада. Хорезмийцы, превратившие пустыни в сады с помощью ирригации. И саки-массагеты, которые были не просто конными воинами, а искусными металлургами и яростными защитниками родной земли. Их кровь, их язык и их память живут в нас."
+},
   scrollHint: { en: "Scroll to begin", ru: "Прокрутите, чтобы начать" },
-  audioOff: { en: "Audio: Off", ru: "Звук: Выкл" },
   audioOn: { en: "Audio: On", ru: "Звук: Вкл" },
+  audioOff: { en: "Audio: Off", ru: "Звук: Выкл" },
   play: { en: "Play through", ru: "Воспроизвести" },
   playing: { en: "Playing…", ru: "Идёт показ…" },
-  score: { en: "score", ru: "партитура" },
+  score: { en: "What We Must Remember", ru: "Что Мы Должны Помнить" },
   marqueeItems: {
-    en: ["Sogdiana", "Alexander the Great", "The Arab Conquest", "Samanid Dawn", "Genghis Khan", "The Khanates", "Empires & Borders", "Andarak"],
-    ru: ["Согдиана", "Александр Македонский", "Арабское завоевание", "Эпоха Саманидов", "Чингисхан", "Ханства", "Империи и границы", "Андарак"],
+    en: ["Sogdiana", "Persian Empire" , "Alexander the Great", "The Arab Conquest", "Samanid Dawn", "Genghis Khan", "The Turkic Khans", "Russians", "Kyrgyzstan", "Andarak" ],
+    ru: ["Согдиана", "Персидская империя", "Александр Македонский", "Арабское завоевание", "Рассвет Саманидов", "Чингисхан", "Тюркские ханы", "Русские", "Кыргызстан", "Андарак"],
+    
   },
   artPending: {
     en: "Artwork in preparation — the archive is being restored",
@@ -196,6 +229,14 @@ export const UI = {
 };
 
 export const GALLERY = [
+    {
+    src: "/gallery/andarak-valley-panorama.jpg",
+    span: "g-wide",
+    caption: {
+      en: "Andarak beneath the mountain peaks",
+      ru: "Андарак у подножия горных вершин",
+    },
+  },
   {
     src: "/gallery/valley-green.png", span: "g-wide",
     caption: {
@@ -231,17 +272,162 @@ export const GALLERY = [
       ru: "Главная улица зимой, тополя стоят как часовые",
     },
   },
-];
 
+  {
+    src: "/gallery/andarak-autumn.jpg",
+    span: "g-wide",
+    caption: {
+      en: "Autumn in Andarak",
+      ru: "Осень в Андараке",
+    },
+  },
+  {
+    src: "/gallery/andarak-firstsnow.jpg",
+    span: "g-wide",
+    caption: {
+      en: "The first snow in Andarak",
+      ru: "Первый снег в Андараке",
+    },
+  },
+  {
+    src: "/gallery/andarak-machit.jpg",
+    span: "",
+    caption: {
+      en: "The village mosque",
+      ru: "Сельская мечеть",
+    },
+  },
+  {
+    src: "/gallery/andarak-mainstreet.jpg",
+    span: "g-wide",
+    caption: {
+      en: "The main street of Andarak",
+      ru: "Главная улица Андарака",
+    },
+  },
+  {
+    src: "/gallery/andarak-sarkat.jpg",
+    span: "g-wide",
+    caption: {
+      en: "Sarkat",
+      ru: "Саркат",
+    },
+  },
+  {
+    src: "/gallery/andarak-spring.jpg",
+    span: "g-wide",
+    caption: {
+      en: "Spring in Andarak",
+      ru: "Весна в Андараке",
+    },
+  },
+  {
+    src: "/gallery/andarak-summer.jpg",
+    span: "g-wide",
+    caption: {
+      en: "Summer in Andarak",
+      ru: "Лето в Андараке",
+    },
+  },
+    {
+    src: "/gallery/andarak-dagestan-artwork.jpg",
+    span: "",
+    caption: {
+      en: "An artist’s view of Andarak",
+      ru: "Андарак глазами художника",
+    },
+  },
+
+  {
+    src: "/gallery/andarak-then-and-now.jpg",
+    span: "",
+    caption: {
+      en: "Andarak then and now",
+      ru: "Андарак прежде и сегодня",
+    },
+  },
+  {
+    src: "/gallery/andarak-snowy-trail.jpg",
+    span: "",
+    caption: {
+      en: "A snowy trail among the mountain trees",
+      ru: "Заснеженная тропа среди горных деревьев",
+    },
+  },
+  {
+    src: "/gallery/andarak-village-view.jpg",
+    span: "g-wide",
+    caption: {
+      en: "Village rooftops beneath snow-capped mountains",
+      ru: "Крыши села на фоне заснеженных гор",
+    },
+  },
+  {
+    src: "/gallery/andarak-ice-formation.jpg",
+    span: "",
+    caption: {
+      en: "Winter ice formations in the mountains",
+      ru: "Зимние ледяные образования в горах",
+    },
+  },
+  {
+    src: "/gallery/andarak-mosque-interior.jpg",
+    span: "",
+    caption: {
+      en: "Inside the village mosque",
+      ru: "Внутри сельской мечети",
+    },
+  },
+  {
+    src: "/gallery/andarak-prayer-time.jpg",
+    span: "g-wide",
+    caption: {
+      en: "A moment of prayer in the village mosque",
+      ru: "Мгновение молитвы в сельской мечети",
+    },
+  },
+  {
+    src: "/gallery/andarak-river.jpg",
+    span: "g-wide",
+    caption: {
+      en: "The river flowing between rocks and trees",
+      ru: "Река среди камней и деревьев",
+    },
+  },
+  {
+    src: "/gallery/andarak-winter-mountains.jpg",
+    span: "",
+    caption: {
+      en: "Snow-covered trees beneath the mountain ridge",
+      ru: "Заснеженные деревья у горного хребта",
+    },
+  },
+    {
+    src: "/gallery/andarak-village-street-scene.jpg",
+    span: "",
+    caption: {
+      en: "A wartime roadblock in Andarak. According to residents, it cut off access to the hospital and other towns.",
+      ru: "Блокада дороги в Андараке во время конфликта. По словам жителей, она перекрыла доступ к больнице и другим городам.",
+    },
+  },
+  {
+    src: "/gallery/andarak-ice-formation-closeup.jpg",
+    span: "",
+    caption: {
+      en: "A closer view of the winter ice formations",
+      ru: "Зимние ледяные образования крупным планом",
+    },
+  },
+];
 export const YT_TRACKS = {
   sogdiana: "DjJ9mOuACoc",
-  invasion: "tBV5QhJV8Gk",
+  invasion: "B_JY76xXrVM",
   alexandria: "SIVbDe7CpnE",
-  death: "FfemUP21T0U",
+  death: "rUcPWaJ_DSw",
   conquest: "QulvRHVs8ks",
-  samanid: "Ov5ljc44Ajs",
+  samanid: "6zaqT7o8g3A",
   mongol: "58JoSx396a4",
-  steppe: "VAHHaafpHcw",
+  steppe: "gwjioseBjYc",
   empires: "4tjyxHqDNtc",
-  today: "vtjhaNtHzMo",
-};
+  today: "4tFDIz75vDg",
+ };
