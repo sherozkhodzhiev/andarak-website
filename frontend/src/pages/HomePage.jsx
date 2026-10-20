@@ -1,83 +1,59 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { T, HOME_TEASERS } from "@/data/portal";
-import Wisdom from "@/components/portal/Wisdom";
+import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import { T } from "@/data/portal";
+import { EASE, KineticText, Reveal } from "@/components/portal/MotionKit";
 
-const EASE = [0.22, 1, 0.36, 1];
-const reveal = (delay = 0) => ({
-  initial: { opacity: 0, y: 26 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 },
-  transition: { duration: 0.9, delay, ease: EASE },
-});
+const COPY = {
+  ru: { issue: "ЖИВОЙ АРХИВ • 2026", scroll: "Листайте, чтобы войти", chapter: "История не стоит на месте", chapterText: "Десять эпох раскрываются как кинематографическая последовательность — с оригинальными изображениями, голосом и музыкой.", culture: "Культура — это то, что движется вместе с нами", cultureText: "Язык, Навруз, музыка, одежда и правила гостеприимства — не экспонаты, а живая система.", archive: "Наблюдать. Сохранять. Передавать.", archiveText: "Фотоархив настоящего Андарака: улицы, сезоны, память и лица места.", open: "Открыть главу", gallery: "Смотреть архив" },
+  en: { issue: "A LIVING ARCHIVE • 2026", scroll: "Scroll to enter", chapter: "History refuses to stand still", chapterText: "Ten eras unfold as a cinematic sequence — with original imagery, voice and music.", culture: "Culture is what moves with us", cultureText: "Language, Nowruz, music, dress and hospitality are not exhibits. They are a living system.", archive: "Observe. Preserve. Pass it on.", archiveText: "A visual archive of Andarak now: its streets, seasons, memory and sense of place.", open: "Open chapter", gallery: "View archive" },
+};
 
 export default function HomePage({ lang }) {
+  const c = COPY[lang];
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
-  const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const titleX = useTransform(scrollYProgress, [0, 1], ["0%", "-8%"]);
 
   return (
-    <div data-testid="home-page">
-      <section ref={heroRef} className="relative overflow-hidden flex items-end" style={{ minHeight: "92vh" }} data-testid="home-hero">
-        <motion.div className="absolute inset-0" style={{ y: bgY, scale: 1.12 }}>
-          <img src="/gallery/hero-valley.jpg" alt="Андарак" className="w-full h-full object-cover" />
-        </motion.div>
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(26,36,51,.72), rgba(26,36,51,.18) 45%, rgba(26,36,51,.08))" }} />
-
-        <motion.div className="relative z-10 w-full max-w-[1280px] mx-auto px-5 lg:px-8 pb-[10vh]" style={{ opacity: fade }}>
-          <motion.h1
-            className="font-display font-semibold"
-            style={{ fontSize: "clamp(2.6rem, 6.5vw, 5.6rem)", lineHeight: 1.04, color: "#F8F7F3", maxWidth: 900 }}
-            initial={{ opacity: 0, y: 34 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.1, delay: 0.28, ease: EASE }}
-            data-testid="home-slogan"
-          >
-            {T.heroSlogan[lang]}
-          </motion.h1>
-          <motion.p
-            className="mt-6 text-sm md:text-base font-light"
-            style={{ color: "rgba(248,247,243,.82)", maxWidth: 520, lineHeight: 1.8 }}
-            initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.45, ease: EASE }}
-          >
-            {T.heroLead[lang]}
-          </motion.p>
-          <motion.div
-            className="mt-9 flex flex-wrap items-center gap-4"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.6, ease: EASE }}
-          >
-            <Link to="/history" className="btn-terra" data-testid="hero-explore-button">
-              {T.heroCta[lang]} <ArrowRight size={16} />
-            </Link>
-            <Link to="/culture" className="btn-ghost-light" data-testid="hero-culture-button">
-              {T.heroSecondary[lang]}
-            </Link>
-          </motion.div>
+    <div className="neo-home" data-testid="home-page">
+      <section ref={heroRef} className="neo-hero" data-testid="home-hero">
+        <div className="neo-hero-meta"><span>{c.issue}</span><span>39.78° N / 69.63° E</span></div>
+        <motion.div className="neo-hero-image" style={{ y: imageY }}><img src="/gallery/hero-valley.jpg" alt="Andarak valley" /></motion.div>
+        <div className="neo-hero-noise" />
+        <motion.div className="neo-hero-title" style={{ x: titleX }}><KineticText>ANDARAK</KineticText><p>{T.heroSlogan[lang]}</p></motion.div>
+        <motion.div className="neo-hero-bottom" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1 }}>
+          <p>{T.heroLead[lang]}</p><a href="#enter" className="neo-scroll-cue"><span>{c.scroll}</span><ArrowDownRight /></a>
         </motion.div>
       </section>
 
-      <Wisdom lang={lang} />
+      <section id="enter" className="neo-manifesto">
+        <div className="neo-manifesto-index">{lang === 'ru' ? 'НАШ ДОМ' : 'OUR HOME'}</div>
+        <Reveal className="neo-manifesto-copy"><p className="neo-eyebrow">{lang === 'ru' ? 'АНДАРАК / ЛЮДИ И МЕСТО' : 'ANDARAK / PEOPLE & PLACE'}</p><h2>{lang === "ru" ? "Место, которое" : "A place to belong."}<br/><em>{lang === "ru" ? "мы зовём домом." : "Stories to share."}</em></h2><p className="calm-introduction">{lang === 'ru' ? 'Знакомьтесь с Андараком через его людей, традиции и повседневную жизнь. Здесь мы бережно собираем то, что связывает нас с домом.' : 'Get to know Andarak through its people, traditions and everyday life. A shared space for the memories and small details that connect us to home.'}</p></Reveal>
+      </section>
 
-      <section className="relative max-w-[1280px] mx-auto px-5 lg:px-8 py-20 lg:py-24" data-testid="home-teasers">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
-          {HOME_TEASERS.map((t, i) => (
-            <motion.div key={t.to} {...reveal(0.1 + (i % 2) * 0.12)}>
-              <Link to={t.to} className="teaser-card block group" data-testid={`teaser-${t.to.slice(1)}`}>
-                <div className="teaser-img">
-                  <img src={t.img} alt={t.title[lang]} loading="lazy" />
-                </div>
-                <div className="flex items-start justify-between gap-4 pt-5 pb-6 px-1">
-                  <div>
-                    <h3 className="font-display font-semibold" style={{ fontSize: 24, color: "var(--p-ink)" }}>{t.title[lang]}</h3>
-                    <p className="mt-1.5 text-sm" style={{ color: "var(--p-slate)", lineHeight: 1.65 }}>{t.line[lang]}</p>
-                  </div>
-                  <span className="teaser-arrow"><ArrowRight size={17} /></span>
-                </div>
-              </Link>
-            </motion.div>
+      <section className="neo-feature neo-feature-dark">
+        <div className="neo-sticky-label"><span>02</span><span>HISTORY / FIRE</span></div>
+        <div className="neo-feature-media"><motion.img src="/art/journey-2.jpg" alt="Sogdian history" whileHover={{ scale: 1.025 }} transition={{ duration: 0.8, ease: EASE }} /><span className="pixel-tag" data-text="2500 YEARS">2500 YEARS</span></div>
+        <Reveal className="neo-feature-copy"><h2>{c.chapter}</h2><p>{c.chapterText}</p><Link to="/history" className="neo-link">{c.open}<ArrowUpRight /></Link></Reveal>
+      </section>
+
+      <section className="neo-feature neo-feature-light neo-feature-reverse">
+        <div className="neo-sticky-label"><span>03</span><span>CULTURE / NOW</span></div>
+        <div className="neo-feature-media neo-culture-collage"><img src="/art/journey-4.jpg" alt="Nowruz celebration" /><img src="/gallery/village-street.webp" alt="Village street" /></div>
+        <Reveal className="neo-feature-copy"><h2>{c.culture}</h2><p>{c.cultureText}</p><Link to="/culture" className="neo-link">{T.heroSecondary[lang]}<ArrowUpRight /></Link></Reveal>
+      </section>
+
+      <section className="neo-archive-band">
+        <Reveal className="neo-archive-heading"><span>04 / FIELD NOTES</span><h2>{c.archive}</h2></Reveal>
+        <div className="neo-filmstrip">
+          {["/gallery/mosque-winter.png", "/gallery/valley-green.png", "/gallery/memorial-arch.png", "/gallery/winter-street.png"].map((src, i) => (
+            <motion.figure key={src} initial={{ opacity: 0, y: 90, rotate: i % 2 ? 2 : -2 }} whileInView={{ opacity: 1, y: 0, rotate: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .9, delay: i * .08, ease: EASE }}><img src={src} alt="Andarak archive" loading="lazy" /><figcaption>0{i + 1} / ANDARAK</figcaption></motion.figure>
           ))}
         </div>
+        <div className="neo-archive-action"><p>{c.archiveText}</p><Link to="/gallery" className="neo-link">{c.gallery}<ArrowUpRight /></Link></div>
       </section>
     </div>
   );

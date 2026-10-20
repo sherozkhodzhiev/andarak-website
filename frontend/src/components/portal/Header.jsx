@@ -20,13 +20,12 @@ export default function Header({ lang, onLang, theme, onTheme }) {
 
   return (
     <header
-      className="sticky top-0 z-50"
-      style={{ background: "var(--p-surface)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: "1px solid var(--p-border)" }}
+      className="neo-header sticky top-0 z-50"
       data-testid="portal-header"
     >
-      <div className="max-w-[1280px] mx-auto flex items-center justify-between px-5 lg:px-8" style={{ height: 68 }}>
-        <Link to="/" className="flex items-center group" data-testid="header-logo">
-          <span className="font-display font-bold tracking-[.08em]" style={{ fontSize: 20, color: "var(--p-ink)" }}>{T.brand[lang]}</span>
+      <div className="neo-header-inner flex items-center justify-between px-5 lg:px-8">
+        <Link to="/" className="neo-logo flex items-center group" data-testid="header-logo">
+          <span className="neo-logo-mark">A</span><span>{T.brand[lang]}</span><small>39.78° N</small>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" data-testid="desktop-nav">
