@@ -212,7 +212,7 @@ export const UI = {
   playing: { en: "Playing…", ru: "Идёт показ…" },
   score: { en: "What We Must Remember", ru: "Что Мы Должны Помнить" },
   marqueeItems: {
-    en: ["Sogdiana", "Persian Empire" , "Alexander the Great", "The Arab Conquest", "Samanid Dawn", "Genghis Khan", "The Turkic Khans", "Russians", "Kyrgyzstan", "Andarak" ],
+    en: ["Sogdiana", "Persian Empire" , "Alexander the Great", "The Arab Conquest", "Samanid Dawn", "Genghis Khan", "The Turkic Khans", "Russians", "Kyrgyzstan", "Andarak"],
     ru: ["Согдиана", "Персидская империя", "Александр Македонский", "Арабское завоевание", "Рассвет Саманидов", "Чингисхан", "Тюркские ханы", "Русские", "Кыргызстан", "Андарак"],
     
   },
