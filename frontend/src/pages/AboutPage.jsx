@@ -26,7 +26,6 @@ export default function AboutPage({ lang }) {
         {ABOUT_PAGE.blocks[lang].map(([head, text], i) => (
           <motion.div key={head} {...reveal(0.08 * i)} data-testid={`about-block-${i + 1}`}>
             <div className="flex items-center gap-3 mb-3">
-              <span className="font-mono-d text-[11px]" style={{ color: "var(--p-gold)" }}>{String(i + 1).padStart(2, "0")}</span>
               <h3 className="font-display font-semibold" style={{ fontSize: 24, color: "var(--p-ink)" }}>{head}</h3>
             </div>
             <p className="text-[14.5px]" style={{ color: "var(--p-slate)", lineHeight: 1.85 }}>{text}</p>

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { GALLERY } from "@/data/chapters";
 import "./GalleryPage.css";
 
@@ -6,9 +7,11 @@ export default function GalleryPage({ lang = "en" }) {
   const [active, setActive] = useState(0);
   const [showAll, setShowAll] = useState(false);
   const [opened, setOpened] = useState(0);
+  const [viewerOpen, setViewerOpen] = useState(false);
 
   const dialogRef = useRef(null);
   const touchStart = useRef(null);
+  const viewerTouchStart = useRef(null);
   const ignoreClickUntil = useRef(0);
   const hoverTimer = useRef(null);
   const hoverLockedUntil = useRef(0);
@@ -29,6 +32,13 @@ export default function GalleryPage({ lang = "en" }) {
   useEffect(() => {
     return () => window.clearTimeout(hoverTimer.current);
   }, []);
+
+  useEffect(() => {
+    if (!viewerOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, [viewerOpen]);
 
   const select = (index) => {
     clearHover();
@@ -55,6 +65,7 @@ export default function GalleryPage({ lang = "en" }) {
     clearHover();
     setOpened(index);
     dialogRef.current?.showModal();
+    setViewerOpen(true);
   };
 
   const finishSwipe = (event) => {
@@ -252,8 +263,25 @@ export default function GalleryPage({ lang = "en" }) {
       <dialog
         ref={dialogRef}
         className="ag-dialog"
-        style={{ margin: "auto" }}
+        data-testid="gallery-photo-viewer"
         aria-label={ru ? "Просмотр фотографии" : "Photo viewer"}
+        onClose={() => setViewerOpen(false)}
+        onTouchStart={(event) => {
+          viewerTouchStart.current = event.touches.length === 1
+            ? { x: event.touches[0].clientX, y: event.touches[0].clientY }
+            : null;
+        }}
+        onTouchCancel={() => { viewerTouchStart.current = null; }}
+        onTouchEnd={(event) => {
+          const start = viewerTouchStart.current;
+          viewerTouchStart.current = null;
+          if (!start || event.touches.length || !event.changedTouches.length) return;
+          const dx = event.changedTouches[0].clientX - start.x;
+          const dy = event.changedTouches[0].clientY - start.y;
+          if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+            setOpened((index) => wrap(index + (dx < 0 ? 1 : -1)));
+          }
+        }}
         onKeyDown={(event) => {
           if (event.key === "ArrowRight") {
             event.preventDefault();
@@ -264,51 +292,44 @@ export default function GalleryPage({ lang = "en" }) {
             setOpened((index) => wrap(index - 1));
           }
         }}
-        onClick={(event) => {
-          if (event.target !== event.currentTarget) return;
-          const rect = event.currentTarget.getBoundingClientRect();
-          if (
-            event.clientX < rect.left ||
-            event.clientX > rect.right ||
-            event.clientY < rect.top ||
-            event.clientY > rect.bottom
-          ) {
-            dialogRef.current.close();
-          }
-        }}
       >
+        <img
+          src={GALLERY[opened].src}
+          alt={caption(GALLERY[opened])}
+          draggable={false}
+          data-testid="gallery-viewer-image"
+        />
         <div className="ag-dialog-controls">
           <button
             type="button"
+            className="ag-viewer-prev"
             disabled={count < 2}
             onClick={() => setOpened((index) => wrap(index - 1))}
             aria-label={ru ? "Предыдущее фото" : "Previous photo"}
           >
-            ←
+            <ArrowLeft size={24} aria-hidden="true" />
           </button>
 
           <button
             type="button"
+            className="ag-viewer-close"
             onClick={() => dialogRef.current.close()}
+            aria-label={ru ? "Закрыть фото" : "Close photo"}
           >
-            {ru ? "Закрыть ×" : "Close ×"}
+            <X size={25} aria-hidden="true" />
           </button>
 
           <button
             type="button"
+            className="ag-viewer-next"
             disabled={count < 2}
             onClick={() => setOpened((index) => wrap(index + 1))}
             aria-label={ru ? "Следующее фото" : "Next photo"}
           >
-            →
+            <ArrowRight size={24} aria-hidden="true" />
           </button>
         </div>
 
-        <img
-          src={GALLERY[opened].src}
-          alt={caption(GALLERY[opened])}
-        />
-        <p>{caption(GALLERY[opened])}</p>
       </dialog>
     </section>
   );

@@ -1,112 +1,69 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
-import { CULTURE_TOPICS, CULTURE_PAGE } from "@/data/portal";
-import { KilimDivider } from "@/components/portal/Kilim";
+import { useLayoutEffect, useRef } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { ArrowLeft, ArrowRight, BookOpen, CalendarDays, Heart, HeartHandshake, MessageCircle, Mic2, Music2, Scissors, Shirt, Sparkles, Users, Utensils, Coffee } from "lucide-react";
+import { CULTURE_DIRECTORY, CULTURE_GROUPS } from "@/data/cultureDirectory";
+import "./CulturePage.css";
 
-const EASE = [0.22, 1, 0.36, 1];
-const reveal = (delay = 0) => ({
-  initial: { opacity: 0, y: 26 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.25 },
-  transition: { duration: 0.9, delay, ease: EASE },
-});
+const ICONS = { speech: MessageCircle, book: BookOpen, music: Music2, voices: Mic2, food: Utensils, tea: Coffee, dress: Shirt, craft: Scissors, calendar: CalendarDays, celebration: Sparkles, family: Heart, values: HeartHandshake, people: Users };
 
-export default function CulturePage({ lang }) {
-  const [openTopic, setOpenTopic] = useState(null);
+export default function CulturePage({ lang = "en" }) {
+  const locale = lang === "ru" ? "ru" : "en";
+  const ru = locale === "ru";
+  const location = useLocation();
+  const returnTo = useRef(location.state?.returnTo);
+  useLayoutEffect(() => {
+    const card = returnTo.current && document.getElementById(`culture-${returnTo.current}`);
+    if (card) {
+      card.scrollIntoView({ block: "center", behavior: "instant" });
+      card.focus({ preventScroll: true });
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+  }, []);
 
   return (
-    <div className="max-w-[1280px] mx-auto px-5 lg:px-8 py-16 lg:py-24" data-testid="culture-page">
-      <motion.p className="font-mono-d text-[11px] tracking-[.22em] uppercase mb-3" style={{ color: "var(--p-terra)" }} {...reveal(0)}>
-        {CULTURE_PAGE.eyebrow[lang]}
-      </motion.p>
-      <motion.h1 className="font-display font-semibold" style={{ fontSize: "clamp(2.3rem, 4.6vw, 4rem)", color: "var(--p-ink)", lineHeight: 1.06 }} {...reveal(0.08)} data-testid="culture-title">
-        {CULTURE_PAGE.title[lang]}
-      </motion.h1>
-      <motion.div className="mt-5 mb-5" {...reveal(0.14)}><KilimDivider /></motion.div>
-      <motion.p className="text-sm md:text-base max-w-[560px] mb-14" style={{ color: "var(--p-slate)", lineHeight: 1.8 }} {...reveal(0.2)}>
-        {CULTURE_PAGE.lead[lang]}
-      </motion.p>
+    <div className="culture-directory" data-testid="culture-page" lang={locale}>
+      <header className="cd-intro">
+        <div className="cd-intro-copy">
+          <h1 data-testid="culture-title">{ru ? <>Культура <span>и традиции.</span></> : <>Culture <span>& traditions.</span></>}</h1>
+          <p className="cd-lead">{ru ? "Выберите тему, чтобы узнать больше." : "Choose a topic. Discover its story."}</p>
+        </div>
+      </header>
 
-      <div className="culture-bento">
-        {CULTURE_TOPICS.map((t, i) => (
-          <motion.button
-            key={t.id}
-            className={`culture-card ${t.span || ""} ${t.img ? "has-img" : ""} text-left`}
-            onClick={() => setOpenTopic(t)}
-            {...reveal(0.05 * (i % 3))}
-            data-testid={`culture-card-${t.id}`}
-          >
-            {t.img && (
-              <div className="culture-card-img">
-                <img src={t.img} alt={t.title[lang]} loading="lazy" />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(26,36,51,.72), rgba(26,36,51,.1) 60%)" }} />
-              </div>
-            )}
-            {t.glyph && !t.img && (
-              <span className="culture-glyph font-display" aria-hidden="true">{t.glyph}</span>
-            )}
-            <div className="relative z-10 mt-auto">
-              <p className="font-mono-d text-[10px] tracking-[.18em] uppercase mb-2" style={{ color: t.img ? "var(--p-gold)" : "var(--p-terra)" }}>
-                {t.tag[lang]}
-              </p>
-              <h3 className="font-display font-semibold" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)", color: t.img ? "#F8F7F3" : "var(--p-ink)", lineHeight: 1.15 }}>
-                {t.title[lang]}
-              </h3>
-              <p className="mt-2 text-[13px] line-clamp-2" style={{ color: t.img ? "rgba(248,247,243,.75)" : "var(--p-slate)", lineHeight: 1.6 }}>
-                {t.text[lang]}
-              </p>
+      <section id="culture-topics" className="cd-topics" aria-label={ru ? "Темы культуры" : "Culture topics"}>
+        {CULTURE_GROUPS.map((group) => (
+          <section className="cd-group" key={group.id} aria-labelledby={`cd-group-${group.id}`}>
+            <div className="cd-group-heading"><h2 id={`cd-group-${group.id}`}>{group.title[locale]}</h2></div>
+            <div className="cd-grid">
+              {CULTURE_DIRECTORY.filter((topic) => topic.group === group.id).map((topic) => {
+                const Icon = ICONS[topic.icon];
+                return <Link to={`/culture/${topic.id}`} key={topic.id} id={`culture-${topic.id}`} className="cd-card" data-testid={`culture-card-${topic.id}`}>
+                  <span className="cd-topic-icon" aria-hidden="true"><Icon size={25} strokeWidth={1.6} /></span>
+                  <h3>{topic.title[locale]}</h3>
+                  <span className="cd-card-arrow" aria-hidden="true"><ArrowRight size={19} /></span>
+                </Link>;
+              })}
             </div>
-            <span className="culture-more font-mono-d" style={{ color: t.img ? "var(--p-gold)" : "var(--p-terra)" }}>
-              {lang === "ru" ? "подробнее +" : "read more +"}
-            </span>
-          </motion.button>
+          </section>
         ))}
-      </div>
-
-      <AnimatePresence>
-        {openTopic && (
-          <motion.div
-            className="fixed inset-0 z-[80] flex items-end sm:items-center justify-center p-4"
-            style={{ background: "rgba(26,36,51,.6)", backdropFilter: "blur(8px)" }}
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            onClick={() => setOpenTopic(null)}
-            data-testid="culture-modal"
-          >
-            <motion.div
-              className="w-full max-w-2xl max-h-[85vh] overflow-y-auto"
-              style={{ background: "var(--p-bg)", border: "1px solid var(--p-border)" }}
-              initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 40, opacity: 0 }}
-              transition={{ duration: 0.35, ease: EASE }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {openTopic.img && (
-                <div className="w-full overflow-hidden" style={{ aspectRatio: "16/7" }}>
-                  <img src={openTopic.img} alt={openTopic.title[lang]} className="w-full h-full object-cover" />
-                </div>
-              )}
-              <div className="p-8 lg:p-10">
-                <div className="flex items-start justify-between gap-6">
-                  <div>
-                    <p className="font-mono-d text-[10px] tracking-[.18em] uppercase mb-2" style={{ color: "var(--p-terra)" }}>{openTopic.tag[lang]}</p>
-                    <h2 className="font-display font-semibold" style={{ fontSize: "clamp(1.7rem, 3vw, 2.4rem)", color: "var(--p-ink)", lineHeight: 1.1 }} data-testid="culture-modal-title">
-                      {openTopic.title[lang]}
-                    </h2>
-                  </div>
-                  <button onClick={() => setOpenTopic(null)} aria-label="Close" data-testid="culture-modal-close" style={{ color: "var(--p-slate)" }}>
-                    <X size={22} />
-                  </button>
-                </div>
-                <div className="my-5"><KilimDivider /></div>
-                <p className="text-[15px]" style={{ color: "var(--p-ink)", lineHeight: 1.9 }}>{openTopic.text[lang]}</p>
-                <p className="mt-6 font-mono-d text-[10px] tracking-[.12em] uppercase" style={{ color: "var(--p-slate)" }}>
-                  {lang === "ru" ? "Фото и материалы жителей появятся здесь — присылайте свои" : "Residents' photos and materials will appear here — send in yours"}
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </section>
     </div>
   );
+}
+
+export function CultureTopicPage({ lang = "en" }) {
+  const { topicId } = useParams();
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    document.getElementById("culture-topic-title")?.focus({ preventScroll: true });
+  }, []);
+  const locale = lang === "ru" ? "ru" : "en";
+  const ru = locale === "ru";
+  const topic = CULTURE_DIRECTORY.find((item) => item.id === topicId);
+  if (!topic) return <div className="culture-directory cd-reading"><Link className="cd-back" to="/culture"><ArrowLeft size={16} />{ru ? "Все темы культуры" : "All culture topics"}</Link><h1>{ru ? "Тема не найдена" : "Topic not found"}</h1></div>;
+  const Icon = ICONS[topic.icon];
+  return <article className="culture-directory cd-reading" lang={locale}>
+    <Link className="cd-back" to="/culture" state={{ returnTo: topicId }}><ArrowLeft size={16} />{ru ? "Все темы культуры" : "All culture topics"}</Link>
+    <div className="cd-reading-header"><span className="cd-topic-icon"><Icon size={24} strokeWidth={1.6} /></span><h1 id="culture-topic-title" tabIndex={-1}>{topic.title[locale]}</h1><p className="cd-reading-deck">{topic.placeholder[locale]}</p></div>
+  </article>;
 }

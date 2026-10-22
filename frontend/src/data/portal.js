@@ -216,13 +216,13 @@ export const ABOUT_PAGE = {
   title: { ru: "Зачем этот сайт", en: "Why this site exists" },
   blocks: {
     ru: [
-      ["Кто делает", "Сайт создаёт уроженец Андарака, студент, живущий за рубежом. Имя автора появится здесь после запуска полной версии."],
+      ["Кто делает", "Человек, который родился в Андараке и любит свою родину."],
       ["Зачем", "Чтобы у села с 2 500-летней историей был свой дом в интернете: история, культура, новости общины и полезная информация для жителей, гостей и диаспоры."],
       ["Что дальше", "Новости и календарь событий, справочники (медицина, школы, бизнес, транспорт), раздел для студентов, интерактивная карта и голоса жителей."],
       ["Как помочь", "Присылайте фотографии, истории, стихи земляков и идеи. Блок поддержки конкретных нужд села (ремонт школы, дороги) появится в следующем обновлении."],
     ],
     en: [
-      ["Who makes it", "The site is built by a native of Andarak, a student living abroad. The author's name will appear here after the full version launches."],
+      ["Who makes it", "A person who was born in Andarak and loves his homeland."],
       ["Why", "So that a village with 2,500 years of history has its own home on the internet: history, culture, community news and practical information for residents, guests and the diaspora."],
       ["What's next", "News and an events calendar, directories (medicine, schools, business, transport), a students' section, an interactive map and voices of the residents."],
       ["How to help", "Send photos, stories, poems by fellow villagers and ideas. A support block for concrete village needs (school repairs, roads) is coming in the next update."],
