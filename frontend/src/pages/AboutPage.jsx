@@ -22,9 +22,9 @@ export default function AboutPage({ lang }) {
       </motion.h1>
       <motion.div className="mt-5 mb-14" {...reveal(0.14)}><KilimDivider /></motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-12 max-w-[980px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-[980px]">
         {ABOUT_PAGE.blocks[lang].map(([head, text], i) => (
-          <motion.div key={head} {...reveal(0.08 * i)} data-testid={`about-block-${i + 1}`}>
+          <motion.div className="about-info-card" key={head} {...reveal(0.08 * i)} data-testid={`about-block-${i + 1}`}>
             <div className="flex items-center gap-3 mb-3">
               <h3 className="font-display font-semibold" style={{ fontSize: 24, color: "var(--p-ink)" }}>{head}</h3>
             </div>
