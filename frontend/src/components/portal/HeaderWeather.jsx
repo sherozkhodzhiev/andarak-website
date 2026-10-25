@@ -268,11 +268,6 @@ export default function HeaderWeather({ lang }) {
             </div>
           </>
         )}
-        <footer className="weather-credit">
-          <span>{ru ? "Модельный прогноз, не показания местного датчика." : "Model forecast, not a local sensor reading."}</span>
-          {forecast && <span>{ru ? "Получено" : "Fetched"} {new Intl.DateTimeFormat(locale, { timeZone: "Asia/Bishkek", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(forecast.savedAt)}</span>}
-          <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Weather by Open-Meteo ↗</a>
-        </footer>
       </Dialog.Content>
     </Dialog.Portal>
     </Dialog.Root>
