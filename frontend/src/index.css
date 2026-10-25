@@ -595,3 +595,13 @@ body {
   text-wrap: balance;
 }
 .portal-root h1.page-title > span { color: var(--p-terra); }
+
+.about-info-card {
+  border: 1px solid var(--p-border);
+  border-radius: 18px;
+  padding: 24px;
+  background: color-mix(in srgb, var(--p-bg) 75%, var(--p-bg2));
+}
+@media (max-width: 700px) {
+  .about-info-card { padding: 18px; border-radius: 16px; }
+}
