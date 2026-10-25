@@ -22,6 +22,7 @@ export const NAV = [
   {
     id: "guests", label: { ru: "Гостям", en: "For Guests" },
     items: [
+      { label: { ru: "Андарак на карте", en: "Find Andarak" }, to: "/#find-andarak" },
       { label: { ru: "Туристам", en: "For Tourists" }, soon: true },
       { label: { ru: "Безопасность и риски", en: "Safety & Risks" }, soon: true },
     ],
