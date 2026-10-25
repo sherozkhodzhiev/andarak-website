@@ -46,14 +46,10 @@
 .hc-reading-scroll { overflow-y: auto; overscroll-behavior: contain; padding: 28px 32px 40px; scrollbar-color: var(--hc-accent) #191c18; }
 .hc-reading h2 { font-family: Georgia, serif; font-weight: 400; font-size: 32px; line-height: 1.2; margin: 0 0 24px; }
 .hc-reading p { font-size: 16px; line-height: 1.85; color: #d4d1c5; margin: 0; }
-.hc-music { margin-bottom: 28px; }
-.hc-music-controls { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-.hc-music-controls button { min-width: 44px; height: 44px; border: 1px solid color-mix(in srgb, var(--hc-accent) 40%, transparent); background: none; display: grid; place-items: center; }
-.hc-music-controls button:disabled { opacity: .4; }
-.hc-music-controls input { width: 100%; min-width: 30px; accent-color: var(--hc-accent); }
-.hc-music-video { min-height: 220px; }
-.hc-music-video iframe { width: 100%; height: 220px; border: 0; }
-.hc-reading .hc-music-note { font-size: 11px; line-height: 1.5; margin-top: 10px; color: #b6b2a7; }
+.hc-reading-actions { display: flex; align-items: center; gap: 4px; }
+.hc-sound-toggle { color: var(--hc-accent); }
+.hc-sound-toggle:disabled { opacity: .4; cursor: default; }
+.hc-music-player { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); pointer-events: none; }
 .hc-reading aside { margin-top: 32px; padding-top: 25px; border-top: 1px solid color-mix(in srgb, var(--hc-accent) 40%, transparent); }
 .hc-reading h3 { color: var(--hc-accent); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 18px; }
 @keyframes hc-copy-in { from { opacity: 0; translate: 0 20px; } to { opacity: 1; translate: 0 0; } }
