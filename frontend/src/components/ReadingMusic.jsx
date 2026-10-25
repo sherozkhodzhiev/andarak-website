@@ -56,7 +56,7 @@ const ReadingMusic = forwardRef(function ReadingMusic({ videoId, lang, enabled, 
       host.current.appendChild(element);
       player.current = new window.YT.Player(element, {
         width: "200", height: "200", videoId,
-        playerVars: { controls: 0, playsinline: 1, rel: 0, start: ({ DjJ9mOuACoc: 18, gwjioseBjYc: 90 })[videoId] ?? 0, origin: window.location.origin },
+        playerVars: { controls: 0, playsinline: 1, rel: 0, start: ({ DjJ9mOuACoc: 18, gwjioseBjYc: 100 })[videoId] ?? 0, origin: window.location.origin },
         events: {
           onReady: (event) => {
             if (disposed) return;
