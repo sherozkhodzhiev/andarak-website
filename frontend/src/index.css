@@ -605,3 +605,20 @@ body {
 @media (max-width: 700px) {
   .about-info-card { padding: 18px; border-radius: 16px; }
 }
+
+.about-info-card {
+  transition: translate 280ms cubic-bezier(.22,1,.36,1),
+    border-color 240ms ease, background-color 240ms ease, box-shadow 280ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .about-info-card:hover {
+    translate: 0 -2px;
+    border-color: var(--p-terra);
+    background: var(--p-bg2);
+    box-shadow: 0 8px 24px rgb(0 0 0 / .04);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-info-card { transition: none; }
+  .about-info-card:hover { translate: none; }
+}
