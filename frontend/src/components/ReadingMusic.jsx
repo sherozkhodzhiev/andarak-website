@@ -1,15 +1,37 @@
-import { useEffect, useRef, useState } from "react";
-import { Pause, Play, Volume1, Volume2 } from "lucide-react";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { Volume2, VolumeX } from "lucide-react";
 
-// This component exists only while its chapter's reading panel is open.
-export default function ReadingMusic({ videoId, lang }) {
+// Prepare the active chapter before its reading panel opens, so its opening tap
+// can request playback directly rather than waiting for the YouTube API to load.
+const ReadingMusic = forwardRef(function ReadingMusic({ videoId, lang, enabled, controlId }, ref) {
   const host = useRef(null);
   const player = useRef(null);
+  const requested = useRef(false);
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(40);
   const [failed, setFailed] = useState(false);
+  const [control, setControl] = useState(null);
   const ru = lang === "ru";
+
+  function start() {
+    requested.current = true;
+    if (!player.current?.playVideo) return;
+    player.current.unMute();
+    player.current.playVideo();
+  }
+  function stop() {
+    requested.current = false;
+    player.current?.pauseVideo?.();
+    setPlaying(false);
+  }
+  useImperativeHandle(ref, () => ({ start, stop }));
+
+  useEffect(() => {
+    setControl(enabled ? document.getElementById(controlId) : null);
+    if (enabled) start();
+    else stop();
+  }, [enabled, controlId]);
 
   useEffect(() => {
     let disposed = false;
@@ -33,46 +55,48 @@ export default function ReadingMusic({ videoId, lang }) {
       const element = document.createElement("div");
       host.current.appendChild(element);
       player.current = new window.YT.Player(element, {
-        width: "100%", height: "220", videoId,
-        playerVars: { controls: 1, playsinline: 1, rel: 0, origin: window.location.origin },
+        width: "200", height: "200", videoId,
+        playerVars: { controls: 0, playsinline: 1, rel: 0, origin: window.location.origin },
         events: {
           onReady: (event) => {
             if (disposed) return;
             setReady(true);
             event.target.setVolume(40);
-            event.target.playVideo();
+            if (requested.current) {
+              event.target.unMute();
+              event.target.playVideo();
+            }
           },
-          onStateChange: (event) => { if (!disposed) setPlaying(event.data === 1); },
-          onError: () => { if (!disposed) setFailed(true); },
+          onStateChange: (event) => {
+            if (disposed) return;
+            // A late ready/play event must never restart a closed panel.
+            if (event.data === 1 && !requested.current) event.target.pauseVideo();
+            setPlaying(event.data === 1 && requested.current);
+          },
+          onAutoplayBlocked: () => { if (!disposed) setPlaying(false); },
+          onError: () => { if (!disposed) { setFailed(true); setPlaying(false); } },
         },
       });
     }, 100);
     return () => {
       disposed = true;
       clearInterval(timer);
-      // Destroy immediately: no delayed fades that can restart a closed chapter.
       player.current?.destroy();
       player.current = null;
     };
   }, [videoId]);
 
-  function changeVolume(next) {
-    const value = Math.max(0, Math.min(100, next));
-    setVolume(value);
-    player.current?.setVolume(value);
-    if (value > 0) player.current?.unMute();
-  }
-
-  return (
-    <div className="hc-music">
-      <div className="hc-music-controls" role="group" aria-label={ru ? "Музыка главы" : "Chapter music"}>
-        <button disabled={!ready || failed} aria-label={playing ? (ru ? "Пауза" : "Pause music") : (ru ? "Слушать" : "Play music")} onClick={() => playing ? player.current?.pauseVideo() : player.current?.playVideo()}>{playing ? <Pause size={18} /> : <Play size={18} />}</button>
-        <button disabled={!ready || failed} aria-label={ru ? "Тише" : "Volume down"} onClick={() => changeVolume(volume - 10)}><Volume1 size={18} /></button>
-        <input disabled={!ready || failed} type="range" min="0" max="100" value={volume} aria-label={ru ? "Громкость" : "Volume"} onChange={(e) => changeVolume(Number(e.target.value))} />
-        <button disabled={!ready || failed} aria-label={ru ? "Громче" : "Volume up"} onClick={() => changeVolume(volume + 10)}><Volume2 size={18} /></button>
-      </div>
-      <div ref={host} className="hc-music-video" />
-      <p className="hc-music-note" role="status">{failed ? (ru ? "Трек недоступен. Вы можете продолжить чтение без музыки." : "Track unavailable. You can continue reading without music.") : (ru ? "Если звук не начался, нажмите ▶. На телефоне также используйте кнопки громкости." : "If sound doesn’t start, tap ▶. On phones, you can also use the device volume buttons.")}</p>
-    </div>
-  );
-}
+  const label = failed ? (ru ? "Музыка недоступна" : "Music unavailable")
+    : playing ? (ru ? "Выключить музыку" : "Turn music off")
+    : (ru ? "Включить музыку" : "Turn music on");
+  return <>
+    <div ref={host} className="hc-music-player" aria-hidden="true" inert />
+    {enabled && control && createPortal(
+      <button type="button" className="hc-sound-toggle" disabled={!ready || failed}
+        aria-label={label} title={label} aria-pressed={playing}
+        data-testid="chapter-sound-toggle" onClick={() => playing ? stop() : start()}>
+        {playing ? <Volume2 size={20} aria-hidden="true" /> : <VolumeX size={20} aria-hidden="true" />}
+      </button>, control)}
+  </>;
+});
+export default ReadingMusic;
