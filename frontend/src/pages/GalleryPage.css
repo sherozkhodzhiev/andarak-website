@@ -131,8 +131,11 @@
   background: transparent;
 }
 
-.ag-all-button:hover {
-  background: color-mix(in srgb, var(--gallery-accent) 9.4%, transparent);
+.ag-all-button:hover,
+.ag-all-button:focus-visible,
+.ag-all-button:active {
+  background: var(--gallery-accent);
+  color: #F8F7F3;
 }
 
 .ag-grid {
