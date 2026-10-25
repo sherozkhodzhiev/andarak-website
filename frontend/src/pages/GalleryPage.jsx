@@ -106,8 +106,8 @@ export default function GalleryPage({ lang = "en" }) {
           {ru ? "Фотоархив Андарака" : "The photo archive"}
         </p>
 
-        <h1>
-          {ru ? "Андарак нашими глазами" : "Andarak, through our eyes"}
+        <h1 className="page-title">
+          {ru ? <>Андарак <span>нашими глазами</span></> : <>Andarak, <span>through our eyes</span></>}
         </h1>
       </header>
 
