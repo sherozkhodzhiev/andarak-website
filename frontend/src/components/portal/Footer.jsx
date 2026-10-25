@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, X } from "lucide-react";
 import { NAV, T } from "@/data/portal";
@@ -73,9 +73,6 @@ export default function Footer({ lang, onLang }) {
                 {g.label[lang]}
               </button>
             ))}
-            <Link to="/history" className="py-1.5 footer-link" data-testid="footer-history-link">
-              {lang === "ru" ? "История в огне →" : "A History in Fire →"}
-            </Link>
           </nav>
         </div>
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-4">
