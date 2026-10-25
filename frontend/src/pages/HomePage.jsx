@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, MapPin, Navigation } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { T, HOME_TEASERS } from "@/data/portal";
 import Wisdom from "@/components/portal/Wisdom";
 
@@ -15,12 +15,6 @@ const reveal = (delay = 0) => ({
 
 export default function HomePage({ lang }) {
   const heroRef = useRef(null);
-  const location = useLocation();
-  useEffect(() => {
-    if (location.hash !== "#find-andarak") return;
-    const frame = requestAnimationFrame(() => document.getElementById("find-andarak")?.scrollIntoView({ block: "start" }));
-    return () => cancelAnimationFrame(frame);
-  }, [location.hash]);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
   const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
@@ -86,36 +80,6 @@ export default function HomePage({ lang }) {
         </div>
       </section>
 
-      <section id="find-andarak" className="max-w-[1280px] mx-auto px-5 lg:px-8 pb-20 lg:pb-24 scroll-mt-24" aria-labelledby="andarak-map-title" data-testid="home-map">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 items-center">
-          <div>
-            <MapPin size={28} strokeWidth={1.6} style={{ color: "var(--p-terra)" }} aria-hidden="true" />
-            <h2 id="andarak-map-title" className="font-display font-semibold mt-4" style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.1, color: "var(--p-ink)" }}>
-              {lang === "ru" ? "Где находится Андарак" : "Find Andarak"}
-            </h2>
-            <p className="mt-4 mb-6" style={{ color: "var(--p-slate)", lineHeight: 1.7 }}>
-              {lang === "ru" ? "Андарак, Баткенская область, Кыргызстан." : "Andarak, Batken Region, Kyrgyzstan."}
-            </p>
-            <a className="btn-terra" href="https://www.google.com/maps/dir/?api=1&destination=39.768282,69.4724952" target="_blank" rel="noopener noreferrer" data-testid="map-directions">
-              <Navigation size={17} aria-hidden="true" />{lang === "ru" ? "Как добраться" : "Get directions"}
-            </a>
-          </div>
-          <div className="lg:col-span-2 overflow-hidden rounded-[18px]" style={{ border: "1px solid var(--p-border)", background: "var(--p-bg2)" }}>
-            <iframe
-              title={lang === "ru" ? "Андарак на Google Картах" : "Andarak on Google Maps"}
-              src={`https://maps.google.com/maps?q=39.768282,69.4724952&z=14&output=embed&hl=${lang === "ru" ? "ru" : "en"}`}
-              className="w-full block h-[320px] md:h-[400px]"
-              style={{ border: 0 }}
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-            <a className="footer-link flex items-center justify-between gap-3 px-5 py-4 text-sm" href="https://www.google.com/maps/place/Andarak,+Kyrgyzstan/@39.7683356,69.4691706,14z/data=!3m1!4b1!4m6!3m5!1s0x38b1179280874d8f:0xe0fe2e33e9046af2!8m2!3d39.768282!4d69.4724952!16s%2Fm%2F03wc2x2" target="_blank" rel="noopener noreferrer">
-              {lang === "ru" ? "Открыть в Google Картах" : "Open in Google Maps"}<ArrowRight size={17} aria-hidden="true" />
-            </a>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
