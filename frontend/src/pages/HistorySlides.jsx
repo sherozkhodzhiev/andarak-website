@@ -24,6 +24,7 @@ export default function HistorySlides({ lang, onLang }) {
   const [reduced, setReduced] = useState(false);
   const [expanded, setExpanded] = useState(null);
   const root = useRef(null);
+  const music = useRef(null);
   const triggers = useRef({});
   const closeButton = useRef(null);
   const ru = lang === "ru";
@@ -68,6 +69,7 @@ export default function HistorySlides({ lang, onLang }) {
 
   function close() {
     const previous = expanded;
+    music.current?.stop();
     setExpanded(null);
     triggers.current[previous]?.focus();
   }
@@ -114,18 +116,18 @@ export default function HistorySlides({ lang, onLang }) {
               <h1 id={`hc-title-${slide.id}`} dangerouslySetInnerHTML={{ __html: slide.title }} />
               <p className="hc-summary">{slide.summary}</p>
               {slide.body ? (
-                <button className="hc-more" ref={(el) => { triggers.current[slide.id] = el; }} aria-expanded={expanded === slide.id} aria-controls={`hc-reading-${slide.id}`} onClick={() => setExpanded(slide.id)}>
+                <button className="hc-more" ref={(el) => { triggers.current[slide.id] = el; }} aria-expanded={expanded === slide.id} aria-controls={`hc-reading-${slide.id}`} onClick={() => { music.current?.start(); setExpanded(slide.id); }}>
                   <span>{ru ? "Подробнее" : "Learn more"}</span><span className="hc-circle"><Plus size={22} /></span>
                 </button>
               ) : <Link className="hc-more" to="/">{ru ? "Вернуться в село" : "Back to the village"}<ArrowRight size={20} /></Link>}
             </div>
 
             </>)}
+            {active === index && YT_TRACKS[slide.id] && <ReadingMusic ref={music} videoId={YT_TRACKS[slide.id]} lang={lang} enabled={expanded === slide.id} controlId={`hc-sound-${slide.id}`} />}
             {expanded === slide.id && (
               <div className="hc-reading" id={`hc-reading-${slide.id}`} role="region" aria-label={`${ru ? "Подробнее" : "Learn more"}: ${slide.title.replace(/<[^>]+>/g, "")}`} onKeyDown={(e) => { if (e.key === "Escape") { e.stopPropagation(); close(); } }}>
-                <div className="hc-reading-header"><span>{slide.eyebrow}</span><button ref={closeButton} onClick={close} aria-label={ru ? "Закрыть текст" : "Close text"}><X size={22} /></button></div>
+                <div className="hc-reading-header"><span>{slide.eyebrow}</span><div className="hc-reading-actions"><span id={`hc-sound-${slide.id}`} /><button ref={closeButton} onClick={close} aria-label={ru ? "Закрыть текст" : "Close text"}><X size={22} /></button></div></div>
                 <div className="hc-reading-scroll" tabIndex={0} key={`${slide.id}-${lang}`}>
-                  {YT_TRACKS[slide.id] && <ReadingMusic videoId={YT_TRACKS[slide.id]} lang={lang} />}
                   <h2 dangerouslySetInnerHTML={{ __html: slide.title }} />
                   <p>{slide.body}</p>
                   {slide.lesson && <aside><h3>{UI.score[lang]}</h3><p>{slide.lesson}</p></aside>}
