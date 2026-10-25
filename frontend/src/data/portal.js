@@ -111,85 +111,49 @@ export const CULTURE_TOPICS = [
     title: { ru: "Язык", en: "Language" },
     tag: { ru: "речь села", en: "the village tongue" },
     glyph: "زبان",
-    text: {
-      ru: "Андарак — одно из немногих сёл Кыргызстана, где звучит таджикский язык — наследник персидской речи Согдианы. Дома говорят по-таджикски, в школе и на базаре к нему добавляются кыргызский и русский. Три языка живут рядом, как соседи на одной улице.",
-      en: "Andarak is one of the few villages in Kyrgyzstan where Tajik — heir to the Persian speech of Sogdiana — is spoken. Tajik at home, Kyrgyz and Russian at school and at the market. Three languages live side by side like neighbours on one street.",
-    },
   },
   {
     id: "cuisine",
     img: "/gallery/village-street.webp",
     title: { ru: "Кухня", en: "Cuisine" },
     tag: { ru: "вкус долины", en: "taste of the valley" },
-    text: {
-      ru: "Плов по большим дням, горячие лепёшки из тандыра, абрикосы и грецкие орехи из собственных садов. Гостя в Андараке не отпускают без чая — а чаще без полного дастархана.",
-      en: "Plov on big days, hot tandoor bread, apricots and walnuts from the family orchards. No guest leaves Andarak without tea — and usually not without a full dastarkhan.",
-    },
   },
   {
     id: "clothing",
     title: { ru: "Одежда", en: "Clothing" },
     tag: { ru: "нить и узор", en: "thread & pattern" },
-    text: {
-      ru: "Праздничные атласные платья, тюбетейки, расшитые вручную узоры — традиционная одежда надевается на свадьбы и большие праздники, соединяя поколения одной нитью.",
-      en: "Festive atlas-silk dresses, tubeteika caps, hand-embroidered patterns — traditional dress comes out for weddings and major holidays, joining generations with a single thread.",
-    },
   },
   {
     id: "music",
     title: { ru: "Музыка", en: "Music" },
     tag: { ru: "звук гор", en: "sound of the mountains" },
     glyph: "♪",
-    text: {
-      ru: "Дойра задаёт ритм свадьбам, рубаб и най ведут мелодию. Песни на таджикском передаются на слух — от аксакалов к внукам, без нот и записей.",
-      en: "The doira drum sets the rhythm of weddings; the rubab and nay carry the melody. Tajik songs are passed down by ear — from elders to grandchildren, with no sheet music.",
-    },
   },
   {
     id: "appearance",
     title: { ru: "Внешность", en: "Appearance" },
     tag: { ru: "лица села", en: "faces of the village" },
-    text: {
-      ru: "Потомки согдийцев и персов: тёмные и каштановые волосы, карие и зелёные глаза, черты, в которых читается вся история долины. Портреты жителей появятся здесь с их согласия.",
-      en: "Descendants of Sogdians and Persians: dark and chestnut hair, brown and green eyes, faces that carry the valley's whole history. Residents' portraits will appear here with their consent.",
-    },
   },
   {
     id: "holidays", span: "c-tall", img: "/gallery/mosque-winter.png",
     title: { ru: "Праздники", en: "Holidays" },
     tag: { ru: "год по кругу", en: "the turning year" },
-    text: {
-      ru: "Навруз — главный праздник весны с сумалаком, который варят всем махалля. Орозо айт и Курман айт собирают село у мечети, а свадьбы осенью длятся по несколько дней.",
-      en: "Navruz — the great spring festival, with sumalak cooked by the whole mahalla. Orozo Ait and Kurman Ait gather the village at the mosque, and autumn weddings last for days.",
-    },
   },
   {
     id: "customs",
     title: { ru: "Обычаи жизненного цикла", en: "Life-cycle Customs" },
     tag: { ru: "от колыбели", en: "from the cradle" },
-    text: {
-      ru: "Рождение ребёнка, первая колыбель, суннат-той, сватовство и никох — каждый шаг жизни отмечен своим обрядом, и на каждый собирается вся родня.",
-      en: "A child's birth, the first cradle, sunnat-toy, matchmaking and nikoh — every step of life has its own rite, and every rite gathers the whole extended family.",
-    },
   },
   {
     id: "honor", span: "c-wide", img: "/gallery/memorial-arch.png",
     title: { ru: "Честь и достоинство горцев", en: "Honour & Dignity of Highlanders" },
     tag: { ru: "ценности", en: "values" },
-    text: {
-      ru: "Слово старшего — закон, гость — от Бога, данное слово держат. Namus — честь семьи и села — здесь не абстракция, а повседневное правило жизни, переданное от дедов.",
-      en: "An elder's word is law, a guest is sent by God, a promise is kept. Namus — the honour of family and village — is no abstraction here, but a daily rule of life inherited from the grandfathers.",
-    },
   },
   {
     id: "literature",
     title: { ru: "Литература и поэзия", en: "Literature & Poetry" },
     tag: { ru: "слово земляков", en: "words of our people" },
     glyph: "شعر",
-    text: {
-      ru: "Земля Рудаки помнит стихи. Народные поговорки, бейты и строки местных авторов соберутся в этом разделе — присылайте тексты своих земляков.",
-      en: "The land of Rudaki remembers its verse. Folk sayings, beits and lines by local authors will gather in this section — send in the words of your fellow villagers.",
-    },
   },
 ];
 
