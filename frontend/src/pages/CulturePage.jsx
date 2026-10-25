@@ -64,6 +64,6 @@ export function CultureTopicPage({ lang = "en" }) {
   const Icon = ICONS[topic.icon];
   return <article className="culture-directory cd-reading" lang={locale}>
     <Link className="cd-back" to="/culture" state={{ returnTo: topicId }}><ArrowLeft size={16} />{ru ? "Все темы культуры" : "All culture topics"}</Link>
-    <div className="cd-reading-header"><span className="cd-topic-icon"><Icon size={24} strokeWidth={1.6} /></span><h1 id="culture-topic-title" tabIndex={-1}>{topic.title[locale]}</h1><p className="cd-reading-deck">{topic.placeholder[locale]}</p></div>
+    <div className="cd-reading-header"><span className="cd-topic-icon"><Icon size={24} strokeWidth={1.6} /></span><h1 id="culture-topic-title" tabIndex={-1}>{topic.title[locale]}</h1></div>
   </article>;
 }
