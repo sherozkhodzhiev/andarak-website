@@ -17,8 +17,8 @@ export default function AboutPage({ lang }) {
       <motion.p className="font-mono-d text-[11px] tracking-[.22em] uppercase mb-3" style={{ color: "var(--p-terra)" }} {...reveal(0)}>
         {ABOUT_PAGE.eyebrow[lang]}
       </motion.p>
-      <motion.h1 className="font-display font-semibold" style={{ fontSize: "clamp(2.3rem, 4.6vw, 4rem)", color: "var(--p-ink)", lineHeight: 1.06 }} {...reveal(0.08)} data-testid="about-title">
-        {ABOUT_PAGE.title[lang]}
+      <motion.h1 className="page-title" {...reveal(0.08)} data-testid="about-title">
+        {lang === "ru" ? <>Зачем <span>этот сайт</span></> : <>Why this <span>site exists</span></>}
       </motion.h1>
       <motion.div className="mt-5 mb-14" {...reveal(0.14)}><KilimDivider /></motion.div>
 
