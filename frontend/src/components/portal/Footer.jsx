@@ -79,9 +79,6 @@ export default function Footer({ lang, onLang }) {
           <p className="text-xs leading-relaxed" style={{ color: "var(--p-slate)", maxWidth: 520 }}>
             {T.footerPilot[lang]}
           </p>
-          <p className="text-xs tracking-[.1em] uppercase shrink-0" style={{ color: "var(--p-slate)" }}>
-          Andarak — MMXXVI
-          </p>
         </div>
       </div>
     </footer>
