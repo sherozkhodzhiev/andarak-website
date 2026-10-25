@@ -25,7 +25,7 @@ export default function CulturePage({ lang = "en" }) {
     <div className="culture-directory" data-testid="culture-page" lang={locale}>
       <header className="cd-intro">
         <div className="cd-intro-copy">
-          <h1 data-testid="culture-title">{ru ? <>Культура <span>и традиции.</span></> : <>Culture <span>& traditions.</span></>}</h1>
+          <h1 className="page-title" data-testid="culture-title">{ru ? <>Культура <span>и традиции.</span></> : <>Culture <span>& traditions.</span></>}</h1>
           <p className="cd-lead">{ru ? "Выберите тему, чтобы узнать больше." : "Choose a topic. Discover its story."}</p>
         </div>
       </header>
