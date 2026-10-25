@@ -7,8 +7,8 @@ export const CHAPTERS = [
     eyebrow: { en: "Sogdiana, before empire", ru: "Согдиана, до империй" },
     title: { en: "A Land of <em>Fire</em>", ru: "Земля <em>Огня</em>" },
     body: {
-  "en": "Before empires and conquerors, this land was Sogdiana. Golden light spills over the Fergana valley, and smoke rises from an eternal flame inside a stone temple. Priests in white robes tend the fire. Villagers bow and offer bread and water. These were people who revered light as the face of truth, and called its source Ahura Mazda, the Wise Lord.",
-  "ru": "До империй и завоевателей эта земля называлась Согдианой. Золотой свет заливает Ферганскую долину, а в каменном храме поднимается дым вечного огня. Жрецы в белых одеждах хранят пламя. Люди склоняются и приносят хлеб и воду. Это был народ, который почитал свет как лик истины и называл его источник Ахура Мазда, Мудрый Господь."
+  "en": "Before empires and conquerors, this land was Sogdiana. Golden light spills over lands of Sogdians, and smoke rises from an eternal flame inside a stone temple. These were people who revered light as the face of truth, and called its source Ahura Mazda, the Wise Lord.",
+  "ru": "До империй и завоевателей эта земля называлась Согдианой.Золотой свет разливается над землями Cогдийцев, а в каменном храме поднимается дым вечного огня. Это был народ, который почитал свет как лик истины и называл его источник Ахура Мазда, Мудрый Господь."
 },
     caption: {
       en: "Sogdian priests in white robes tending the sacred fire-altar, clay homes behind",
