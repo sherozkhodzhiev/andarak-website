@@ -13,7 +13,7 @@
 .cd-intro { padding-bottom:10px; }
 .cd-intro h1 { font-family:inherit; font-size:clamp(36px,4.3vw,58px); font-weight:500; line-height:1.13; letter-spacing:-.05em; margin:0 0 16px; }
 .cd-intro h1>span { color:var(--cd-muted); }
-.cd-lead { color:var(--cd-muted); font-size:17px; line-height:1.6; }
+.cd-lead { color:var(--cd-accent); font-size:17px; line-height:1.6; }
 .cd-topics { scroll-margin-top:92px; }
 .cd-group { margin-top:36px; }
 .cd-group-heading { margin-bottom:15px; }
