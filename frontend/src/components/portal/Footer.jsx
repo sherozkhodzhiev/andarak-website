@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, X } from "lucide-react";
+import { Phone, X, Instagram } from "lucide-react";
 import { NAV, T } from "@/data/portal";
 
 export function EmergencyButton({ lang }) {
@@ -61,6 +61,17 @@ export default function Footer({ lang, onLang }) {
             <p className="font-display italic" style={{ fontSize: 22, lineHeight: 1.35, maxWidth: 340 }} data-testid="footer-tagline">
               {T.footerLine[lang]}
             </p>
+            <a
+              href="https://www.instagram.com/andarak_720403/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-3 py-2 footer-link"
+              style={{ color: "var(--p-terra)" }}
+              data-testid="footer-instagram"
+            >
+              <Instagram size={20} strokeWidth={1.7} aria-hidden="true" />
+              <span>{lang === "ru" ? "Андарак в Instagram" : "Follow Andarak"}</span>
+            </a>
           </div>
           <nav className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-1" aria-label={lang === "ru" ? "Навигация внизу страницы" : "Footer navigation"}>
             {NAV.map((g) => (
