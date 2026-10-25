@@ -27,7 +27,7 @@ export const NAV = [
     ],
   },
   {
-    id: "students", label: { ru: "Студентам", en: "Students" },
+    id: "students", label: { ru: "Студенты", en: "Students" },
     items: [
       { label: { ru: "Стипендии и гранты", en: "Scholarships & Grants" }, soon: true },
       { label: { ru: "Волонтёрство", en: "Volunteering" }, soon: true },
@@ -54,7 +54,7 @@ export const NAV = [
 
 export const T = {
   brand: { ru: "АНДАРАК", en: "ANDARAK" },
-  brandSub: { ru: "село в Ферганской долине", en: "a village in the Fergana valley" },
+  brandSub: { ru: "Родина", en: "Homeland" },
   soonBadge: { ru: "скоро", en: "soon" },
   heroSlogan: { ru: "Земля, где встречаются эпохи", en: "The land where eras meet" },
   heroLead: {
