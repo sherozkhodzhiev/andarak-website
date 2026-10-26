@@ -99,7 +99,7 @@ export const HOME_TEASERS = [
     line: { ru: "Настоящий Андарак — горы, улицы, люди", en: "The real Andarak — mountains, streets, people" },
   },
   {
-    to: "/about", img: "/gallery/about-valley.png",
+    to: "/about", img: "/gallery/about-canyon.jpg",
     title: { ru: "О проекте", en: "About the Project" },
     line: { ru: "Кто и зачем делает этот сайт", en: "Who makes this site and why" },
   },
