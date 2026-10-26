@@ -40,7 +40,7 @@ export const CHAPTERS = [
   {
     id: "alexandria", num: "03", flame: "alive", sound: "wind", embers: false,
     art: "/art/03-alexandria.png",
-    eyebrow: { en: "Khujand", ru: "Худжанд" },
+    eyebrow: { en: "Khurkand", ru: "Хурканд" },
     title: { en: "Alexandria <em>Eschate</em>", ru: "Александрия <em>Крайняя</em>" },
     body: {
   "en": "On the river's edge, new walls rise from Sogdian soil. Greek engineers and local stonemasons work side by side, and column and native form fuse into one. At the far edge of his known world, Alexander founded a city called Alexandria Eschate, \"the Furthest\": Greek stone upon Sogdian earth. It began as an act of force and slowly became a meeting place of two worlds.",
