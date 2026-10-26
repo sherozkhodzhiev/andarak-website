@@ -187,7 +187,7 @@ export const ABOUT_PAGE = {
     ],
     en: [
       ["Who makes it", "A person who was born in Andarak and loves his homeland."],
-      ["Why", "So that a village with 2,500 years of history has its own home on the internet: history, culture, community news and practical information for residents, guests and the diaspora."],
+      ["Why", "So that a village with 2,355 years of history has its own home on the internet: history, culture, community news and practical information for residents, guests and the diaspora."],
       ["What's next", "News and an events calendar, directories (medicine, schools, business, transport), a students' section, an interactive map and voices of the residents."],
       ["How to help", "Send photos, stories, poems by fellow villagers and ideas. A support block for concrete village needs (school repairs, roads) is coming in the next update."],
     ],
