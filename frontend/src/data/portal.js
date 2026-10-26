@@ -94,12 +94,12 @@ export const T = {
 
 export const HOME_TEASERS = [
   {
-    to: "/gallery", img: "/gallery/mosque-winter.png",
+    to: "/gallery", img: "/gallery/memorial-arch.png",
     title: { ru: "Галерея", en: "Gallery" },
     line: { ru: "Настоящий Андарак — горы, улицы, люди", en: "The real Andarak — mountains, streets, people" },
   },
   {
-    to: "/about", img: "/gallery/memorial-arch.png",
+    to: "/about", img: "/gallery/about-valley.png",
     title: { ru: "О проекте", en: "About the Project" },
     line: { ru: "Кто и зачем делает этот сайт", en: "Who makes this site and why" },
   },
