@@ -141,7 +141,7 @@ export default function HistorySlides({ lang, onLang }) {
       </main>
 
       <nav className="hc-navigation" aria-label={ru ? "Навигация по слайдам" : "Slide navigation"}>
-        <span className="hc-progress">{String(active + 1).padStart(2, "0")} <span>/ {slides.length}</span></span>
+        <span aria-hidden="true" />
         <span className="hc-scroll-hint">{ru ? "Листайте историю" : "Scroll through history"} <ArrowDown size={13} /></span>
         <div><button disabled={active === 0} onClick={() => go(active - 1)} aria-label={ru ? "Предыдущий слайд" : "Previous slide"}><ArrowLeft size={19} /></button><button disabled={active === slides.length - 1} onClick={() => go(active + 1)} aria-label={ru ? "Следующий слайд" : "Next slide"}><ArrowRight size={19} /></button></div>
       </nav>
