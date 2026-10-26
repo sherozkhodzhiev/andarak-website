@@ -7,6 +7,7 @@ import { Menu, X, ChevronDown, Sun, Moon, MapPin } from "lucide-react";
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { NAV, T } from "@/data/portal";
 
 export default function Header({ lang, onLang, theme, onTheme }) {
@@ -75,18 +76,30 @@ export default function Header({ lang, onLang, theme, onTheme }) {
         </nav>
 
                 <div className="header-actions flex items-center gap-2.5">
-          <a
-            href="https://www.google.com/maps/place/Andarak,+Kyrgyzstan/@39.7683356,69.4691706,14z/data=!3m1!4b1!4m6!3m5!1s0x38b1179280874d8f:0xe0fe2e33e9046af2!8m2!3d39.768282!4d69.4724952!16s%2Fm%2F03wc2x2"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center justify-center w-11 h-11 rounded-full hover:bg-[var(--p-bg2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--p-terra)]"
-            style={{ color: "var(--p-terra)" }}
-            aria-label={lang === "ru" ? "Открыть карту Андарака" : "Open Andarak map"}
-            title={lang === "ru" ? "Андарак на карте" : "Andarak on Google Maps"}
-            data-testid="header-map"
-          >
-            <MapPin size={22} strokeWidth={1.7} aria-hidden="true" />
-          </a>
+          <Popover>
+            <PopoverTrigger asChild>
+              <button type="button"
+                className="inline-flex shrink-0 items-center justify-center w-11 h-11 rounded-full hover:bg-[var(--p-bg2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--p-terra)]"
+                style={{ color: "var(--p-terra)" }}
+                aria-label={lang === "ru" ? "Посетить Андарак" : "Visit Andarak"}
+                data-testid="header-map">
+                <MapPin size={22} strokeWidth={1.7} aria-hidden="true" />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent align="end" sideOffset={10} collisionPadding={16}
+              className="w-[260px] max-w-[calc(100vw-32px)] rounded-xl p-5"
+              style={{ background: "var(--p-bg)", borderColor: "var(--p-border)", color: "var(--p-ink)" }}
+              aria-label={lang === "ru" ? "Андарак" : "Andarak"} data-testid="location-panel">
+              <a href="https://www.google.com/maps/place/Andarak,+Kyrgyzstan/@39.7683356,69.4691706,14z/data=!3m1!4b1!4m6!3m5!1s0x38b1179280874d8f:0xe0fe2e33e9046af2!8m2!3d39.768282!4d69.4724952!16s%2Fm%2F03wc2x2" target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center min-h-11 gap-2 font-medium rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--p-terra)]"
+                style={{ color: "var(--p-terra)" }} data-testid="location-map-link">
+                {lang === "ru" ? "Посетить Андарак →" : "Visit Andarak →"}
+              </a>
+              <p className="mt-1 text-sm leading-relaxed" style={{ color: "var(--p-slate)" }}>
+                {lang === "ru" ? "1 800 метров над уровнем моря" : "1,800 metres above sea level"}
+              </p>
+            </PopoverContent>
+          </Popover>
           <HeaderWeather lang={lang} />
 
           <div
