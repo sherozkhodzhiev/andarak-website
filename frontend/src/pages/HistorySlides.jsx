@@ -29,7 +29,7 @@ export default function HistorySlides({ lang, onLang }) {
   const closeButton = useRef(null);
   const ru = lang === "ru";
   const slides = [
-    { id: "opening", art: CHAPTERS[0].art, title: ru ? "АНДАРАК" : "ANDARAK", eyebrow: ru ? "История Андарака" : "A History of Andarak", summary: UI.heroSub[lang], body: UI.heroIntro[lang] },
+    { id: "opening", art: CHAPTERS[0].art, title: ru ? "АНДАРАК" : "ANDARAK", eyebrow: UI.kicker[lang], summary: UI.heroSub[lang], body: UI.heroIntro[lang] },
     ...CHAPTERS.map((c, i) => ({ ...c, title: c.title[lang], eyebrow: c.eyebrow[lang], summary: SUMMARIES[i][ru ? 1 : 0], body: c.body[lang], lesson: c.cue[lang] })),
     { id: "closing", art: CHAPTERS[CHAPTERS.length - 1].art, title: ru ? "Огонь всё ещё <em>горит.</em>" : "The fire is still <em>burning.</em>", eyebrow: ru ? "Продолжение — в наших руках" : "The next chapter is ours", summary: ru ? "Андарак: история в огне." : "Andarak: a history in fire." },
   ];
@@ -101,7 +101,7 @@ export default function HistorySlides({ lang, onLang }) {
           <section key={slide.id} data-slide={index} inert={active !== index ? true : undefined} aria-hidden={active !== index} style={{ visibility: visible ? "visible" : "hidden", opacity: reduced ? (active === index ? 1 : 0) : entering * fade, zIndex: index, pointerEvents: active === index ? "auto" : "none", "--image-scale": reduced || resting ? 1 : 1 + zoom * 1.65, "--title-scale": reduced || resting ? 1 : 1 + zoom * 2.5, "--copy-opacity": reduced || resting ? 1 : Math.max(0, 1 - zoom * 1.5) }} className={`hc-slide ${active === index ? "is-active" : ""}`} aria-labelledby={`hc-title-${slide.id}`}>
             {slide.id === "opening" ? (
               <div className="hc-bookend hc-opening">
-                <p className="hc-eyebrow">{ru ? "История Андарака" : "A History of Andarak"}</p>
+                <p className="hc-eyebrow">{UI.kicker[lang]}</p>
                 <h1 id="hc-title-opening">{ru ? "АНДАРАК" : "ANDARAK"}</h1>
                 <p className="hc-opening-motto">{UI.heroSub[lang]}</p>
                 <div className="hc-opening-text" tabIndex={0} aria-label={ru ? "Вступление" : "Introduction"}><p>{UI.heroIntro[lang]}</p></div>
