@@ -51,7 +51,7 @@ export default function Wisdom({ lang, variant = "band" }) {
         style={{ background: "radial-gradient(ellipse at 50% 120%, rgba(212,175,55,.08), transparent 60%)" }}
       />
       <div className="relative z-10 max-w-[900px] mx-auto text-center">
-        <p className="font-mono-d text-[10.5px] tracking-[.3em] uppercase" style={{ color: "var(--p-gold)" }} data-testid="wisdom-eyebrow">
+        <p className="font-mono-d text-[10.5px] tracking-[.3em] uppercase" style={{ color: "var(--p-terra)" }} data-testid="wisdom-eyebrow">
           {WISDOM_T.eyebrow[lang]}
         </p>
         <div className="flex justify-center mt-6 mb-9"><KilimDivider opacity={0.45} /></div>
