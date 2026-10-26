@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://andarak.netlify.app/sitemap.xml
