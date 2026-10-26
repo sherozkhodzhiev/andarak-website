@@ -3,7 +3,7 @@
 .weather-panel { position: fixed; top: 78px; right: 20px; z-index: 151; width: min(620px, calc(100vw - 40px)); max-height: calc(100dvh - 100px); overflow-y: auto; overscroll-behavior: contain; padding: 24px; border: 1px solid var(--p-border); border-radius: 20px; background: var(--p-bg); color: var(--p-ink); box-shadow: 0 16px 64px rgb(0 0 0 / 25%); }
 .weather-panel-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .weather-panel-heading h2 { margin: 0; font-family: Georgia, serif; font-size: 26px; }
-.weather-panel-heading p, .weather-hint, .weather-credit { color: var(--p-slate); font-size: 13px; }
+.weather-panel-heading p, .weather-hint { color: var(--p-slate); font-size: 13px; }
 .weather-close { flex-shrink: 0; min-width: 44px; min-height: 44px; font-size: 28px; color: inherit; border-radius: 50%; background: var(--p-bg2); }
 .weather-current { display: flex; align-items: center; gap: 14px; margin: 22px 0; }
 .weather-current strong { font-size: 32px; }
@@ -14,8 +14,6 @@
 .weather-hour-title { font-weight: 600; font-size: 16px; margin: 18px 0 8px; }
 .weather-hour { display: grid; grid-template-columns: 44px 24px 1fr 42px 85px; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--p-border); font-size: 13px; }
 .weather-hour small, .weather-day small { color: var(--p-slate); }
-.weather-credit { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 18px; }
-.weather-credit a { text-decoration: underline; text-underline-offset: 3px; }
 .weather-message { padding: 32px 0; }
 .weather-message button { margin-top: 12px; padding: 10px 16px; border: 1px solid var(--p-border); border-radius: 8px; }
 .weather-panel button:focus-visible, .weather-panel a:focus-visible { outline: 2px solid var(--p-terra); outline-offset: 2px; }
