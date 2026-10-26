@@ -43,7 +43,7 @@ export default function Wisdom({ lang, variant = "band" }) {
   return (
     <section
       className="relative overflow-hidden"
-      style={{ background: "#16202E", padding: "clamp(4.5rem, 9vw, 8rem) 8vw" }}
+      style={{ backgroundColor: "#16202E", backgroundImage: 'linear-gradient(rgba(12, 22, 29, .58), rgba(12, 22, 29, .78) 50%, rgba(12, 22, 29, .58)), url("/gallery/wisdom-paisley.jpg")', backgroundSize: "cover", backgroundPosition: "center", padding: "clamp(4.5rem, 9vw, 8rem) 8vw" }}
       data-testid="wisdom-band"
     >
       <div
