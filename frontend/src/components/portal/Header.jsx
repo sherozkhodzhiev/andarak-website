@@ -26,8 +26,16 @@ export default function Header({ lang, onLang, theme, onTheme }) {
       data-testid="portal-header"
     >
       <div className="max-w-[1280px] mx-auto flex items-center justify-between px-5 lg:px-8" style={{ height: 68 }}>
-        <Link to="/" className="flex items-center group" data-testid="header-logo">
-          <span className="font-display font-bold tracking-[.08em]" style={{ fontSize: 20, color: "var(--p-ink)" }}>{T.brand[lang]}</span>
+        <Link to="/" className="relative isolate flex shrink-0 items-end justify-center group" style={{ width: 124, height: 56, paddingBottom: 4 }} data-testid="header-logo">
+          <svg viewBox="0 0 480 240" fill="none" aria-hidden="true" focusable="false"
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{ color: "var(--p-terra)", opacity: 0.38 }}>
+            <path d="M8 208 L91 125 Q103 112 116 123 L131 133 L229 20 Q236 11 245 21 L326 115 L341 103 Q351 96 363 108 L471 208"
+              stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+            <path d="M131 133 L182 94 L161 137 L145 151 M236 24 L225 78 L204 105 L232 99 L225 125 L300 205 M258 87 L266 110 L284 125 M344 105 L340 133 L356 153"
+              stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+          </svg>
+          <span className="relative font-display font-bold tracking-[.08em]" style={{ fontSize: 20, color: "var(--p-ink)" }}>{T.brand[lang]}</span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" data-testid="desktop-nav">
