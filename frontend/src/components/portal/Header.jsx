@@ -93,7 +93,7 @@ export default function Header({ lang, onLang, theme, onTheme }) {
               <a href="https://www.google.com/maps/place/Andarak,+Kyrgyzstan/@39.7683356,69.4691706,14z/data=!3m1!4b1!4m6!3m5!1s0x38b1179280874d8f:0xe0fe2e33e9046af2!8m2!3d39.768282!4d69.4724952!16s%2Fm%2F03wc2x2" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center min-h-11 gap-2 font-medium rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--p-terra)]"
                 style={{ color: "var(--p-terra)" }} data-testid="location-map-link">
-                {lang === "ru" ? "Посетить Андарак →" : "Visit Andarak →"}
+                {lang === "ru" ? "Посетить Андарак" : "Visit Andarak"}
               </a>
               <p className="mt-1 text-sm leading-relaxed" style={{ color: "var(--p-slate)" }}>
                 {lang === "ru" ? "1 800 метров над уровнем моря" : "1,800 metres above sea level"}
